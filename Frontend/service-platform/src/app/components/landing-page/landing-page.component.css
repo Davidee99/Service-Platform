@@ -1,0 +1,29 @@
+.example-form {
+    min-width: 150px;
+    width: 60%;
+    background-color: rgb(0, 0, 0);
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .buttonform {
+
+    align-self: flex-end;
+
+  }
+
+  .bottone{
+
+    width: 100px;
+    height: 60px;
+
+  }
+
+ 
