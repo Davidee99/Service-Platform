@@ -1,40 +1,43 @@
 
-<p>
-    
-    <mat-toolbar>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-          </button>
-      <span> Landing Page </span>
-    </mat-toolbar>
-  </p>
 
   
 
-<form class="example-form">
-    <mat-form-field class="example-full-width">
+<form class="landing-page-form">
+  <div class="title-form">
+    <h2>Create Ticket</h2>
+  </div>
+    <mat-form-field class="landing-page-form-field">
       <mat-label>Firstname</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
+      <input matInput placeholder="Firstname"   required>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="landing-page-form-field">
         <mat-label>Lastname</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
+        <input matInput placeholder="Lastname"  required>
       </mat-form-field>
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="landing-page-form-field">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="">
+        <input matInput placeholder="Email"  required >
       </mat-form-field>
     
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <select matNativeControl required>
+          <option value="REFUND">REFUND</option>
+          <option value="PRODUCT">PRODUCT</option>
+        </select>
+      </mat-form-field>    
   
-    <mat-form-field class="example-full-width">
-      <mat-label>Problematica riscontrata</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    <mat-form-field class="landing-page-form-field">
+      <mat-label>Issues details </mat-label>
+      <textarea matInput placeholder="Issues detail"  required></textarea>
     </mat-form-field>
 
-    <div class="buttonform">
-        <button mat-raised-button color="primary"  class="bottone" >Primary</button>
+    
+
+    <div class="landing-page-form-button">
+        <button mat-raised-button color="primary"  >Send</button>
     </div>
    
 
