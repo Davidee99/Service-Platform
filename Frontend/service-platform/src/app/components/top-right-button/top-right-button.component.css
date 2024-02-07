@@ -26,6 +26,20 @@
     background-color: grey;
 }
 
+.buttons{
+    /* border: 1px solid red; */
+    width: 40%;
+    margin-left:19rem ;
+    
+    
+    
+}
+.btn-close{
+    margin-right: 1rem;
+    
+}
+
+
 
 
 /* ul>li{

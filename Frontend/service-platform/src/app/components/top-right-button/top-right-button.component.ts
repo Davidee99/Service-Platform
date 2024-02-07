@@ -33,4 +33,12 @@ export class TopRightButtonComponent {
 open(content: any) {
     this.modalService.open(content, {centered : true , modalDialogClass:"dark-modal"});
 }
+
+submitted = false;
+
+  onSubmit() { 
+    this.submitted = true;
+    //  alert("Submitted") 
+    }
+
 }
