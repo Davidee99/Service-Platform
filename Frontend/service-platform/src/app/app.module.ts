@@ -12,7 +12,7 @@ import { LandingPageComponent } from './components/LandingPage/landing-page/land
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -32,6 +32,7 @@ import { TopRightButtonComponent } from './components/top-right-button/top-right
     AppRoutingModule,
     MatFormFieldModule, 
     MatInputModule, 
+    MatSelectModule,
     FormsModule, 
     ReactiveFormsModule, 
     NgIf,
