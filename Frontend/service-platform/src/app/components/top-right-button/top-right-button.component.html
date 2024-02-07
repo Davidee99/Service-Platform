@@ -10,35 +10,38 @@
 
 
 <ng-template #content let-c="close" let-d="dismiss">
-		<ul ngbNav #nav="ngbNav" class="nav-tabs">
+		<ul     ngbNav #nav="ngbNav" class="nav-tabs">
             <li ngbNavItem>
-              <button ngbNavLink>User</button>
-              <ng-template ngbNavContent>
-                <ng-form>
-                    <div class="mb-3">
+              <button  class="form-user-button" ngbNavLink>User</button>
+              <ng-template   class="container-user" ngbNavContent>
+                <ng-form class="container-form-user">
+                    <!-- <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                      </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">password</label>
-                        <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="password">
-                      </div>
-                      
+                      </div> -->
+                      <mat-form-field class="landing-page-form-field">
+                        <mat-label>Email address</mat-label>
+                        <input matInput placeholder="Email address"  required>
+                      </mat-form-field>
+                      <mat-form-field class="landing-page-form-field">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Password"  required>
+                      </mat-form-field>
                 </ng-form>
               </ng-template>
             </li>
             <li ngbNavItem>
               <button ngbNavLink>Employee</button>
               <ng-template ngbNavContent>
-                <ng-form>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                      </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">password</label>
-                        <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="password">
-                      </div>
+                <ng-form class="container-form-employee">
+                  <mat-form-field class="landing-page-form-field">
+                    <mat-label>Email address</mat-label>
+                    <input matInput placeholder="Email address"  required>
+                  </mat-form-field>
+                  <mat-form-field class="landing-page-form-field">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password"  required>
+                  </mat-form-field>
                       
                 </ng-form>
               </ng-template>

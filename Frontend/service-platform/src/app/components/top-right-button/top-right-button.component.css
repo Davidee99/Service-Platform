@@ -9,3 +9,25 @@
 
 
 }
+
+
+.container-form-user{
+     display: flex;
+     flex-direction: column;
+   
+}
+.container-form-employee{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container-user{
+    background-color: grey;
+}
+
+
+
+/* ul>li{
+    background-color: grey;
+} */
