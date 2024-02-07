@@ -1,14 +1,17 @@
 
 
-  
-
-<form class="landing-page-form">
+  <form class="landing-page-form" #myForm="ngForm">
   <div class="title-form">
     <h2>Create Ticket</h2>
   </div>
     <mat-form-field class="landing-page-form-field">
       <mat-label>Firstname</mat-label>
-      <input matInput placeholder="Firstname"   required>
+      <input matInput placeholder="Firstname" required [(ngModel)]="userData.firstname">
+
+      <div *ngIf="myForm.controls['firstname'].invalid && (myForm.controls['firstname'].dirty || myForm.controls['userData.firstname'].touched)">
+        <p *ngIf="myForm.controls['firstname'].errors.required">Il nome utente è obbligatorio.</p>
+      </div>
+
     </mat-form-field>
 
     <mat-form-field class="landing-page-form-field">
