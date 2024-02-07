@@ -16,13 +16,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProvaComponent } from './components/prova/prova.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProvaComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatToolbarModule,
      MatIconModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
