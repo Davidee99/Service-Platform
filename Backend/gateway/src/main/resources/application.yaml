@@ -1,0 +1,15 @@
+server:
+  port: 8081
+  
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: login-service
+          uri: 'http://localhost:8082/login-service'
+          predicates:
+            - Path=/api/login-service/**
+            
+    
