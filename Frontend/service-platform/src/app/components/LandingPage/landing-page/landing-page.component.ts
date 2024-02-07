@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -18,6 +18,14 @@ export class LandingPageComponent{
     message : ""
 
   };
+
+  submitForm(form: NgForm) {
+    if (form.valid) {
+      // Esegui l'invio del form
+      console.log(this.userData);
+      
+    }
+  }
   
 
   
