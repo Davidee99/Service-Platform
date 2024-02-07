@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, inject } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-prova',
@@ -16,6 +16,7 @@ export class ProvaComponent {
 		config.backdrop = 'static';
 		config.keyboard = false;
 	}
+
 
 	open(content: any) {
 		this.modalService.open(content);
