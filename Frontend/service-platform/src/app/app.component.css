@@ -7,11 +7,3 @@
 }
 
 
-.navbar{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-}
-.navbar-button{
-  justify-self: flex-end;
-}
