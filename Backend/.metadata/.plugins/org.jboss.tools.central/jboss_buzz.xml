@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>JBoss Tools Aggregated Feed</title>
   <id>https://tools.jboss.org</id>
-  <updated>2024-02-05T06:12:09Z</updated>
+  <updated>2024-02-08T06:12:13Z</updated>
   <link href="https://tools.jboss.org"/>
   <xhtml:meta content="noindex" name="robots" xmlns:xhtml="http://www.w3.org/1999/xhtml"/><entry>
+    <title>JBoss Blogs: Configuring WildFly stability levels</title>
+    <updated>2024-02-07T18:06:49Z</updated>
+    <id>https://www.mastertheboss.com/jbossas/jboss-configuration/configuring-wildfly-stability-levels/</id>
+    <link href="https://www.mastertheboss.com/jbossas/jboss-configuration/configuring-wildfly-stability-levels/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to use LLMs in Java with LangChain4j and Quarkus</title>
+    <updated>2024-02-07T07:00:00Z</updated>
+    <id>67865431-234a-488f-a811-5f1e4679940b</id>
+    <link href="https://developers.redhat.com/articles/2024/02/07/how-use-llms-java-langchain4j-and-quarkus" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Eclipse Vert.x 4.5.3 released!</title>
+    <updated>2024-02-07T00:00:00Z</updated>
+    <id>https://vertx.io/blog/eclipse-vert-x-4-5-3</id>
+    <link href="https://vertx.io/blog/eclipse-vert-x-4-5-3" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Eclipse Vert.x 4.4.8 released!</title>
+    <updated>2024-02-07T00:00:00Z</updated>
+    <id>https://vertx.io/blog/eclipse-vert-x-4-4-8</id>
+    <link href="https://vertx.io/blog/eclipse-vert-x-4-4-8" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Security policies in open source software</title>
+    <updated>2024-02-06T07:00:00Z</updated>
+    <id>2f1a577f-f5c0-4c99-af1f-543854ea1d13</id>
+    <link href="https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to integrate Quarkus applications with OpenShift AI</title>
+    <updated>2024-02-06T07:00:00Z</updated>
+    <id>b242953f-63a0-40a5-be48-a16d40567e85</id>
+    <link href="https://developers.redhat.com/articles/2024/02/06/how-integrate-quarkus-applications-openshift-ai" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: JUnit 5: Using Custom DisplayNames for Tests</title>
+    <updated>2024-02-05T17:33:59Z</updated>
+    <id>https://www.mastertheboss.com/various-stuff/testing-java/junit-5-displayname-for-custom-test-names/</id>
+    <link href="https://www.mastertheboss.com/various-stuff/testing-java/junit-5-displayname-for-custom-test-names/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: What's new in JBoss Enterprise Application Platform 8.0</title>
+    <updated>2024-02-05T14:00:00Z</updated>
+    <id>45c0a195-69f8-4b22-a8f4-620ca81b6251</id>
+    <link href="https://developers.redhat.com/articles/2024/02/05/whats-new-jboss-enterprise-application-platform-8" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to cache data using GDB's Python API</title>
+    <updated>2024-02-05T07:00:00Z</updated>
+    <id>51ad72dd-271e-422e-91a6-0855584412e1</id>
+    <link href="https://developers.redhat.com/articles/2024/02/05/how-cache-data-using-gdbs-python-api" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Vlog: Introduction to WildFly Glow</title>
+    <updated>2024-02-05T00:00:00Z</updated>
+    <id>https://www.youtube.com/watch?v=kt8pTDmTitw</id>
+    <link href="https://www.youtube.com/watch?v=kt8pTDmTitw" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: WildFly testing with WildFly Glow</title>
+    <updated>2024-02-05T00:00:00Z</updated>
+    <id>https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/</id>
+    <link href="https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
+    <updated>2024-02-05T00:00:00Z</updated>
+    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
+    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
     <title>JBoss Blogs: WildFly Glow: Next-Gen Evolution in Provisioning</title>
     <updated>2024-02-02T15:06:23Z</updated>
     <id>https://www.mastertheboss.com/jbossas/jboss-configuration/wildfly-glow-next-gen-evolution-in-provisioning/</id>
@@ -25,17 +109,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to configure granular access in OpenShift Dev Spaces</title>
-    <updated>2024-02-01T14:00:00Z</updated>
-    <id>08a6220d-2337-477e-90eb-ebf455edffbd</id>
-    <link href="https://developers.redhat.com/articles/2024/02/01/how-configure-granular-access-openshift-dev-spaces" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Red Hat Developer: How to deploy Meteor.js applications to OpenShift</title>
     <updated>2024-02-01T14:00:00Z</updated>
     <id>67dfddaf-e149-46cc-9ae8-fbb7c7b58314</id>
     <link href="https://developers.redhat.com/articles/2024/02/01/how-deploy-meteorjs-applications-openshift" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to configure granular access in OpenShift Dev Spaces</title>
+    <updated>2024-02-01T14:00:00Z</updated>
+    <id>08a6220d-2337-477e-90eb-ebf455edffbd</id>
+    <link href="https://developers.redhat.com/articles/2024/02/01/how-configure-granular-access-openshift-dev-spaces" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -60,21 +144,14 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
-    <updated>2024-01-31T00:00:00Z</updated>
-    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
-    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
+    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
+    <title>JBoss Blogs: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
@@ -123,13 +200,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: Blue/green deployment strategy with Argo Rollouts</title>
-    <updated>2024-01-29T07:00:00Z</updated>
-    <id>fb4ee101-43df-4314-98ae-683b7cf743db</id>
-    <link href="https://developers.redhat.com/articles/2024/01/29/bluegreen-deployment-strategy-argo-rollouts" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Red Hat Developer: The developer's guide to Kubernetes Operators</title>
     <updated>2024-01-29T07:00:00Z</updated>
     <id>255cb02a-1ee0-4983-b4bf-2f338ca14c96</id>
@@ -151,80 +221,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: TestContainers made simple with JBang</title>
-    <updated>2024-01-26T17:35:41Z</updated>
-    <id>https://www.mastertheboss.com/various-stuff/testing-java/testcontainers-made-simple-with-jbang/</id>
-    <link href="https://www.mastertheboss.com/various-stuff/testing-java/testcontainers-made-simple-with-jbang/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Community support for Spring Boot applications on OpenShift and RHEL</title>
-    <updated>2024-01-26T07:00:00Z</updated>
-    <id>07632d41-43d4-4c57-956b-699a7579e2a1</id>
-    <link href="https://developers.redhat.com/articles/2024/01/26/community-support-spring-boot-applications-openshift-and-rhel" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: WildFly Guides</title>
-    <updated>2024-01-26T00:00:00Z</updated>
-    <id>https://wildfly.org//news/2024/01/26/WildFly-Guides/</id>
-    <link href="https://wildfly.org//news/2024/01/26/WildFly-Guides/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Quarkus 3.2.10.Final released - Maintenance LTS release</title>
-    <updated>2024-01-26T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-2-10-final-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-2-10-final-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Quarkus: Quarkus 3.2.10.Final released - Maintenance LTS release</title>
     <updated>2024-01-26T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-2-10-final-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-2-10-final-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: How to create Test Data in Jakarta EE applications</title>
-    <updated>2024-01-25T18:11:13Z</updated>
-    <id>https://www.mastertheboss.com/java-ee/jakarta-ee/how-to-create-test-data-in-jakarta-ee-applications/</id>
-    <link href="https://www.mastertheboss.com/java-ee/jakarta-ee/how-to-create-test-data-in-jakarta-ee-applications/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Network observability with eBPF on single node OpenShift</title>
-    <updated>2024-01-25T07:00:00Z</updated>
-    <id>1255f610-5f17-4953-aff4-1a835c2e879c</id>
-    <link href="https://developers.redhat.com/articles/2024/01/25/network-observability-ebpf-single-node-openshift" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Implement MLOps with Kubeflow Pipelines</title>
-    <updated>2024-01-25T07:00:00Z</updated>
-    <id>a2ae58f5-7c0b-45ea-a76a-91fb30ccd120</id>
-    <link href="https://developers.redhat.com/articles/2024/01/25/implement-mlops-kubeflow-pipelines" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: WildFly 31 is released!</title>
-    <updated>2024-01-25T00:00:00Z</updated>
-    <id>https://wildfly.org//news/2024/01/25/WildFly31-Released/</id>
-    <link href="https://wildfly.org//news/2024/01/25/WildFly31-Released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Generating Random Data for REST Services</title>
-    <updated>2024-01-24T11:51:20Z</updated>
-    <id>https://www.mastertheboss.com/jboss-frameworks/resteasy/generating-random-data-for-rest-services-part-one/</id>
-    <link href="https://www.mastertheboss.com/jboss-frameworks/resteasy/generating-random-data-for-rest-services-part-one/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Scraping Prometheus metrics from Red Hat build of Keycloak</title>
-    <updated>2024-01-24T07:00:00Z</updated>
-    <id>efcb319d-0a5a-43e9-bf76-e6bf3c043cab</id>
-    <link href="https://developers.redhat.com/articles/2024/01/24/scraping-prometheus-metrics-red-hat-build-keycloak" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
