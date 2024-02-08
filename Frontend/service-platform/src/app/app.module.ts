@@ -22,6 +22,7 @@ import { UserPageComponent } from './components/UserPage/user-page/user-page.com
 import { TicketContainerComponent } from './components/UserPage/ticket-container/ticket-container.component';
 import { TicketComponent } from './components/UserPage/ticket/ticket.component';
 import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-sidebar.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-si
      MatIconModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    NgbModule
+    NgbModule,
+    NgbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

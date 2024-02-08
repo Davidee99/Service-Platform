@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ticket',
@@ -6,5 +8,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
+  constructor(
+		config: NgbModalConfig,
+		private modalService: NgbModal,
+	) {
+		// customize default values of modals used by this component tree
+		config.backdrop = 'static';
+		config.keyboard = false;
+	}
+  check: boolean = true
 
+  code:string = "";
+
+  submitForm(form: NgForm) {
+    if (form.valid) {
+      // Esegui l'invio del form
+      console.log(this.code);
+      
+    }
+  }
+  
+  ticket =
+    {
+      id:2234,
+      message:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique reiciendis libero fuga ipsa amet...",
+      status:"closed",
+      order_id:7
+    }
+
+    open(content: any) {
+      this.modalService.open(content, {centered : true , modalDialogClass:"dark-modal"});
+    }
 }
+
