@@ -18,6 +18,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopRightButtonComponent } from './components/top-right-button/top-right-button.component';
+import { UserPageComponent } from './components/UserPage/user-page/user-page.component';
+import { TicketContainerComponent } from './components/UserPage/ticket-container/ticket-container.component';
+import { TicketComponent } from './components/UserPage/ticket/ticket.component';
+import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-sidebar.component';
 
 
 @NgModule({
@@ -25,7 +29,12 @@ import { TopRightButtonComponent } from './components/top-right-button/top-right
     AppComponent,
     LandingPageComponent,
     NavbarComponent,
-    TopRightButtonComponent
+    TopRightButtonComponent,
+    UserPageComponent,
+    UserPageComponent,
+    TicketContainerComponent,
+    TicketComponent,
+    UserSidebarComponent
   ],
   imports: [
     BrowserModule,
