@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ticket',
@@ -6,8 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
-
-  @Input()
-  ticketsChild! : any[];
 
 }
