@@ -1,21 +1,32 @@
 
 
-<ul ngbNav #nav="ngbNav" class="nav-tabs">
-  <li ngbNavItem>
-    <button class="form-user-button" ngbNavLink>User</button>
-    <ng-template  ngbNavContent>
-        <app-ticket></app-ticket>
-       <p>asd</p>
-      </ng-template>
-    </li>
-    <li ngbNavItem>
-      <button ngbNavLink>Employee</button>
-      <ng-template ngbNavContent>
-        <app-ticket></app-ticket>
-       <p>asddasd</p>
-      </ng-template>
-    </li>
-  </ul>
+<div class="container-tickets">
 
-  <div [ngbNavOutlet]="nav"></div>
-   
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+        <li ngbNavItem>
+            <button class="form-user-button"> Open </button>
+
+            <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
+
+            <ng-template ngbNavContent >
+                <app-ticket [ticketsChild]="tickets"></app-ticket>
+            <p>asd</p>
+            </ng-template>
+        </li>
+    
+        <li ngbNavItem>
+            <button ngbNavLink> Closed </button>
+            <ng-template ngbNavContent>
+                <app-ticket></app-ticket>
+                <p>asddasd</p>
+            </ng-template>
+        </li>
+    
+    </ul>
+    
+        <div [ngbNavOutlet]="nav"></div>
+
+</div>
+
+    
