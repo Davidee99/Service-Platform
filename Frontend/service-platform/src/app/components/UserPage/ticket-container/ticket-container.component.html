@@ -1,17 +1,21 @@
 
 
-<app-ticket></app-ticket>
 <ul ngbNav #nav="ngbNav" class="nav-tabs">
-    <li ngbNavItem>
-      <button class="form-user-button" ngbNavLink>User</button>
-      <ng-template class="container-user" ngbNavContent>
-       ciao
+  <li ngbNavItem>
+    <button class="form-user-button" ngbNavLink>User</button>
+    <ng-template  ngbNavContent>
+        <app-ticket></app-ticket>
+       <p>asd</p>
       </ng-template>
     </li>
     <li ngbNavItem>
       <button ngbNavLink>Employee</button>
       <ng-template ngbNavContent>
-       ciao2
+        <app-ticket></app-ticket>
+       <p>asddasd</p>
       </ng-template>
     </li>
   </ul>
+
+  <div [ngbNavOutlet]="nav"></div>
+   
