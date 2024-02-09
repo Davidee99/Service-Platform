@@ -6,8 +6,11 @@
             <button ngbNavLink class="form-user-button" (click)="OpenButton()"> Open </button>
             <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
             <ng-template ngbNavContent>
-                <app-ticket></app-ticket>
-                <p>Ticket aperto</p>
+                <div *ngFor="let item of tickets">
+                    <div *ngIf="item.status!='closed'">
+                        <app-ticket [ticket]="item"></app-ticket>
+                    </div>
+                </div>
             </ng-template>
 
         </li>
@@ -16,8 +19,9 @@
             <button ngbNavLink (click)="ClosedButton()"> Closed </button>
             <ng-template ngbNavContent>
                 <div *ngFor="let item of tickets">
-                    <app-ticket [ticket]="item"></app-ticket>
-                    <p>Ticket chiuso</p>
+                    <div *ngIf="item.status=='closed'">
+                        <app-ticket [ticket]="item"></app-ticket>
+                    </div>
                 </div>
             </ng-template>
         </li>
