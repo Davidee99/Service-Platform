@@ -23,6 +23,10 @@ import { TicketContainerComponent } from './components/UserPage/ticket-container
 import { TicketComponent } from './components/UserPage/ticket/ticket.component';
 import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-sidebar.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { OperatorTicketComponent } from './components/OperatorPage/operator-ticket/operator-ticket.component';
+import { OperatorTicketContainerComponent } from './components/OperatorPage/operator-ticket-container/operator-ticket-container.component';
+import { OperatorSidebarComponent } from './components/OperatorPage/operator-sidebar/operator-sidebar.component';
+import { OperatorPageComponent } from './components/OperatorPage/operator-page/operator-page.component';
 
 
 @NgModule({
@@ -35,7 +39,11 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     UserPageComponent,
     TicketContainerComponent,
     TicketComponent,
-    UserSidebarComponent
+    UserSidebarComponent,
+    OperatorTicketComponent,
+    OperatorTicketContainerComponent,
+    OperatorSidebarComponent,
+    OperatorPageComponent
   ],
   imports: [
     BrowserModule,
