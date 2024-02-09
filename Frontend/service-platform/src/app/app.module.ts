@@ -28,6 +28,7 @@ import { OperatorTicketContainerComponent } from './components/OperatorPage/oper
 import { OperatorSidebarComponent } from './components/OperatorPage/operator-sidebar/operator-sidebar.component';
 import { OperatorPageComponent } from './components/OperatorPage/operator-page/operator-page.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -64,7 +65,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     NoopAnimationsModule,
     NgbModule,
     NgbTooltipModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

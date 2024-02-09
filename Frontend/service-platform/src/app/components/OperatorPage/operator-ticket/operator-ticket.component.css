@@ -77,3 +77,14 @@
 .red{
     background-color: red;
 }
+
+.card{
+    width: 90%;
+    margin: auto;
+    background-color: rgb(40, 37, 37);
+}
+.card>button{
+   
+    
+    background-color: rgb(40, 37, 37);
+}

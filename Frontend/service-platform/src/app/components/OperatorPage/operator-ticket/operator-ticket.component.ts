@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @Component({
   selector: 'app-operator-ticket',
   templateUrl: './operator-ticket.component.html',
@@ -13,7 +14,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 export class OperatorTicketComponent {
 
   //expansion panel
-  panelOpenState = false;
+  isCollapsed = true;
 
 
   constructor(
