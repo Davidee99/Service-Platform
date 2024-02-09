@@ -27,6 +27,9 @@ import { OperatorTicketComponent } from './components/OperatorPage/operator-tick
 import { OperatorTicketContainerComponent } from './components/OperatorPage/operator-ticket-container/operator-ticket-container.component';
 import { OperatorSidebarComponent } from './components/OperatorPage/operator-sidebar/operator-sidebar.component';
 import { OperatorPageComponent } from './components/OperatorPage/operator-page/operator-page.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 
 @NgModule({
@@ -60,7 +63,8 @@ import { OperatorPageComponent } from './components/OperatorPage/operator-page/o
     BrowserAnimationsModule,
     NoopAnimationsModule,
     NgbModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

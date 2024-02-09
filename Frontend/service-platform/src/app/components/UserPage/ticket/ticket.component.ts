@@ -30,6 +30,9 @@ export class TicketComponent {
   
   @Input()
   ticket:any;
+
+
+  
    
 
     open(content: any) {

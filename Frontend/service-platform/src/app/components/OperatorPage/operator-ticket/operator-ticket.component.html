@@ -1,1 +1,92 @@
-<p>ticket</p>
+<!-- ticket dell'operator -->
+
+
+
+
+<div class="prova"  >
+    
+    <div class="singleTicketContainer" >
+        <div class="userId">
+            <h4>ticket Id</h4>
+            <p>{{ticket.id}}</p>
+        </div>
+        <div class="date">
+            <h4>Opening date</h4>
+            <p>12/02/2023</p>
+        </div>
+        <div class="ticketInfo">
+            <h4>Ticket</h4>
+            <p>{{ticket.message}}</p>
+        </div>
+        <div *ngIf="ticket.status === 'wip'" class="sectionOrderId">
+            <div class="status">
+
+                <ng-template #tipContent>
+                    <b>Work in progress</b>
+                </ng-template>
+                <span class="me-2">WIP:</span>
+                <button type="button" class="btn btn-outline-secondary status green" [ngbTooltip]="tipContent">
+
+                </button>
+            </div>
+        </div>
+        <div *ngIf="ticket.status === 'no-wip'" class="sectionOrderId">
+            <div class="status">
+
+                <ng-template #tipContent>
+                    <b>Not Work in progress</b>
+                </ng-template>
+                <span class="me-2">WIP:</span>
+                <button type="button" class="btn btn-outline-secondary status yellow" [ngbTooltip]="tipContent">
+
+                </button>
+            </div>
+        </div>
+        <div *ngIf="ticket.status === 'closed'" class="sectionOrderId"
+            [ngClass]="ticket.status === 'closed' ? 'justify-content-around' : 'justify-content-end'">
+            <div class="status">
+
+                <ng-template #tipContent>
+                    <b>Closed</b>
+                </ng-template>
+                <span class="me-2">WIP:</span>
+                <button type="button" class="btn btn-outline-secondary status red" [ngbTooltip]="tipContent">
+
+                </button>
+            </div>
+            <button class="download">Download resume</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- expansion panel -->
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <!-- qui va il ticket -->
+          
+        </mat-panel-title>
+        <mat-panel-description>
+          This is a summary of the content
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>This is the primary content of the panel.</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
