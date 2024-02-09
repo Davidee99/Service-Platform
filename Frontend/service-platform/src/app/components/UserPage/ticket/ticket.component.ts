@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,13 +28,9 @@ export class TicketComponent {
     }
   }
   
-  ticket =
-    {
-      id:2234,
-      message:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique reiciendis libero fuga ipsa amet...",
-      status:"closed",
-      order_id:7
-    }
+  @Input()
+  ticket:any;
+   
 
     open(content: any) {
       this.modalService.open(content, {centered : true , modalDialogClass:"dark-modal"});
