@@ -1,3 +1,29 @@
+<div class="container-tickets">
 
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
 
-<app-ticket></app-ticket>
+        <li ngbNavItem>
+            <button ngbNavLink class="form-user-button" (click)="OpenButton()"> Open </button>
+            <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
+            <ng-template ngbNavContent>
+                <app-ticket></app-ticket>
+                <p>Ticket aperto</p>
+            </ng-template>
+
+        </li>
+
+        <li ngbNavItem>
+            <button ngbNavLink (click)="ClosedButton()"> Closed </button>
+            <ng-template ngbNavContent>
+                <div *ngFor="let item of tickets">
+                    <app-ticket [ticket]="item"></app-ticket>
+                    <p>Ticket chiuso</p>
+                </div>
+            </ng-template>
+        </li>
+
+    </ul>
+
+    <div [ngbNavOutlet]="nav"></div>
+
+</div>
