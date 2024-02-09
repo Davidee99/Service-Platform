@@ -8,9 +8,9 @@
 }
 
 .singleTicketContainer{
-    width: 90%;
+    width: 100%;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 5px;
     padding: 30px;
     border-radius: 20px;
     display: flex;
@@ -19,10 +19,11 @@
     background-color: #222222;
     -webkit-box-shadow: 1px 1px 46px -8px #000000; 
     box-shadow: 1px 1px 46px -8px #000000;
+    max-height: 80px;
 }
 
 .singleTicketContainer:hover{
-    width: 90%;
+    width: 101%;
     padding: 30px;
     border-radius: 20px;
     display: flex;
@@ -39,8 +40,8 @@
 .sectionOrderId{
     height: 120px;
     display:flex;
-    flex-direction: column;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .sectionOrderId button.status{
@@ -76,4 +77,23 @@
 
 .red{
     background-color: red;
+}
+
+.userId{
+min-width: 10%;
+text-align: center;
+}
+
+.date{
+min-width: 20%;
+text-align: center;
+}
+
+.ticketInfo{
+min-width: 40%;
+text-align: center;
+}
+
+.status{
+    padding: 20px;
 }
