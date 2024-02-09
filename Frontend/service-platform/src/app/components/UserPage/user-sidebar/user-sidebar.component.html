@@ -1,1 +1,27 @@
-<p>user-sidebar works!</p>
+<div class="my-sidebar">
+    <div class="side-card">
+        <img class="bd-placeholder-img rounded-circle" width="100" height="100" src="https://i.pravatar.cc/300"
+            role="img" />
+        <h2>Francesco Mongelli</h2>
+    </div>
+    <div class="side-card">
+        <h2>Recupero Ticket ID</h2>
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <!-- <div
+                    *ngIf="myForm.controls['email'] && myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
+                    <p *ngIf="myForm.controls['email'].errors!['required']">Email is required</p>
+                    <p *ngIf="myForm.controls['email'].errors!['email']">The email format is incorrect, use &#64;</p>
+                </div> -->
+            </div>
+            <div class="mb-3">
+                <label for="inputTicketId" class="form-label">Ticket ID</label>
+                <input type="email" class="form-control" id="inputTicketId" aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn my-button">Submit</button>
+        </form>
+
+    </div>
+</div>

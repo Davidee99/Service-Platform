@@ -1,9 +1,12 @@
 <mat-toolbar class="navbar">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-  <span> Landing Page </span>
-  
- <app-top-right-button></app-top-right-button>
- 
-    </mat-toolbar>
+    <div>
+        <a routerLink="/user/1" routerLinkActive="active">
+            link
+        </a>
+        <a routerLink="" routerLinkActive="active">
+            back
+        </a>
+    </div>
+    <span> Landing Page </span>
+    <app-top-right-button></app-top-right-button>
+</mat-toolbar>
