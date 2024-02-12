@@ -9,5 +9,4 @@ export interface Ticket {
   closing_date?: string;
   type?: 'REFUND' | 'PRODUCT';
   order_id?: number;
-  x:"3";
 }

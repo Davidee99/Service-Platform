@@ -9,7 +9,7 @@ import { Ticket } from 'src/model/ticket.model';
 export class TicketService {
 
   constructor(private http:HttpClient) {   }
-  url="http://localhost:3000/tickets"
+  url="http://localhost:3000/tickets" //prova end point chiamata dei ticket
 
   getTicket():Observable<Ticket[]> {
     return this.http.get<Ticket[]>(this.url).pipe(tap(x=>{
