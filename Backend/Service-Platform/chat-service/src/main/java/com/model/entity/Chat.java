@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -38,11 +39,11 @@ public class Chat {
 	private Long operatorId;
 
 	@OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
 	private List<Message> messages;
 
 	@OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
 	private List<Attachment> attachments;
 
 	private Timestamp timestamp;

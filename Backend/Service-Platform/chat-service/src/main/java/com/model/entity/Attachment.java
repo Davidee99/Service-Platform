@@ -2,6 +2,7 @@ package com.model.entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -29,7 +30,7 @@ public class Attachment {
 
 	@ManyToOne
 	@JoinColumn(name = "chat_id")
-	@JsonManagedReference
+	@JsonIgnore
 	private Chat chat;
 
 	@Column(name = "sender_id")

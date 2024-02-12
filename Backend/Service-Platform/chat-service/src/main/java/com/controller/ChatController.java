@@ -20,6 +20,8 @@ import com.model.entity.Chat;
 import com.model.wrapper.ChatWrapper;
 import com.service.ChatService;
 
+import jakarta.persistence.NonUniqueResultException;
+
 @RestController
 @RequestMapping("/api/chat-service")
 public class ChatController {
@@ -202,9 +204,15 @@ public class ChatController {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result.getExceptionError());
 
 			} else {
-
-				responseBody = result.getChat();
-
+				// try catch
+				try
+				{
+					responseBody = result.getChat();
+				}
+				catch(Exception e) 
+				{
+					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+				}
 			}
 		}
 
