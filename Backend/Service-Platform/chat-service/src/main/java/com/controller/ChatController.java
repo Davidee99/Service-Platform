@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -32,91 +33,11 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 
-//	@PostMapping("/manageChat")
-//	public ResponseEntity<?> manageChat(@RequestBody ChatInputDTO chatInputDTO) {
-//		Long chatId = chatInputDTO.getChatId();
-//		String content = chatInputDTO.getContent();
-//		Long senderId = chatInputDTO.getSenderId();
-//		String role = chatInputDTO.getRole();
-//		Long ticketId = chatInputDTO.getTicketId();
-//
-//		// Controllo dei parametri di input
-//		if (chatId == null || content == null || senderId == null || role == null || ticketId == null) {
-//			return ResponseEntity.badRequest().body("I parametri di input non possono essere null.");
-//		}
-//
-//		// Verifica se è la prima volta che utente e operatore chattano
-//		Chat chat;
-//		if (chatId <= 0) {
-//			// Inserimento di un nuovo record nella tabella CHAT
-//			chat = new Chat();
-//			chat.setTicketId(ticketId);
-//			chat.setUserId(role.equals("user") ? senderId : null);
-//			chat.setOperatorId(role.equals("operator") ? senderId : null);
-//			chat.setMessages(new ArrayList<>());
-//			chat.setAttachments(new ArrayList<>());
-//
-//			// chiama servizio ticket passando il ticket id per settarlo a WIP
-//
-//			// Salva la nuova chat nel database
-//			chat = chatService.saveChat(chat);
-//		} else {
-//			// Se non è la prima volta, ottieni l'entità Chat dal database
-//			chat = chatService.getChatById(chatId);
-//
-//			// Controllo se l'utente è autorizzato a modificare la chat
-//			if (!role.equals("user") && !role.equals("operator")) {
-//				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Ruolo non autorizzato.");
-//			}
-//
-//			// Controllo se l'utente è autorizzato ad aggiungere un messaggio o un allegato
-//			if ((role.equals("user") && chat.getUserId() != senderId)
-//					|| (role.equals("operator") && chat.getOperatorId() != senderId)) {
-//				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utente non autorizzato.");
-//			}
-//		}
-//
-//		// Aggiungi il messaggio o l'allegato alla chat
-//		if (content != null && !content.isEmpty()) {
-//			Message message = new Message();
-//			message.setChat(chat);
-//			message.setSenderId(senderId);
-//			message.setContent(content);
-//			message.setTimestamp(new Timestamp(System.currentTimeMillis()));
-//
-//			chat.getMessages().add(message);
-//		}
-//
-//		// Aggiungi gli allegati alla chat
-//		List<Attachment> attachments = chatInputDTO.getAttachments();
-//		if (attachments != null) {
-//			for (Attachment attachment : attachments) {
-//				attachment.setChat(chat);
-//				attachment.setSenderId(senderId);
-//				attachment.setTimestamp(new Timestamp(System.currentTimeMillis()));
-//			}
-//
-//			chat.getAttachments().addAll(attachments);
-//		}
-//
-//		// Salva le modifiche nel database
-//		chat = chatService.saveChat(chat);
-//
-//		// Invia la mail
-//		ResponseEntity<?> mailResponse = sendDefaultMail("destinatario", "accesso", "link");
-//
-//		// Controllo se l'invio della mail è andato a buon fine
-//		if (mailResponse.getStatusCode() != HttpStatus.OK) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore durante l'invio della mail.");
-//		}
-//
-//		// Restituisci la chat aggiornata
-//		return ResponseEntity.ok(chat);
-//	}
-
 	private ResponseEntity<?> sendDefaultMail(String to, String accessCode, String link) {
+		
 		String mailEndpoint = "http://localhost:5000/api/mail-service/sendDefault";
 		HttpHeaders headers = new HttpHeaders();
+		
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		// Controllo che i campi non siano null
@@ -126,7 +47,9 @@ public class ChatController {
 
 		// Controllo che i campi non siano vuoti
 		if (to.isEmpty() || accessCode.isEmpty() || link.isEmpty()) {
+			
 			return ResponseEntity.badRequest().body("I campi 'to', 'accessCode' e 'link' non possono essere vuoti.");
+			
 		}
 
 		SendToMailDTO sendToMailDTO = new SendToMailDTO();
@@ -137,14 +60,20 @@ public class ChatController {
 		HttpEntity<SendToMailDTO> requestEntity = new HttpEntity<>(sendToMailDTO, headers);
 
 		try {
+			
 			return restTemplate.exchange(mailEndpoint, HttpMethod.POST, requestEntity, String.class);
+			
 		} catch (HttpStatusCodeException ex) {
+			
 			// Gestione degli errori HTTP
 			return ResponseEntity.status(ex.getStatusCode().value()).body(ex.getResponseBodyAsString());
+			
 		} catch (Exception ex) {
+			
 			// Gestione degli altri tipi di eccezioni
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body("Si è verificato un errore durante l'invio della richiesta.");
+			
 		}
 	}
 
@@ -181,37 +110,42 @@ public class ChatController {
 //		return ResponseEntity.ok("Mail inviata con successo a " + recipient);
 //	}
 
-	@GetMapping("/getChat")
-	private ResponseEntity<?> getChat(@RequestBody GetChatDTO getChatDTO) {
+	@GetMapping("/getChatByTicket")
+	private ResponseEntity<?> getChatByTicket(@RequestParam Long ticketId) {
 
-		Chat responseBody;
-
-		System.out.println("Inizio: " + getChatDTO);
-
-		responseBody = chatService.getChatByTicketId(getChatDTO.getTicketId());
-
-		System.out.println("ResponseBody");
-		System.out.println(responseBody);
+		
+		//Ricaviamo la chat tramite ticketId
+		Chat responseBody = chatService.getChatByTicketId(ticketId);
 
 		if (responseBody == null) {
-
-			ChatWrapper result = chatService.getNewChatWrapper(getChatDTO.getTicketId());
-
-			System.out.println("Getnew chat");
-			System.out.println(result);
+			
+			/*
+			 * Se non è presente la chat (è la prima volta che l'operatore invia un mex a user)
+			 * creo una nuova chat
+			 * Utilizzo una classe Wrapper per racchiudere
+			 * 	in caso positivo una chat
+			 * 	in caso negativo un messaggio di errore da poter loggare
+			 */
+			ChatWrapper result = chatService.getNewChatWrapper(ticketId);
+			
 			if (result.getExceptionError() != null) {
 
+				//Se l'errore è valorizzato allora lo ritorno
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result.getExceptionError());
 
-			} else {
-				// try catch
+			} 
+			else {
+
 				try
 				{
+					//Se non c'è l'errore alora la chat è valorizzata e me la prendo
 					responseBody = result.getChat();
+					
 				}
 				catch(Exception e) 
 				{
-					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
+					//Gestiamo eccezioni strane non previste
+					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 				}
 			}
 		}

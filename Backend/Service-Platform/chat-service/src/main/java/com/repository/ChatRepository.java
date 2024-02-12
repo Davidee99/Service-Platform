@@ -19,7 +19,7 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 	Optional<Chat> findByTicketId(Long ticketId);
 
 	@Query(value = "SELECT t.user_id, t.operator_id, t.status FROM ticket t WHERE t.id = :ticketId", nativeQuery = true)
-	List<Object[]> findUserAndOperatorByTicketId(Long ticketId);
+	List<Object[]> getInterlocutorsId(Long ticketId);
 	
 	@Query(value = "SELECT COUNT(*) FROM operators WHERE operator_id = :operatorId", nativeQuery = true)
     int countByOperatorId(Long operatorId);
@@ -27,9 +27,6 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 	@Query(value = "SELECT COUNT(*) FROM users WHERE user_id = :userId", nativeQuery = true)
     int countByUserId(Long userId);
 	
-//	@Query(value = "SELECT COUNT(*) FROM ticket WHERE id = :ticketId AND user_id = :userId AND operator_id = :operatorId AND status = :status", nativeQuery = true)
-//    int countTicketsByParams(@Param("ticketId") Long ticketId, @Param("userId") Long userId, @Param("operatorId") Long operatorId, @Param("status") String status);
-
-	@Query(value = "SELECT COUNT(*), STATUS FROM ticket WHERE id = :ticketId AND user_id = :userId AND operator_id = :operatorId GROUP BY status", nativeQuery = true)
-    List<Object[]> countTicketsByParamsGroupByStatus(@Param("ticketId") Long ticketId, @Param("userId") Long userId, @Param("operatorId") Long operatorId);
+	@Query(value = "SELECT COUNT(*), STATUS  FROM ticket WHERE id = :ticketId AND user_id = :userId AND operator_id = :operatorId GROUP BY status", nativeQuery = true)
+    List<Object[]> getTicketStatusStrong(@Param("ticketId") Long ticketId, @Param("userId") Long userId, @Param("operatorId") Long operatorId);
 }
