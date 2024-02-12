@@ -1,13 +1,6 @@
 <!-- ticket dell'operator -->
 
-
-<!-- <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()"
-[attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample"> -->
-
 <div class="prova">
-
-
-
 
     <div class="singleTicketContainer" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseExample">
@@ -31,47 +24,147 @@
                 </ng-template>
                 <span class="me-2">WIP:</span>
                 <button type="button" class="btn btn-outline-secondary status green" [ngbTooltip]="tipContent">
-
                 </button>
             </div>
         </div>
         <div *ngIf="ticket.status === 'no-wip'" class="sectionOrderId">
             <div class="status">
-
                 <ng-template #tipContent>
                     <b>Not Work in progress</b>
                 </ng-template>
                 <span class="me-2">WIP:</span>
                 <button type="button" class="btn btn-outline-secondary status yellow" [ngbTooltip]="tipContent">
-
                 </button>
             </div>
         </div>
         <div *ngIf="ticket.status === 'closed'" class="sectionOrderId"
             [ngClass]="ticket.status === 'closed' ? 'justify-content-around' : 'justify-content-end'">
             <div class="status">
-
                 <ng-template #tipContent>
                     <b>Closed</b>
                 </ng-template>
                 <span class="me-2">WIP:</span>
                 <button type="button" class="btn btn-outline-secondary status red" [ngbTooltip]="tipContent">
-
                 </button>
             </div>
             <button class="download">Download resume</button>
         </div>
     </div>
-
-
 </div>
-<!-- </button> -->
 
 
 <div #collapse="ngbCollapse" class="card" [(ngbCollapse)]="isCollapsed">
-    
-        <button mat-stroked-button color="warn">delete</button>
-        <button mat-stroked-button color="accent">mark</button>
-        <button mat-stroked-button color="primary">send</button>
-    
+    <!-- <button mat-stroked-button color="warn">Close ticket</button>
+    <button mat-stroked-button color="accent" (click)="toggleMarkMenu()">Mark as..</button>
+    <div *ngIf="showMarkMenu" class="mark-menu" style="margin: auto;">
+        <button mat-stroked-button color="accent" (click)="markAs('fake')">Fake</button>
+        <button mat-stroked-button color="accent" (click)="markAs('switched')">Switched</button>
+        <button mat-stroked-button color="accent" (click)="markAs('copied')">Copied</button>
+    </div>
+    <button mat-stroked-button color="primary">Take charge</button> -->
+    <div class="example-button-row">
+        <div class="example-flex-container">
+
+
+            <div id="c">
+                <!-- contenitore1 -->
+                <div class="c1">
+                    <!-- user id da mettere al posto di ticket id-->
+                    <p>user id : {{tickett.user_id}}</p>
+                    <!-- messaggio del ticket -->
+                    <p> Message : </p>
+                    <p>{{tickett.message}}</p>
+                </div>
+                <!-- contenitore 2 -->
+                <div class="c2">
+
+                    <div class="selectt">
+                        <!-- type selection -->
+                        <mat-form-field>
+                            <mat-label>Select an option</mat-label>
+                            <mat-select [(value)]="selected">
+                                <mat-option value="option1">Product</mat-option>
+                                <mat-option value="option2">Refund</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="selectBtn" *ngIf="selected !== 'option2'">
+                            <!-- Aggiungi l'evento click per gestire il click sul bottone -->
+                            <button (click)="send()" mat-raised-button color="primary">Send</button>
+                        </div>
+                    </div>
+
+
+                    <div class="infoc2">
+
+                        <!-- priority -->
+                        <p>Priority : {{tickett.priority}}</p>
+                        <!-- order id -->
+                        <p>order id : {{tickett.order_id}} </p>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- bottone delete -->
+        <div class="example-button-container">
+            <!-- <button mat-fab id="cl" color="warn" aria-label="Example icon button with a delete icon">
+                    <mat-icon>delete</mat-icon>
+                </button> -->
+
+            <button mat-icon-button color="primary" id="cl" aria-label="Example icon button with a home icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+
+            <!-- 3 button mark as -->
+            <div class="markers">
+                <button mat-stroked-button color="accent">Set fake </button>
+                <button mat-stroked-button color="accent">Set duplicated </button>
+                <button mat-stroked-button color="accent">Set switched</button>
+            </div>
+
+            <!-- take charge button -->
+            <div id="charge" *ngIf="ticket.status !== 'wip'">
+                <button mat-button color="accennt">Take charge</button>
+            </div>
+
+            <!-- chat button -->
+            <div id="chatclose"  *ngIf="ticket.status === 'wip'">
+                <button id="chat" mat-button color="accennt">Chat</button>
+                <button id="close"  mat-button color="accennt">Close</button>
+
+            </div>
+
+            <!-- close button -->
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
 </div>

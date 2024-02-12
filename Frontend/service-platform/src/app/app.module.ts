@@ -33,6 +33,11 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +52,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     OperatorTicketComponent,
     OperatorTicketContainerComponent,
     OperatorSidebarComponent,
-    OperatorPageComponent
+    OperatorPageComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,9 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     NgbTooltipModule,
     MatExpansionModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

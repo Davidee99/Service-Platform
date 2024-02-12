@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Input, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -16,6 +18,11 @@ export class OperatorTicketComponent {
   //expansion panel
   isCollapsed = true;
 
+  //menù mark as...
+  showMarkMenu = false;
+
+
+
 
   constructor(
 		config: NgbModalConfig,
@@ -24,6 +31,8 @@ export class OperatorTicketComponent {
 		// customize default values of modals used by this component tree
 		config.backdrop = 'static';
 		config.keyboard = false;
+
+    
 	}
   check: boolean = true
 
@@ -39,14 +48,38 @@ export class OperatorTicketComponent {
 
   @Input() 
   ticket:any;
+
+
+  toggleMarkMenu() {
+    this.showMarkMenu = !this.showMarkMenu;
+  }
+
+  markAs(option: string) {
+    // Qui puoi fare qualcosa con l'opzione selezionata, ad esempio inviare una richiesta al backend
+    console.log("Marked as:", option);
+    // Puoi anche chiudere il menu dopo aver selezionato un'opzione
+    this.showMarkMenu = false;
+  }
   
   
-  // ticket={
-  //   id: 2,
-  //   message: 'akjshdkjahdkjaskdh jadkjahdkjahskda',
-  //   status: 'wip',
-  //   order_id: 7,
-  // }
+  tickett={
+    id: 9,
+    user_id:4,
+    message: 'messaggio custom del tickett',
+    status: 'wip',
+    priority: 'hight',
+    order_id: 7,
+  }
+
+
+
+
+  selected = 'option2';
+  send() {
+    // Logica per l'invio
+    console.log('Sending...');
+  }
+
    
 
     
