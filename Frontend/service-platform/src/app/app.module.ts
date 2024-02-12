@@ -29,6 +29,10 @@ import { OperatorSidebarComponent } from './components/OperatorPage/operator-sid
 import { OperatorPageComponent } from './components/OperatorPage/operator-page/operator-page.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminPageComponent } from './components/AdminPage/admin-page/admin-page.component';
+import { AdminTaskComponent } from './components/AdminPage/admin-task/admin-task.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -53,6 +57,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     OperatorTicketContainerComponent,
     OperatorSidebarComponent,
     OperatorPageComponent,
+    AdminPageComponent,
+    AdminTaskComponent,
     
   ],
   imports: [
@@ -73,6 +79,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     NgbTooltipModule,
     MatExpansionModule,
     NgbCollapseModule,
+    MatChipsModule,
+    MatListModule
     
     
   ],

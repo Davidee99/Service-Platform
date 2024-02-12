@@ -1,0 +1,25 @@
+<div class="listaTasks">
+    <h3>TASKS</h3>
+  
+    <mat-chip-listbox aria-label="Fish selection">
+      <mat-chip-option (click)="filterTasks('Item 1')">Item 1</mat-chip-option>
+      <mat-chip-option (click)="filterTasks('Item 2')">Item 2</mat-chip-option>
+      <mat-chip-option (click)="filterTasks('Item 3')">Item 3</mat-chip-option>
+      <mat-chip-option (click)="filterTasks('Item 4')">Item 4</mat-chip-option>
+    </mat-chip-listbox>
+  
+    <mat-list>
+        <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let task of filteredTasks">
+        {{ task }}
+        <button mat-icon-button color="primary" id="cl" aria-label="Example icon button with a home icon">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div style="width: 50%;">
+    <canvas id="canvas">{{chart}}</canvas>
+  </div>
+
