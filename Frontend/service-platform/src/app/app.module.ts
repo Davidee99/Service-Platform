@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {Component} from '@angular/core';
+import {Component, isDevMode} from '@angular/core';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
@@ -23,6 +23,13 @@ import { TicketContainerComponent } from './components/UserPage/ticket-container
 import { TicketComponent } from './components/UserPage/ticket/ticket.component';
 import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-sidebar.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import * as AppEffect from 'src/app/store/app.effects';
+import { appReducers } from './store/app.reducer';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -52,7 +59,11 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     NgbModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    HttpClientModule,
+    StoreModule.forRoot({app : appReducers}),
+    EffectsModule.forRoot([AppEffect]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]
