@@ -74,7 +74,7 @@
       <p>{{ ticket.message }}</p>
     </div>
     <ng-container [ngSwitch]="ticket.status">
-      <div class="sectionOrderId" *ngSwitchCase="'wip'">
+      <div class="sectionOrderId" *ngSwitchCase="'WIP'">
         <div class="status">
           <ng-template #tipContent>
             <b>Work in progress</b>
@@ -87,7 +87,7 @@
           ></button>
         </div>
       </div>
-      <div class="sectionOrderId" *ngSwitchCase="'no-wip'">
+      <div class="sectionOrderId" *ngSwitchCase="'NON_WIP'">
         <div class="status">
           <ng-template #tipContent>
             <b>Not Work in progress</b>
@@ -102,7 +102,7 @@
       </div>
       <div
         class="sectionOrderId justify-content-around"
-        *ngSwitchCase="'closed'"
+        *ngSwitchCase="'CLOSED'"
       >
       
         <div class="status">

@@ -39,35 +39,35 @@ export class TicketContainerComponent implements OnInit {
     console.log('ClosedButton' + this.closed);
   }
 
-  tickets: any[] = [
+  tickets: Ticket[] = [
     {
       id: 2,
       message: 'akjshdkjahdkjaskdh jadkjahdkjahskda',
-      status: 'wip',
+      status: 'WIP',
       order_id: 7,
     },
     {
         id: 7,
         message: 'asd12 eq',
-        status: 'no-wip',
+        status: 'NON_WIP',
         order_id: 7,
       },
       {
         id: 4,
         message: 'asd12 jadkjahdkjahskda',
-        status: 'closed',
+        status: 'CLOSED',
         order_id: 7,
       },
       {
         id: 3,
         message: 'asd12 as',
-        status: 'closed',
+        status: 'CLOSED',
         order_id: 7,
       },
       {
         id: 1,
         message: 'asd12 jadkjahdkjahskda',
-        status: 'wip',
+        status: 'WIP',
         order_id: 7,
       },
   ];

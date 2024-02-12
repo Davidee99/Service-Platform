@@ -7,7 +7,7 @@
             <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
             <ng-template ngbNavContent>
                 <div *ngFor="let item of tickets">
-                    <div *ngIf="item.status!='closed'">
+                    <div *ngIf="item.status!='CLOSED'">
                         <app-ticket [ticket]="item"></app-ticket>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <button ngbNavLink (click)="ClosedButton()"> Closed </button>
             <ng-template ngbNavContent>
                 <div *ngFor="let item of tickets">
-                    <div *ngIf="item.status=='closed'">
+                    <div *ngIf="item.status=='CLOSED'">
                         <app-ticket [ticket]="item"></app-ticket>
                     </div>
                 </div>
