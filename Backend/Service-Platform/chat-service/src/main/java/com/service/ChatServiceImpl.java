@@ -1,11 +1,13 @@
 package com.service;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.model.dto.TicketInfoDTO;
 import com.model.entity.Chat;
 import com.model.wrapper.ChatWrapper;
 import com.repository.ChatRepository;
@@ -28,10 +30,8 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public Chat getChatByTicketId(Long ticketId) {
-
-//		return chatRepo.findChatByTicketIdOrderByTimestampAsc(ticketId).get(0).orElse(null);
-
-		return chatRepo.findChatByTicketId(ticketId).orElse(null);
+		
+		return chatRepo.findByTicketId(ticketId).orElse(null);
 	}
 
 	@Override
@@ -46,11 +46,26 @@ public class ChatServiceImpl implements ChatService {
 		String ticketStatus = "";
 
 		try {
+			System.out.println("Entro nel blocco try");
 			List<Object[]> queryResult = chatRepo.findUserAndOperatorByTicketId(ticketId);
-
-			userId = (Long) queryResult.get(0)[0];
-			operatorId = (Long) queryResult.get(0)[1];
-			ticketStatus = (String) queryResult.get(0)[2];
+			queryResult.forEach((x)->{System.out.println(x);});
+			if(queryResult == null || queryResult.size() <= 0) 
+			{
+				throw new IllegalArgumentException("Ticket non valido: "+ticketId);
+			}
+			
+			for(Object[] row : queryResult) 
+			{
+				System.out.println("Row: " + Arrays.toString(row));
+				userId = (Long) row[0];
+				operatorId = (Long) row[1];
+				ticketStatus = (String) row[2];
+				System.out.println("finito il for");
+				break;
+			}
+//			userId = ((Number) queryResult.get(0)[0]).longValue();
+//			operatorId = ((Number) queryResult.get(0)[1]).longValue();
+//			ticketStatus = (String) queryResult.get(0)[2];
 
 			checkTicket(ticketId, userId, operatorId, ticketStatus);
 
@@ -76,12 +91,12 @@ public class ChatServiceImpl implements ChatService {
 	// controlla se sono nulli, minori o uguali a zero, se la stringa è vuota, se ticketStatus è un valore valido
 	private void checkTicket(Long ticketId, Long userId, Long operatorId, String ticketStatus) {
 		// Controlla se userId è null o <= 0
-		if (userId == null || userId <= 0) {
+		if (userId == null || userId <= 0l) {
 		    throw new IllegalArgumentException("ID utente non valido: " + userId);
 		}
 
 		// Controlla se operatorId è null o <= 0
-		if (operatorId == null || operatorId <= 0) {
+		if (operatorId == null || operatorId <= 0l) {
 		    throw new IllegalArgumentException("ID operatore non valido: " + operatorId);
 		}
 
@@ -96,7 +111,7 @@ public class ChatServiceImpl implements ChatService {
 		    throw new IllegalArgumentException("Valore di stato del ticket non valido: " + ticketStatus);
 		}
 	    
-	    Object[] result = null;
+	    List<Object[]> result = null;
 	    try {
 			result = chatRepo.countTicketsByParamsGroupByStatus(ticketId, userId, operatorId);
 		} 
@@ -104,7 +119,8 @@ public class ChatServiceImpl implements ChatService {
 	    	/*
 	    	 *  se scatta un eccezione qui vuol dire che la query ha restituito più di una riga: 
 	    	 *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
-	    	 */			
+	    	 */		
+	    	System.out.println(e.getMessage());
 	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
 	    }
 	    
@@ -115,22 +131,40 @@ public class ChatServiceImpl implements ChatService {
 		     *  se il risultato è null vuol dire che il db non è pulito 
 		     *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
 		     */
+	    	System.out.println("riga 134");
 	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
 	    }
-	    Long count = (Long) result[0];
-	    String status = (String) result[1];
+	    Long count = -1l;
+	    String status = "";
 	    
-	    if(count != 1) 
+	    for (Object[] res : result) {
+	    	System.out.println("booooooooh");
+	    	System.out.println("ciao ciao "+(String) res[1]);
+	    	count = (Long) res[0];
+		        
+	        status = (String) res[1];
+	        System.out.println("non c'ho voglia di vivere :D - ticket status: "+status);
+	        break;
+	    }
+	    
+	    if(count != 1l) 
 	    {
 	    	/*
 		     *  se la query restituisce un count diverso da 1 vuol dire che il db non è pulito
 		     *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
 		     */
+	    	System.out.println("riga 146");
 	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
 	    }
 	    
-	    if(status != ticketStatus || status != "WIP") 
+	    if(!status.equals(ticketStatus)) 
 	    {
+	    	System.out.println("status1: "+ticketStatus+ "e poi: "+status);
+	    	throw new IllegalArgumentException("Lo stato del ticket non è valido. Status attuale: [" + status + "] ");
+	    }
+	    if(!status.equals("WIP")) 
+	    {
+	    	System.out.println("status2: "+ticketStatus+ "e poi: "+status);
 	    	throw new IllegalArgumentException("Lo stato del ticket non è valido. Status attuale: [" + status + "] ");
 	    }
 	}

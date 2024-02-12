@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -39,11 +40,11 @@ public class Chat {
 	private Long operatorId;
 
 	@OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonManagedReference
 	private List<Message> messages;
 
 	@OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonManagedReference
 	private List<Attachment> attachments;
 
 	private Timestamp timestamp;

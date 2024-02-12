@@ -1,9 +1,10 @@
 package com.model.entity;
 
+
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +28,7 @@ public class Message {
 
 	@ManyToOne
 	@JoinColumn(name = "chat_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Chat chat;
 
 	@Column(name = "sender_id")
@@ -37,5 +38,11 @@ public class Message {
 	private String content;
 
 	private Timestamp timestamp;
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", senderId=" + senderId + ", content=" + content
+				+ ", timestamp=" + timestamp + "]";
+	}
 
 }

@@ -2,6 +2,7 @@ package com.model.entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -30,7 +31,7 @@ public class Attachment {
 
 	@ManyToOne
 	@JoinColumn(name = "chat_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Chat chat;
 
 	@Column(name = "sender_id")
@@ -42,5 +43,11 @@ public class Attachment {
 	private String url;
 
 	private Timestamp timestamp;
+
+	@Override
+	public String toString() {
+		return "Attachment [id=" + id + ", senderId=" + senderId + ", type=" + type + ", url=" + url
+				+ ", timestamp=" + timestamp + "]";
+	}
 
 }
