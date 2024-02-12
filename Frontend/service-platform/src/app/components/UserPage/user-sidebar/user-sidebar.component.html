@@ -10,7 +10,7 @@
         
             <mat-form-field class="mb-3">
                 <mat-label for="exampleInputEmail1" class="form-label">Email</mat-label>
-                <input matInput  placeholder="Email" name="email" required email>
+                <input matInput [(ngModel)]="userData.email" placeholder="Email" name="email" required email>
                 <!-- <div
                     *ngIf="myForm.controls['email'] && myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
                     <p *ngIf="myForm.controls['email'].errors!['required']">Email is required</p>
@@ -18,8 +18,8 @@
                 </div> -->
             </mat-form-field>
             <mat-form-field class="mb-3">
-                <mat-label for="inputTicketId" class="form-label">Chat Access Code</mat-label>
-                <input matInput placeholder="Chat Access Code" name="chatAccessCode" required>
+                <mat-label for="inputChatAccessCode" class="form-label">Chat Access Code</mat-label>
+                <input matInput [(ngModel)]="userData.chatAccessCode" placeholder="Chat Access Code" name="chatAccessCode" required>
             </mat-form-field>
             <button class="btn my-button">Submit</button>
         </form>

@@ -10,7 +10,7 @@ export class UserSidebarComponent {
 
   userData = {
     email: "",
-    userId: "",
+    chatAccessCode: "",
   };
 
   submitForm(form: NgForm) {
