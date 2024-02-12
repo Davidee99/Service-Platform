@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.model.entity.Chat;
 import com.model.wrapper.ChatWrapper;
 import com.repository.ChatRepository;
+import com.utility.AppConstants;
+
+import jakarta.persistence.NonUniqueResultException;
+
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -48,7 +52,7 @@ public class ChatServiceImpl implements ChatService {
 			operatorId = (Long) queryResult.get(0)[1];
 			ticketStatus = (String) queryResult.get(0)[2];
 
-			checkTicket();
+			checkTicket(ticketId, userId, operatorId, ticketStatus);
 
 		} catch (Exception ex) {
 
@@ -69,10 +73,67 @@ public class ChatServiceImpl implements ChatService {
 		return result;
 	}
 
-	// Aggiungere controlli su t.user_id, t.operator_id, t.status e lanciare
-	// eccezione per gestire
-	private void checkTicket() {
+	// controlla se sono nulli, minori o uguali a zero, se la stringa è vuota, se ticketStatus è un valore valido
+	private void checkTicket(Long ticketId, Long userId, Long operatorId, String ticketStatus) {
+		// Controlla se userId è null o <= 0
+		if (userId == null || userId <= 0) {
+		    throw new IllegalArgumentException("ID utente non valido: " + userId);
+		}
 
+		// Controlla se operatorId è null o <= 0
+		if (operatorId == null || operatorId <= 0) {
+		    throw new IllegalArgumentException("ID operatore non valido: " + operatorId);
+		}
+
+		// Controlla se ticketStatus è null o vuoto
+		if (ticketStatus == null || ticketStatus.isEmpty()) {
+		    throw new IllegalArgumentException("Lo stato del ticket non può essere nullo o vuoto");
+		}
+
+		// Controlla se ticketStatus è un valore valido
+		List<String> acceptedValues = AppConstants.getTicketStatusValuesList();
+		if (!acceptedValues.contains(ticketStatus)) {
+		    throw new IllegalArgumentException("Valore di stato del ticket non valido: " + ticketStatus);
+		}
+	    
+	    Object[] result = null;
+	    try {
+			result = chatRepo.countTicketsByParamsGroupByStatus(ticketId, userId, operatorId);
+		} 
+	    catch (Exception e) {
+	    	/*
+	    	 *  se scatta un eccezione qui vuol dire che la query ha restituito più di una riga: 
+	    	 *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
+	    	 */			
+	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
+	    }
+	    
+	    
+	    if(result == null) 
+	    {
+	    	/*
+		     *  se il risultato è null vuol dire che il db non è pulito 
+		     *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
+		     */
+	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
+	    }
+	    Long count = (Long) result[0];
+	    String status = (String) result[1];
+	    
+	    if(count != 1) 
+	    {
+	    	/*
+		     *  se la query restituisce un count diverso da 1 vuol dire che il db non è pulito
+		     *  errore nei dati del db (usiamo il ticketId per fare la query, quindi deve per forza restituirne solo uno)
+		     */
+	    	throw new NonUniqueResultException("La query ha restituito più di un risultato: pulire il database.");
+	    }
+	    
+	    if(status != ticketStatus || status != "WIP") 
+	    {
+	    	throw new IllegalArgumentException("Lo stato del ticket non è valido. Status attuale: [" + status + "] ");
+	    }
 	}
-
+	
+	
 }
