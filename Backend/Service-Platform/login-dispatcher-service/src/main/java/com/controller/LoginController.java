@@ -25,8 +25,13 @@ public class LoginController {
 
 	// Significa che su postman dovete inserire "Password01!" nel campo PSW, che lui
 	// la codifica in quella robaccia
-	@PostMapping("/login")
-	ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
-		return loginService.login(authRequest);
+	@PostMapping("/login/user")
+	ResponseEntity<?> loginUser(@RequestBody AuthRequest authRequest) {
+		return loginService.login(authRequest, "USER");
+	}
+
+	@PostMapping("/login/employee")
+	ResponseEntity<?> loginEmployee(@RequestBody AuthRequest authRequest) {
+		return loginService.login(authRequest, "");
 	}
 }
