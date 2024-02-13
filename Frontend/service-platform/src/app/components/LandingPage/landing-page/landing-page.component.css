@@ -1,0 +1,39 @@
+.landing-page-form{
+    min-width: 150px;
+    width: 50%;
+    background-color: #222222;
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px  ;
+    margin-top: 100px;
+    gap: 10px;
+
+  }
+  
+  .landing-page-form-field {
+    width: 100%;
+  }
+
+  .landing-page-form-button{
+
+    align-self: flex-end;
+
+  }
+  .landing-page-form-button>button{
+
+    width: 100px;
+    height: 45px;
+
+  }
+
+
+  .title-form{
+color: white;
+text-align: center;
+  }
+
+
+
+ 

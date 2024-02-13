@@ -1,0 +1,79 @@
+*{
+    color: white;
+    text-decoration: none;
+}
+
+.violet{
+    background-color: rgb(134, 2, 134);
+}
+
+.singleTicketContainer{
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222222;
+    -webkit-box-shadow: 1px 1px 46px -8px #000000; 
+    box-shadow: 1px 1px 46px -8px #000000;
+}
+
+.singleTicketContainer:hover{
+    width: 90%;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2222225d;
+    cursor: pointer;
+}
+
+.singleTicketContainer h4{
+    text-align: center;
+}
+
+.sectionOrderId{
+    height: 120px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.sectionOrderId button.status{
+    padding: 10px;
+    border: none;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
+.download{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(134, 2, 134);
+}
+
+.download:hover{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(134, 2, 134, 0.48);
+}
+
+.yellow{
+    background-color: yellow;
+
+}
+
+.green{
+    background-color: green;
+}
+
+.red{
+    background-color: red;
+}

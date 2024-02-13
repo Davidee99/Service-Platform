@@ -1,0 +1,47 @@
+
+
+
+.top-button-container{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+
+
+}
+
+
+.container-form-user{
+     display: flex;
+     flex-direction: column;
+   
+}
+.container-form-employee{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container-user{
+    background-color: grey;
+}
+
+.buttons{
+    /* border: 1px solid red; */
+    width: 40%;
+    margin-left:19rem ;
+    
+    
+    
+}
+.btn-close{
+    margin-right: 1rem;
+    
+}
+
+
+
+
+/* ul>li{
+    background-color: grey;
+} */
