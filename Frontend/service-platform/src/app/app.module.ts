@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {Component} from '@angular/core';
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, Validators,  ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,6 +23,8 @@ import { TicketContainerComponent } from './components/UserPage/ticket-container
 import { TicketComponent } from './components/UserPage/ticket/ticket.component';
 import { UserSidebarComponent } from './components/UserPage/user-sidebar/user-sidebar.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChatComponent } from './components/chat/chat.component';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     UserPageComponent,
     TicketContainerComponent,
     TicketComponent,
-    UserSidebarComponent
+    UserSidebarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     NgIf,
     MatButtonModule,
     MatToolbarModule,
-     MatIconModule,
+    MatIconModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
     NgbModule,
