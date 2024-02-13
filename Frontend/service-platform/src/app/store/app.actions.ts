@@ -18,12 +18,19 @@ export const chatACSuccess = createAction('[chatAC] success');
 
 export const chatACFailed = createAction('[chatAC] failed');
 
-export const userLogin = createAction('[login] userLoginSend',
-props<{ email: string; password: string }>());
+export const userLogin = createAction(
+  '[login] userLoginSend',
+  props<{ email: string; password: string }>()
+);
 
-export const employeeLogin = createAction('[login] employeeLoginSend',
-props<{ email: string; password: string }>());
+export const employeeLogin = createAction(
+  '[login] employeeLoginSend',
+  props<{ email: string; password: string }>()
+);
 
-export const loginSuccess = createAction('[login] success');
+export const loginSuccess = createAction(
+  '[login] success',
+  props<{ userCredential: UserCredential }>
+);
 
 export const loginFailed = createAction('[login] failed');
