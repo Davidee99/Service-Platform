@@ -6,6 +6,6 @@ import com.model.dto.AuthRequest;
 
 public interface LoginService {
 
-	ResponseEntity<?> login(AuthRequest authRequest);
+	ResponseEntity<?> login(AuthRequest authRequest, String loginRole);
 
 }

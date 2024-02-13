@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>JBoss Tools Aggregated Feed</title>
   <id>https://tools.jboss.org</id>
-  <updated>2024-02-08T06:12:13Z</updated>
+  <updated>2024-02-13T12:15:47Z</updated>
   <link href="https://tools.jboss.org"/>
   <xhtml:meta content="noindex" name="robots" xmlns:xhtml="http://www.w3.org/1999/xhtml"/><entry>
+    <title>Red Hat Developer: Connect a Quarkus app to an external SQL Server database</title>
+    <updated>2024-02-13T07:00:00Z</updated>
+    <id>01b77d2d-6db2-47fe-bd18-17fe3b79b62a</id>
+    <link href="https://developers.redhat.com/articles/2024/02/13/connect-quarkus-app-external-sql-server-database" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: JBoss EAP 8 Top 10 New Features</title>
+    <updated>2024-02-12T07:20:28Z</updated>
+    <id>https://www.mastertheboss.com/jbossas/jboss-eap/jboss-eap-8-top-10-new-features/</id>
+    <link href="https://www.mastertheboss.com/jbossas/jboss-eap/jboss-eap-8-top-10-new-features/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Debug ACPI issues in Windows virtual machines on RHEL</title>
+    <updated>2024-02-12T07:00:00Z</updated>
+    <id>240e1e75-deaf-4d35-844d-65eb86deac6d</id>
+    <link href="https://developers.redhat.com/articles/2024/02/12/debug-acpi-issues-windows-virtual-machines-rhel" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Getting started with the Red Hat build of Keycloak 22</title>
+    <updated>2024-02-12T07:00:00Z</updated>
+    <id>3e03d834-e04b-4c65-ad55-cc92dff4a79e</id>
+    <link href="https://developers.redhat.com/articles/2024/02/12/getting-started-red-hat-build-keycloak-22" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: WildFly Mini Conference</title>
+    <updated>2024-02-12T00:00:00Z</updated>
+    <id>https://wildfly.org//news/2024/02/12/WildFly-mini-conference/</id>
+    <link href="https://wildfly.org//news/2024/02/12/WildFly-mini-conference/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Maven archetype for WildFly applications tutorial</title>
+    <updated>2024-02-11T09:32:24Z</updated>
+    <id>https://www.mastertheboss.com/jboss-frameworks/jboss-maven/creating-a-maven-archetype-for-wildfly/</id>
+    <link href="https://www.mastertheboss.com/jboss-frameworks/jboss-maven/creating-a-maven-archetype-for-wildfly/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to visualize your OpenSCAP compliance reports</title>
+    <updated>2024-02-08T07:00:00Z</updated>
+    <id>b16327bf-57a7-462e-a4bd-2069dbfacfe1</id>
+    <link href="https://developers.redhat.com/articles/2024/02/08/how-visualize-your-openscap-compliance-reports" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus 3.7.2 released - Maintenance release</title>
+    <updated>2024-02-08T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-2-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-2-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Quarkus 3.7.2 released - Maintenance release</title>
+    <updated>2024-02-08T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-2-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-2-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
     <title>JBoss Blogs: Configuring WildFly stability levels</title>
     <updated>2024-02-07T18:06:49Z</updated>
     <id>https://www.mastertheboss.com/jbossas/jboss-configuration/configuring-wildfly-stability-levels/</id>
@@ -18,13 +81,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: Eclipse Vert.x 4.5.3 released!</title>
-    <updated>2024-02-07T00:00:00Z</updated>
-    <id>https://vertx.io/blog/eclipse-vert-x-4-5-3</id>
-    <link href="https://vertx.io/blog/eclipse-vert-x-4-5-3" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: Eclipse Vert.x 4.4.8 released!</title>
     <updated>2024-02-07T00:00:00Z</updated>
     <id>https://vertx.io/blog/eclipse-vert-x-4-4-8</id>
@@ -32,10 +88,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: Security policies in open source software</title>
-    <updated>2024-02-06T07:00:00Z</updated>
-    <id>2f1a577f-f5c0-4c99-af1f-543854ea1d13</id>
-    <link href="https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software" rel="alternate"/>
+    <title>JBoss Blogs: Eclipse Vert.x 4.5.3 released!</title>
+    <updated>2024-02-07T00:00:00Z</updated>
+    <id>https://vertx.io/blog/eclipse-vert-x-4-5-3</id>
+    <link href="https://vertx.io/blog/eclipse-vert-x-4-5-3" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -43,6 +99,13 @@
     <updated>2024-02-06T07:00:00Z</updated>
     <id>b242953f-63a0-40a5-be48-a16d40567e85</id>
     <link href="https://developers.redhat.com/articles/2024/02/06/how-integrate-quarkus-applications-openshift-ai" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Security policies in open source software</title>
+    <updated>2024-02-06T07:00:00Z</updated>
+    <id>2f1a577f-f5c0-4c99-af1f-543854ea1d13</id>
+    <link href="https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -67,6 +130,13 @@
     <summary type="html"/>
   </entry>
   <entry>
+    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
+    <updated>2024-02-05T00:00:00Z</updated>
+    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
+    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
     <title>JBoss Blogs: Vlog: Introduction to WildFly Glow</title>
     <updated>2024-02-05T00:00:00Z</updated>
     <id>https://www.youtube.com/watch?v=kt8pTDmTitw</id>
@@ -78,13 +148,6 @@
     <updated>2024-02-05T00:00:00Z</updated>
     <id>https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/</id>
     <link href="https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
-    <updated>2024-02-05T00:00:00Z</updated>
-    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
-    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -109,13 +172,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to deploy Meteor.js applications to OpenShift</title>
-    <updated>2024-02-01T14:00:00Z</updated>
-    <id>67dfddaf-e149-46cc-9ae8-fbb7c7b58314</id>
-    <link href="https://developers.redhat.com/articles/2024/02/01/how-deploy-meteorjs-applications-openshift" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Red Hat Developer: How to configure granular access in OpenShift Dev Spaces</title>
     <updated>2024-02-01T14:00:00Z</updated>
     <id>08a6220d-2337-477e-90eb-ebf455edffbd</id>
@@ -130,13 +186,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: Debugging Open vSwitch logs: long poll interval, blocked waiting</title>
-    <updated>2024-01-31T07:00:00Z</updated>
-    <id>f3fe1348-96cc-4f35-920c-ebbfd3443563</id>
-    <link href="https://developers.redhat.com/articles/2024/01/31/debugging-open-vswitch-logs-long-poll-interval-blocked-waiting" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: What's new in WildFly provisioning</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://wildfly.org//news/2024/01/31/whats-new-in-provisioning/</id>
@@ -144,14 +193,14 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
+    <title>JBoss Blogs: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
+    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
@@ -172,52 +221,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to deploy Next.js applications to OpenShift</title>
-    <updated>2024-01-30T07:00:00Z</updated>
-    <id>f04c49dd-821c-4044-b285-e35c1958e462</id>
-    <link href="https://developers.redhat.com/articles/2024/01/30/how-deploy-nextjs-applications-openshift" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: Eclipse Vert.x 4.4.7 released!</title>
     <updated>2024-01-30T00:00:00Z</updated>
     <id>https://vertx.io/blog/eclipse-vert-x-4-4-7</id>
     <link href="https://vertx.io/blog/eclipse-vert-x-4-4-7" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Eclipse Vert.x 4.5.2 released!</title>
-    <updated>2024-01-30T00:00:00Z</updated>
-    <id>https://vertx.io/blog/eclipse-vert-x-4-5-2</id>
-    <link href="https://vertx.io/blog/eclipse-vert-x-4-5-2" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Modern Java Pocket Guide available</title>
-    <updated>2024-01-29T08:27:50Z</updated>
-    <id>https://www.mastertheboss.com/java/modern-java-pocket-guide-available/</id>
-    <link href="https://www.mastertheboss.com/java/modern-java-pocket-guide-available/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: The developer's guide to Kubernetes Operators</title>
-    <updated>2024-01-29T07:00:00Z</updated>
-    <id>255cb02a-1ee0-4983-b4bf-2f338ca14c96</id>
-    <link href="https://developers.redhat.com/articles/2024/01/29/developers-guide-kubernetes-operators" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: WildFly Glow, an evolution of WildFly provisioning</title>
-    <updated>2024-01-29T00:00:00Z</updated>
-    <id>https://wildfly.org//news/2024/01/29/wildfly-glow/</id>
-    <link href="https://wildfly.org//news/2024/01/29/wildfly-glow/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Keycloak 23.0.5 released</title>
-    <updated>2024-01-29T00:00:00Z</updated>
-    <id>https://www.keycloak.org/2024/01/keycloak-2305-released</id>
-    <link href="https://www.keycloak.org/2024/01/keycloak-2305-released" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -277,13 +284,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Quarkus: Containerizing virtual thread applications</title>
-    <updated>2023-12-14T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/virtual-threads-6/</id>
-    <link href="https://quarkus.io/blog/virtual-threads-6/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Tools: JBoss Tools 4.29.0.Final for Eclipse 2023-09</title>
     <updated>2023-11-02T00:00:00Z</updated>
     <id>https://tools.jboss.org/blog/4.29.0.final.html</id>
@@ -291,17 +291,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: This Week in JBoss - July 03, 2023</title>
-    <updated>2023-07-03T00:00:00Z</updated>
-    <id>https://www.jboss.org/posts/weekly-2023-07-03.html</id>
-    <link href="https://www.jboss.org/posts/weekly-2023-07-03.html" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Tools: JBoss Tools 4.28.0.Final for Eclipse 2023-06</title>
     <updated>2023-07-03T00:00:00Z</updated>
     <id>https://tools.jboss.org/blog/4.28.0.final.html</id>
     <link href="https://tools.jboss.org/blog/4.28.0.final.html" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: This Week in JBoss - July 03, 2023</title>
+    <updated>2023-07-03T00:00:00Z</updated>
+    <id>https://www.jboss.org/posts/weekly-2023-07-03.html</id>
+    <link href="https://www.jboss.org/posts/weekly-2023-07-03.html" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
