@@ -42,8 +42,7 @@
 
 	<modules>
 		<module>Eureka-Server</module>
-		<module>Gateway</module>
-		<module>login-service</module>
+		<module>login-dispatcher-service</module>
 		<module>ticket-service</module>
 		<module>chat-service</module>
 		<module>mail-service</module>
