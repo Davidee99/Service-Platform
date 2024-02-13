@@ -4,5 +4,5 @@ export interface UserCredential {
     lastname:string;
     role:"ADMIN"|"OPERATOR"|"USER";
     token:string;
-    email:string;
+    email?:string;
 }

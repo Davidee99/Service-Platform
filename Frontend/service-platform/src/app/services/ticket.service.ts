@@ -7,13 +7,32 @@ import { Ticket } from 'src/model/ticket.model';
   providedIn: 'root'
 })
 export class TicketService {
+  successLog2(...props:any) {
+    console.log(props);
+  }
 
   constructor(private http:HttpClient) {   }
-  url="http://localhost:3000/tickets" //prova end point chiamata dei ticket
-
+  
   getTicket():Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(this.url).pipe(tap(x=>{
+    const url="http://localhost:3000/tickets" //prova end point chiamata dei ticket
+    return this.http.get<Ticket[]>(url).pipe(tap(x=>{
       console.table(x)
     }))
 }
+
+postChatAC(data: any): Observable<any> {
+  const url = 'http://localhost:8080/ciao/test2'
+  return this.http.post<any>(url, data);
+}
+
+successLog(){
+  console.log('la chiamata è andata');
+}
+
+
+
+
+
+
+
 }

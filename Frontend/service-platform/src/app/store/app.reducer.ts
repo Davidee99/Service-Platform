@@ -5,10 +5,12 @@ import { Ticket } from "src/model/ticket.model";
 
 export interface AppState {
     tickets: Ticket[];
+    response:any
   }
   
   const initialState: AppState = {
     tickets: [],
+    response:null
   };
 
   const _appReducers = createReducer(

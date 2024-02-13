@@ -14,38 +14,38 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <ul ngbNav #nav="ngbNav" class="nav-tabs">
     <li ngbNavItem>
-      <button class="form-user-button" ngbNavLink>User</button>
+      <button class="form-user-button" (click)="iAmUser()" ngbNavLink >User</button>
       <ng-template class="container-user" ngbNavContent>
-        <ng-form class="container-form-user">
+        <form #userForm="ngForm" class="container-form-user">
           <!-- <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                       </div> -->
           <mat-form-field class="landing-page-form-field">
             <mat-label>Email address</mat-label>
-            <input matInput placeholder="Email address" required>
+            <input matInput [(ngModel)]="loginData.email" name="email" placeholder="Email address" required>
           </mat-form-field>
           <mat-form-field class="landing-page-form-field">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" required>
+            <mat-label >Password</mat-label>
+            <input matInput  [(ngModel)]="loginData.password" name="password" placeholder="Password" required>
           </mat-form-field>
-        </ng-form>
+        </form>
       </ng-template>
     </li>
     <li ngbNavItem>
-      <button ngbNavLink>Employee</button>
+      <button ngbNavLink (click)="iAmEmployee()">Employee</button>
       <ng-template ngbNavContent>
-        <ng-form class="container-form-employee">
+        <form #employeeForm="ngForm" class="container-form-employee">
           <mat-form-field class="landing-page-form-field">
             <mat-label>Email address</mat-label>
-            <input matInput placeholder="Email address" required>
+            <input matInput  [(ngModel)]="loginData.email" name="email" placeholder="Email address" required>
           </mat-form-field>
           <mat-form-field class="landing-page-form-field">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" required>
+            <mat-label >Password</mat-label>
+            <input matInput [(ngModel)]="loginData.password" name="password" placeholder="Password" required>
           </mat-form-field>
 
-        </ng-form>
+        </form>
       </ng-template>
     </li>
   </ul>
@@ -53,7 +53,7 @@
     <div [ngbNavOutlet]="nav"></div>
     <div class="buttons">
       <button mat-raised-button color="warn" class="btn-close" (click)="c()">Close</button>
-      <button mat-raised-button color="primary" class="btn-submit" (click)="onSubmit()">Submit</button>
+      <button mat-raised-button color="primary" class="btn-submit" (click)="submitLogin()">Submit</button>
 
     </div>
 
