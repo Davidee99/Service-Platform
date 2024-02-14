@@ -4,11 +4,17 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import com.model.dto.SendMessageDTO;
 import com.model.entity.Chat;
-import com.model.wrapper.ChatWrapper;
+import com.model.entity.Message;
+import com.model.wrapper.ResponseWrapper;
 import com.repository.ChatRepository;
+import com.repository.MessageRepository;
 import com.utility.AppConstants;
 
 import jakarta.persistence.NonUniqueResultException;
@@ -18,6 +24,9 @@ public class ChatServiceImpl implements ChatService {
 
 	@Autowired
 	private ChatRepository chatRepo;
+
+	@Autowired
+	private MessageRepository msgRepo;
 
 	@Override
 	public Chat saveChat(Chat chat) {
@@ -37,9 +46,9 @@ public class ChatServiceImpl implements ChatService {
 	 * positivo una chat in caso negativo un messaggio di errore da poter loggare
 	 */
 	@Override
-	public ChatWrapper getNewChatWrapper(Long ticketId) {
+	public ResponseWrapper<Chat> getNewChatWrapper(Long ticketId) {
 
-		ChatWrapper result = new ChatWrapper();
+		ResponseWrapper<Chat> result = new ResponseWrapper<Chat>();
 		Chat newChat = new Chat();
 
 		// Valori di default
@@ -86,7 +95,7 @@ public class ChatServiceImpl implements ChatService {
 		} catch (Exception ex) {
 
 			// Catch per gestire le eccezioni varie che posso aver lanciato
-			result.setChat(null);
+			result.setObject(null);
 			result.setExceptionError(ex.getMessage());
 
 			return result;
@@ -106,14 +115,14 @@ public class ChatServiceImpl implements ChatService {
 		} catch (Exception ex) {
 
 			// Catch per gestire le eccezioni varie che posso aver lanciato
-			result.setChat(null);
+			result.setObject(null);
 			result.setExceptionError(ex.getMessage());
 
 			return result;
 		}
 
 		// Setto la nuova chat (con id salvato) dentro il Wrapper
-		result.setChat(newChat);
+		result.setObject(newChat);
 
 		return result;
 	}
@@ -225,6 +234,99 @@ public class ChatServiceImpl implements ChatService {
 			throw new IllegalArgumentException("Lo stato del ticket non è valido. Status attuale: [" + status + "] ");
 
 		}
+	}
+
+	@Override
+	// ATTENZIONE! NON COMPLETO
+	public ResponseWrapper<Message> sendMessage(SendMessageDTO sendMessageDTO) {
+
+		// Controlli sull'input
+		if (sendMessageDTO == null) {
+
+			throw new IllegalArgumentException("SendMessageDTO non può essere null");
+
+		}
+
+		if (sendMessageDTO.getChatId() == null || sendMessageDTO.getChatId() <= 0) {
+
+			throw new IllegalArgumentException("ChatId non può essere null o negativo");
+
+		}
+
+		if (sendMessageDTO.getSenderId() == null || sendMessageDTO.getSenderId() <= 0) {
+
+			throw new IllegalArgumentException("SenderId non può essere null o negativo");
+
+		}
+
+		if (sendMessageDTO.getContent() == null) {
+
+			throw new IllegalArgumentException("Content non può essere null");
+
+		}
+
+		if (sendMessageDTO.getContent().isEmpty()) {
+
+			throw new IllegalArgumentException("Content non può essere vuoto");
+
+		}
+
+		if (sendMessageDTO.getRole() == null) {
+
+			throw new IllegalArgumentException("Role non può essere null");
+
+		}
+
+		if (sendMessageDTO.getRole().isEmpty()) {
+
+			throw new IllegalArgumentException("Role non può essere vuoto");
+
+		}
+
+		if (!AppConstants.ROLES_LIST.contains(sendMessageDTO.getRole())) {
+
+			throw new IllegalArgumentException("Role non valido");
+
+		}
+
+		// Provo a salvare l'entità nel database
+		Message msg = new Message();
+		Chat chat = chatRepo.getReferenceById(sendMessageDTO.getChatId());
+		ResponseWrapper<Message> result = new ResponseWrapper<Message>();
+
+		msg.setSenderId(sendMessageDTO.getSenderId());
+		msg.setTimestamp(new Timestamp(System.currentTimeMillis()));
+		msg.setContent(sendMessageDTO.getContent());
+		msg.setChat(chat);
+
+		try {
+
+			msg = msgRepo.save(msg);
+			result.setObject(msg);
+
+		} catch (DataIntegrityViolationException divEx) {
+
+			result.setObject(null);
+			result.setExceptionError(divEx.getMessage());
+
+		} catch (OptimisticLockingFailureException olfEx) {
+
+			result.setObject(null);
+			result.setExceptionError(olfEx.getMessage());
+
+		} catch (DataAccessException daEx) {
+
+			result.setObject(null);
+			result.setExceptionError(daEx.getMessage());
+
+		} catch (Exception ex) {
+
+			result.setObject(null);
+			result.setExceptionError(ex.getMessage());
+
+		}
+
+		return result;
 	}
 
 }
