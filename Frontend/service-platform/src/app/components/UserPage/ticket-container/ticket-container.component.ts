@@ -38,35 +38,5 @@ export class TicketContainerComponent implements OnInit {
   }
 
   tickets: Ticket[] = [
-    {
-      id: 2,
-      message: 'akjshdkjahdkjaskdh jadkjahdkjahskda',
-      status: 'WIP',
-      order_id: 7,
-    },
-    {
-        id: 7,
-        message: 'asd12 eq',
-        status: 'NON_WIP',
-        order_id: 7,
-      },
-      {
-        id: 4,
-        message: 'asd12 jadkjahdkjahskda',
-        status: 'CLOSED',
-        order_id: 7,
-      },
-      {
-        id: 3,
-        message: 'asd12 as',
-        status: 'CLOSED',
-        order_id: 7,
-      },
-      {
-        id: 1,
-        message: 'asd12 jadkjahdkjahskda',
-        status: 'WIP',
-        order_id: 7,
-      },
-  ];
+     ];
 }

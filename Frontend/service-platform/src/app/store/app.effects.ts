@@ -5,6 +5,7 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 import * as AppActions from './app.actions';
 import { TicketService } from '../services/ticket.service';
 import { Ticket } from 'src/model/ticket.model';
+import { UserCredential } from 'src/model/user-credentials.model';
 
 @Injectable()
 export class AppEffects {
@@ -56,42 +57,43 @@ export class AppEffects {
   );
 
   userLogin$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AppActions.userLogin),
-      exhaustMap((action) =>
-        this.ticketService
-          .userLogin({
-            email: action.email,
-            password: action.password,
+  this.actions$.pipe(
+    ofType(AppActions.userLogin),
+    exhaustMap((action) =>
+      this.ticketService
+        .userLogin({
+          email: action.email,
+          password: action.password,
+        })
+        .pipe(
+          map((userCredential:UserCredential) => AppActions.loginSuccess({ userCredential })),
+          catchError((error) => {
+            console.error(error);
+            return of(AppActions.loginFailed());
           })
-          .pipe(
-            map(() => AppActions.chatACSuccess()),
-            catchError((error) => {
-              console.error(error);
-              return of(AppActions.chatACFailed());
-            })
-          )
-      )
+        )
     )
-  );
+  )
+);
 
-  employeeLogin$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AppActions.employeeLogin),
-      exhaustMap((action) =>
-        this.ticketService
-          .userLogin({
-            email: action.email,
-            password: action.password,
+employeeLogin$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AppActions.employeeLogin),
+    exhaustMap((action) =>
+      this.ticketService
+        .employeeLogin({
+          email: action.email,
+          password: action.password,
+        })
+        .pipe(
+          map((userCredential:UserCredential) => AppActions.loginSuccess({ userCredential })),
+          catchError((error) => {
+            console.error(error);
+            return of(AppActions.loginFailed());
           })
-          .pipe(
-            map(() => AppActions.chatACSuccess()),
-            catchError((error) => {
-              console.error(error);
-              return of(AppActions.chatACFailed());
-            })
-          )
-      )
+        )
     )
-  );
+  )
+);
+
 }

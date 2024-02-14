@@ -30,7 +30,7 @@ export const employeeLogin = createAction(
 
 export const loginSuccess = createAction(
   '[login] success',
-  props<{ userCredential: UserCredential }>
+  props<{ userCredential: UserCredential }>()
 );
 
 export const loginFailed = createAction('[login] failed');
