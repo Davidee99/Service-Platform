@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import com.model.dto.SendAttachmentDTO;
 import com.model.dto.SendMessageDTO;
 import com.model.dto.SendToMailDTO;
+import com.model.entity.Attachment;
 import com.model.entity.Chat;
 import com.model.entity.Message;
 import com.model.wrapper.ResponseWrapper;
@@ -33,6 +36,7 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 
+	@GetMapping("/sendDefaultMail") // aggiunto endpoint
 	private ResponseEntity<?> sendDefaultMail(String to, String accessCode, String link) {
 
 		String mailEndpoint = "http://localhost:5000/api/mail-service/sendDefault";
@@ -155,11 +159,10 @@ public class ChatController {
 
 	}
 
-	@GetMapping("/sendMessage")
+	@PostMapping("/sendMessage")
 	private ResponseEntity<?> sendMessage(@RequestBody SendMessageDTO messageDTO) {
 
 		try {
-
 			ResponseWrapper<Message> result = chatService.sendMessage(messageDTO);
 
 			if (result.getExceptionError() != null) {
@@ -198,6 +201,87 @@ public class ChatController {
 						// Controllare la chat:
 						// -deve essere un operator
 						// Se va tutto bene invio la mail
+
+					}
+
+				} catch (Exception e) {
+					// Gestiamo eccezioni strane non previste
+					return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+				}
+			}
+
+		} catch (IllegalArgumentException ieEx) {
+
+			System.err.println(ieEx.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Error message: " + ieEx.getMessage() + " stack trace: " + ieEx.getStackTrace());
+		}
+
+		return ResponseEntity.status(HttpStatus.OK).body("Messaggio inviato correttamente");
+	}
+
+	@GetMapping("/getChatByChatId/")
+	private ResponseEntity<?> getChatByChatId(@RequestParam Long chatId) {
+		ResponseWrapper<Chat> wrappedChat = new ResponseWrapper<Chat>();
+		try {
+			System.err.println(chatId);
+			wrappedChat = chatService.getChatByChatId(chatId);
+			Chat unwrappedChat = new Chat();
+			if (wrappedChat.getExceptionError() == null) {
+				unwrappedChat = wrappedChat.getObject();
+				return new ResponseEntity<Chat>(unwrappedChat, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>(wrappedChat.getExceptionError(), HttpStatus.I_AM_A_TEAPOT); //
+			}
+
+		} catch (IllegalArgumentException iaEx) {
+			return new ResponseEntity<String>("" + iaEx.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@PostMapping("/sendAttachment")
+	private ResponseEntity<?> sendAttachment(@RequestBody SendAttachmentDTO attachment) {
+
+		try {
+			ResponseWrapper<Attachment> result = chatService.sendAttachment(attachment);
+
+			if (result.getExceptionError() != null) {
+
+				// Se l'errore è valorizzato allora lo ritorno
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result.getExceptionError());
+
+			} else {
+
+				try {
+					// Se non c'è l'errore allora la chat è valorizzata e me la prendo
+					if (result.getObject() == null) {
+
+						return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("ERRORE SCONOSCIUTO");
+
+					} else {
+						try {
+
+							if (attachment.getRole().equals(AppConstants.ROLE_OPERATOR)) {
+
+								String to = "";
+								// to ce lo prendiamo dall'user_id della chat legata al message
+
+								String accessCode = "";
+								// accessCode ce lo prendiamo dal ticket legato alla chat legata al message
+
+								String link = "";
+								// Link di default + id della chat legata al message
+
+								if (sendDefaultMail(to, accessCode, link).getStatusCode() != HttpStatus.OK) {
+
+									System.err
+											.println("Invio mail a " + to + " non riuscito. ChatId: [], MessageId: []");
+
+								}
+							}
+						} catch (Exception ex) {
+							// invio della mail fallito
+						}
 
 					}
 
