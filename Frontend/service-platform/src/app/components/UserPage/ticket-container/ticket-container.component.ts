@@ -31,12 +31,10 @@ export class TicketContainerComponent implements OnInit {
   OpenButton() {
     this.open = true;
     this.closed = false;
-    console.log('OpenButton' + this.open);
   }
   ClosedButton() {
     this.closed = true;
     this.open = false;
-    console.log('ClosedButton' + this.closed);
   }
 
   tickets: Ticket[] = [

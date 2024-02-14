@@ -40,11 +40,9 @@ export class TopRightButtonComponent {
 
   iAmUser() {
     this.amIUser = 'user';
-    console.log(this.amIUser);
   }
   iAmEmployee() {
     this.amIUser = 'employee';
-    console.log(this.amIUser);
   }
 
   loginData = {
