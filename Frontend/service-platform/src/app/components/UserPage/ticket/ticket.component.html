@@ -72,7 +72,7 @@
     </div>
     <div class="ticketInfo">
       <h4>Message</h4>
-      <p>{{ ticket.message }}</p>
+      <p>{{ ticket.message.length>50? ((ticket.message |  slice:0:50)+'...'):ticket.message}}</p>
     </div>
     <ng-container [ngSwitch]="ticket.status">
       <div class="sectionOrderId" *ngSwitchCase="'WIP'">

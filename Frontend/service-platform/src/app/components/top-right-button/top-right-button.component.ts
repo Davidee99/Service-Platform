@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
@@ -26,7 +26,7 @@ import * as AppActions from 'src/app/store/app.actions';
   ],
   providers: [NgbModalConfig, NgbModal],
 })
-export class TopRightButtonComponent {
+export class TopRightButtonComponent implements OnInit{
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -34,6 +34,9 @@ export class TopRightButtonComponent {
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
+  }
+  ngOnInit(): void {
+    this.amIUser='user'
   }
 
   amIUser: 'user' | 'employee' = 'user';
@@ -63,6 +66,8 @@ export class TopRightButtonComponent {
     } else {
       this.store.dispatch(AppActions.employeeLogin(this.loginData));
     }
+    this.loginData.email=''
+    this.loginData.password=''
 
     console.log(this.loginData);
   }

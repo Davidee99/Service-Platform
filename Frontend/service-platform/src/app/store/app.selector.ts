@@ -8,5 +8,10 @@ export const selectAllTickets = createSelector(
   state => state.tickets
 );
 
+export const selectUserCredential = createSelector(
+  selectAppState,
+  state => state.userCredential
+);
+
 
 

@@ -37,6 +37,5 @@ export class TicketContainerComponent implements OnInit {
     this.open = false;
   }
 
-  tickets: Ticket[] = [
-     ];
+
 }
