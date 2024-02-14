@@ -1,7 +1,9 @@
 package com.service;
 
+import com.model.dto.SendMessageDTO;
 import com.model.entity.Chat;
-import com.model.wrapper.ChatWrapper;
+import com.model.entity.Message;
+import com.model.wrapper.ResponseWrapper;
 
 public interface ChatService {
 
@@ -9,6 +11,7 @@ public interface ChatService {
 
 	Chat getChatByTicketId(Long ticketId);
 
-	ChatWrapper getNewChatWrapper(Long ticketId);
+	ResponseWrapper<Chat> getNewChatWrapper(Long ticketId);
 
+	ResponseWrapper<Message> sendMessage(SendMessageDTO sendMessageDTO);
 }

@@ -13,4 +13,10 @@ public class AppConstants {
 	public static final List<String> TICKET_STATUS_VALUES_LIST = Arrays.asList(TICKET_STATUS_NON_WIP, TICKET_STATUS_WIP,
 			TICKET_STATUS_CLOSED, TICKET_STATUS_CANCELLED);
 
+	public static final String ROLE_USER = "USER";
+	public static final String ROLE_OPERATOR = "OPERATOR";
+	public static final String ROLE_ADMIN = "ADMINISTRATOR";
+
+	public static final List<String> ROLES_LIST = Arrays.asList(ROLE_USER, ROLE_OPERATOR, ROLE_ADMIN);
+
 }
