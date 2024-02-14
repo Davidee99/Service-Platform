@@ -121,6 +121,8 @@ public class SecurityConfig {
 			auth.requestMatchers("/api/authentication/login/*").permitAll();
 			auth.requestMatchers("/api/dispacher/test").hasAuthority("ADMIN");
 			auth.requestMatchers("/api/dispacher/test").hasAuthority("OPERATOR");
+			auth.requestMatchers("/api/dispacher/mail-service/*").hasAuthority("ADMIN");
+			auth.requestMatchers("/api/dispacher/mail-service/*").hasAuthority("OPERATOR");
 			auth.anyRequest().authenticated();
 		})
 

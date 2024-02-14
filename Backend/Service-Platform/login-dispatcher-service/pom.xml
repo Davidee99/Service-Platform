@@ -12,7 +12,7 @@
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
 	</properties>
-	<dependencies>
+	<dependencies>		
 				<!-- Librerie aggiuntive per il progetto Security-->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

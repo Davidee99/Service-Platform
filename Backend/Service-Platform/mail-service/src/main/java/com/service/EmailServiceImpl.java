@@ -16,7 +16,7 @@ public class EmailServiceImpl implements EmailService {
     private String getMailContent(SimpleMailMessage msg) 
     {
     	return "Email sent"
-    	+ "\n To: "+ msg.getTo() 
+    	+ "\n To: "+ msg.getTo()[0]
     	+ "\n Subject: "+ msg.getSubject() 
     	+ "\n Text: "+ msg.getText();
     }
