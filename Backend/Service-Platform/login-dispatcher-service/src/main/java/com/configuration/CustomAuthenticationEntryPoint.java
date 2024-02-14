@@ -11,16 +11,17 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 	/*
-	 * Implementazione di AuthenticationEntryPoint per la gestione custom delle eccezioni
-	 * causate dall'autenticatione, quindi: Token scaduto o accesso negato per ruolo o Token
-	 * non valido
+	 * Implementazione di AuthenticationEntryPoint per la gestione custom delle
+	 * eccezioni causate dall'autenticatione, quindi: Token scaduto o accesso negato
+	 * per ruolo o Token non valido
 	 */
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) {
 		try {
-			// Creiamo una risposta con il codice 401 e inseriamo nel body il messaggio si errore
+			// Creiamo una risposta con il codice 401 e inseriamo nel body il messaggio si
+			// errore
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");

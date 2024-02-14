@@ -23,4 +23,9 @@ public class CustomRequestObject {
 	public void setText(String text) {
 		this.text = text;
 	}
+	@Override
+	public String toString() {
+		return "CustomRequestObject [to=" + to + ", subj=" + subj + ", text=" + text + "]";
+	}
+	
 }
