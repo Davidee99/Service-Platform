@@ -9,10 +9,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
+import com.model.dto.SendAttachmentDTO;
 import com.model.dto.SendMessageDTO;
+import com.model.entity.Attachment;
 import com.model.entity.Chat;
 import com.model.entity.Message;
 import com.model.wrapper.ResponseWrapper;
+import com.repository.AttachmentRepository;
 import com.repository.ChatRepository;
 import com.repository.MessageRepository;
 import com.utility.AppConstants;
@@ -27,6 +30,9 @@ public class ChatServiceImpl implements ChatService {
 
 	@Autowired
 	private MessageRepository msgRepo;
+
+	@Autowired
+	private AttachmentRepository attachmentRepo;
 
 	@Override
 	public Chat saveChat(Chat chat) {
@@ -237,7 +243,6 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	// ATTENZIONE! NON COMPLETO
 	public ResponseWrapper<Message> sendMessage(SendMessageDTO sendMessageDTO) {
 
 		// Controlli sull'input
@@ -303,6 +308,135 @@ public class ChatServiceImpl implements ChatService {
 
 			msg = msgRepo.save(msg);
 			result.setObject(msg);
+
+		} catch (DataIntegrityViolationException divEx) {
+
+			result.setObject(null);
+			result.setExceptionError(divEx.getMessage());
+
+		} catch (OptimisticLockingFailureException olfEx) {
+
+			result.setObject(null);
+			result.setExceptionError(olfEx.getMessage());
+
+		} catch (DataAccessException daEx) {
+
+			result.setObject(null);
+			result.setExceptionError(daEx.getMessage());
+
+		} catch (Exception ex) {
+
+			result.setObject(null);
+			result.setExceptionError(ex.getMessage());
+
+		}
+
+		return result;
+	}
+
+	@Override
+	public ResponseWrapper<Chat> getChatByChatId(Long chatId) {
+		// CONTROLLI DI VALIDITA'
+		if (chatId == null) {
+			throw new IllegalArgumentException("ChatID non può essere null");
+		}
+
+		ResponseWrapper<Chat> response = new ResponseWrapper<Chat>();
+		try {
+			Chat fetchedChat = chatRepo.findById(chatId).orElse(null);
+			if (fetchedChat == null) {
+				// metodo del service è chiamato quando l'utente clicca sul link inviatogli
+				// tramite email
+				// se non trova l'id non significa che la chat non è mai esistita, ma significa
+				// che è stata cancellata, magari da un admin
+				throw new IllegalArgumentException("Chat eliminata");
+			}
+			response.setObject(fetchedChat);
+		} catch (DataIntegrityViolationException divEx) {
+			response.setObject(null);
+			response.setExceptionError(divEx.getMessage());
+		} catch (OptimisticLockingFailureException olfEx) {
+			response.setObject(null);
+			response.setExceptionError(olfEx.getMessage());
+		} catch (DataAccessException daEx) {
+			response.setObject(null);
+			response.setExceptionError(daEx.getMessage());
+		} catch (Exception ex) {
+			response.setObject(null);
+			response.setExceptionError(ex.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	public ResponseWrapper<Attachment> sendAttachment(SendAttachmentDTO attachment) {
+
+		// Controlli sull'input
+		if (attachment == null) {
+
+			throw new IllegalArgumentException("SendAttachmentDTO non può essere null");
+
+		}
+
+		if (attachment.getChatId() == null || attachment.getChatId() <= 0) {
+
+			throw new IllegalArgumentException("ChatId non può essere null o negativo");
+
+		}
+
+		if (attachment.getSenderId() == null || attachment.getSenderId() <= 0) {
+
+			throw new IllegalArgumentException("SenderId non può essere null o negativo");
+
+		}
+
+		if (attachment.getLink() == null) {
+
+			throw new IllegalArgumentException("Il link non può essere null");
+
+		}
+
+		if (attachment.getLink().isEmpty()) {
+
+			throw new IllegalArgumentException("Il link non può essere vuoto");
+
+		}
+
+		if (attachment.getRole() == null) {
+
+			throw new IllegalArgumentException("Role non può essere null");
+
+		}
+
+		if (attachment.getRole().isEmpty()) {
+
+			throw new IllegalArgumentException("Role non può essere vuoto");
+
+		}
+
+		if (!AppConstants.ROLES_LIST.contains(attachment.getRole())) {
+
+			throw new IllegalArgumentException("Role non valido");
+
+		}
+
+		ResponseWrapper<Attachment> result = new ResponseWrapper<Attachment>();
+		try {
+			// Provo a salvare l'entità nel database
+			Attachment pic = new Attachment();
+
+			Chat chat = chatRepo.findById(attachment.getChatId()).orElse(null);
+			if (chat == null) {
+				throw new Exception("Sei un coglione kys");
+			}
+
+			pic.setChat(chat);
+			pic.setSenderId(attachment.getSenderId());
+			pic.setUrl(attachment.getLink());
+			pic.setTimestamp(new Timestamp(System.currentTimeMillis()));
+
+			result.setObject(pic);
 
 		} catch (DataIntegrityViolationException divEx) {
 
