@@ -34,3 +34,7 @@ export const loginSuccess = createAction(
 );
 
 export const loginFailed = createAction('[login] failed');
+
+export const checkSessionStorage = createAction('[session] checkStorage');
+
+export const sessionChecked = createAction('[session] checked', props<{ userCredential: UserCredential | null}>());

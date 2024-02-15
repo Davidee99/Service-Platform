@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Ticket } from 'src/model/ticket.model';
 
 @Component({
   selector: 'app-ticket',
@@ -29,7 +30,7 @@ export class TicketComponent {
   }
   
   @Input()
-  ticket:any;
+  ticket!: Ticket;
   
   
   open(content: any) {

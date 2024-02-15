@@ -17,10 +17,12 @@ export class UserSidebarComponent implements OnInit{
     this.credentials$=store.select(selectUserCredential)
   }
   ngOnInit(): void {
+    console.log(sessionStorage);
+    this.store.dispatch(AppActions.checkSessionStorage())
    this.credentials$=this.store.select(selectUserCredential)
   }
   
-  credentials$:Observable<UserCredential>;
+  credentials$:Observable<UserCredential|null>;
 
   userData = {
     email: "",
