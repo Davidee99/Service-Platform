@@ -122,11 +122,13 @@
 
 .markers {
     margin: auto;
+    
     /* border: 1px solid red; */
 }
 
 .markers>button {
     margin-left: 1rem;
+    margin-bottom: 2rem;
 }
 
 #charge {
