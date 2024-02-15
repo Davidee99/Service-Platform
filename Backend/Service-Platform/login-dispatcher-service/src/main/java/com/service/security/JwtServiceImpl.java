@@ -40,6 +40,8 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtServiceImpl implements JwtService {
 
+	//UserDetails e' un'interfaccia implementata da spring security con dei metodi tutti
+	//suoi
 	public Boolean validateToken(String token, UserDetails userDetails) {
 		final String username = extractUsername(token);
 		// Equipara l'email ottenuta dal token con l'email ottenuta dal database e controlla che
@@ -68,8 +70,9 @@ public class JwtServiceImpl implements JwtService {
 	}
 
 	/*
-	 * Il metodo ".parseClaimsJws(token)" lancia delle eccezioni in caso di non conformità del
-	 * token, quindi tutti gli altri metodi sono superflui, visto che tale metodo viene
+	 * Il metodo ".parseClaimsJws(token)" lancia delle eccezioni(mortacci sua a saperlo rpima)
+	 * in caso di non conformità del token, 
+	 * quindi tutti gli altri metodi sono superflui, visto che tale metodo viene
 	 * invocato da tutti gli altri metodi di controllo. DA IMPLEMENTARE: maggior leggibilità e
 	 * efficienza
 	 */

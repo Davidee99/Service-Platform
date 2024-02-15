@@ -11,7 +11,7 @@ import com.model.entity.LoginInfo;
 import com.repository.LoginInfoRepository;
 
 /*
- * Quando scegliamo di autenticare l'utente recuperando le sue credenziali salvate sul DB,
+ * Quando scegliamo di autenticare l'utente utilizzando la sua email, recuperando le sue credenziali salvate sul DB,
  * usiamo questa classe per wrappare quanto recuperato in un oggetto di tipo UserDetails
  * che contiene metodi per la gestione dell'utenza.
  * 

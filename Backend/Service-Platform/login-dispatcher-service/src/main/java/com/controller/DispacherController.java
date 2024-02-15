@@ -44,6 +44,12 @@ public class DispacherController {
 	 *  If it's a GET -> request = null
 	 * @param
 	 */
+	
+	/*
+	 * metodo che aggiunge allo user o all'employee la nostra chiave segreta 
+	 * per poi effettuare tutte le operazioni autorizzate
+	 * ps nessuno sa che viene effettuata questa operazione
+	 */
 	private ResponseEntity<?> sampleRestTemplate(HttpMethod httpMethod,String url,HttpEntity<?> request) {
 		
 		HttpHeaders headers = new HttpHeaders();

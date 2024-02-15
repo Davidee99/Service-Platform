@@ -40,6 +40,9 @@ public class LoginServiceImpl implements LoginService {
 	 * 
 	 */
 	@Override
+	//loginrole e' un parametro che passiamo noi da backend per verificare se chi fa l'autenticazione
+	//e' effettivamente uno USER o UN EMPLOYEE(ADMIN, OPERATOR)
+	//viene implementato il controllo dopo
 	public ResponseEntity<?> login(AuthRequest authRequest, String loginRole) {
 
 		LoginResponse response = new LoginResponse();
@@ -52,7 +55,7 @@ public class LoginServiceImpl implements LoginService {
 
 		try {
 
-			// Auetenticazione dell utente
+			// Autenticazione dell' utente
 			authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
 
