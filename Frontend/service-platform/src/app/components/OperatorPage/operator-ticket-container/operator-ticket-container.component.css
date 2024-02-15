@@ -1,0 +1,11 @@
+.operator{
+    display: flex;
+}
+
+.operator.sidebar-container{
+    width: 30%;
+}
+.operator .container-tickets{
+    width: 90%;
+    
+}

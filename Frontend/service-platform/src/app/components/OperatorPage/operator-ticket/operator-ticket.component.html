@@ -1,5 +1,7 @@
 <!-- ticket dell'operator -->
 
+
+
 <div class="prova">
 
     <div class="singleTicketContainer" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
@@ -70,10 +72,10 @@
                 <!-- contenitore1 -->
                 <div class="c1">
                     <!-- user id da mettere al posto di ticket id-->
-                    <p>user id : {{tickett.user_id}}</p>
+                    <p>user id : {{ticket.user_id}}</p>
                     <!-- messaggio del ticket -->
                     <p> Message : </p>
-                    <p>{{tickett.message}}</p>
+                    <p>{{ticket.message}}</p>
                 </div>
                 <!-- contenitore 2 -->
                 <div class="c2">
@@ -97,9 +99,9 @@
                     <div class="infoc2">
 
                         <!-- priority -->
-                        <p>Priority : {{tickett.priority}}</p>
+                        <p>Priority : {{ticket.priority}}</p>
                         <!-- order id -->
-                        <p>order id : {{tickett.order_id}} </p>
+                        <p>order id : {{ticket.order_id}} </p>
 
                     </div>
 

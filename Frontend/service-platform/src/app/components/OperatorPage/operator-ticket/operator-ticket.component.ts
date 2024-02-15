@@ -62,14 +62,14 @@ export class OperatorTicketComponent {
   }
   
   
-  tickett={
-    id: 9,
-    user_id:4,
-    message: 'messaggio custom del tickett',
-    status: 'wip',
-    priority: 'hight',
-    order_id: 7,
-  }
+  // tickett={
+  //   id: 9,
+  //   user_id:4,
+  //   message: 'messaggio custom del tickett',
+  //   status: 'wip',
+  //   priority: 'hight',
+  //   order_id: 7,
+  // }
 
 
 
