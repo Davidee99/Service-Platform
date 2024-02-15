@@ -26,7 +26,7 @@ public class Employee {
 	 * utilizzo lombok per non scivere i metodi "classici" di java
 	 */
 	@Id
-	private Integer id;
+	private Long id;
 	
 	@OneToOne(mappedBy = "employee")
 	@JoinColumn(name = "user_id")

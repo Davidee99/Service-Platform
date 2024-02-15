@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,5 +40,10 @@ public class LoginController {
 	@PostMapping("/login/employee")
 	ResponseEntity<?> loginEmployee(@RequestBody AuthRequest authRequest) {
 		return loginService.login(authRequest, "");
+	}
+	
+	@PostMapping("/getCryptedPassword")
+	ResponseEntity<?> getCryptedPassword(@RequestBody Map<String,String> password){
+		return loginService.cryptoPassword(password);
 	}
 }

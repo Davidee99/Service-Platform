@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.model.dto.AuthRequest;
@@ -24,13 +27,16 @@ import com.service.security.JwtService;
 public class LoginServiceImpl implements LoginService {
 
 	@Autowired
-	LoginInfoRepository loginInfoRep;
+	private LoginInfoRepository loginInfoRep;
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	JwtService jwtservice;
+	private JwtService jwtservice;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	/**
 	 * Metodo per fare il login tramite email e password che restituisce un response
@@ -127,6 +133,15 @@ public class LoginServiceImpl implements LoginService {
 			return new ResponseEntity<String>("Email o Password errate", HttpStatus.UNAUTHORIZED); // 401
 		}
 		return new ResponseEntity<String>("Prblema interno Server!!", HttpStatus.INTERNAL_SERVER_ERROR); // 500
+	}
+
+	@Override
+	public ResponseEntity<?> cryptoPassword(Map<String, String> password) {
+		if(password.get("password") == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No password");
+		}
+		String cryptedPassword = passwordEncoder.encode(password.get("password"));
+		return ResponseEntity.status(HttpStatus.OK).body(cryptedPassword);
 	}
 
 }

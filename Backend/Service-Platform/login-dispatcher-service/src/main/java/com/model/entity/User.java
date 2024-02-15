@@ -24,7 +24,7 @@ public class User {
 	 * relazioni one to one
 	 */
 	@Id
-	private Integer id;
+	private Long id;
 
 	@OneToOne(mappedBy = "user")
 	@JoinColumn(name = "user_id")

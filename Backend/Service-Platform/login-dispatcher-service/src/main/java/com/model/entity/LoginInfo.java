@@ -26,7 +26,7 @@ public class LoginInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private Integer loginInfoId;
+	private Long loginInfoId;
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
