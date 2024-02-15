@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //chart.js
 import Chart from 'chart.js/auto';
 
@@ -13,53 +15,81 @@ export class AdminTaskComponent {
 
   
 
-  @Input() 
-  ticket:any;
 
-  tasks: string[] = ['Item 1','Item 1','Item 1','Item 1', 'Item 2','Item 2', 'Item 3', 'Item 4', 'Item 5'];
-  filteredTasks: string[] = this.tasks.slice(); // Copia tutti gli elementi in filteredItems all'inizio
 
-  filterTasks(filterValue: string) {
-    if (filterValue === 'Item 1') {
-      this.filteredTasks = this.tasks.filter(item => item === 'Item 1');
-    } else if (filterValue === 'Item 2') {
-      this.filteredTasks = this.tasks.filter(item => item === 'Item 2');
-    } else if (filterValue === 'Item 3') {
-      this.filteredTasks = this.tasks.filter(item => item === 'Item 3');
-    } else if (filterValue === 'Item 4') {
-      this.filteredTasks = this.tasks.filter(item => item === 'Item 4');
-    } else {
-      this.filteredTasks = this.tasks;
+
+  //expansion panel
+  isCollapsed = true;
+
+  //menù mark as...
+  showMarkMenu = false;
+
+
+
+
+  constructor(
+		config: NgbModalConfig,
+		private modalService: NgbModal,
+	) {
+		// customize default values of modals used by this component tree
+		config.backdrop = 'static';
+		config.keyboard = false;
+
+    
+	}
+  check: boolean = true
+
+  code:string = "";
+
+  submitForm(form: NgForm) {
+    if (form.valid) {
+      // Esegui l'invio del form
+      console.log(this.code);
+      
     }
   }
 
-
-//graph
-  title = 'ng-chart';
-  chart: any = [];
+  @Input() 
+  ticket:any;
 
 
-  ngOnInit() {
-    this.chart = new Chart('canvas', {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
+  toggleMarkMenu() {
+    this.showMarkMenu = !this.showMarkMenu;
   }
 
-}
+  markAs(option: string) {
+    // Qui puoi fare qualcosa con l'opzione selezionata, ad esempio inviare una richiesta al backend
+    console.log("Marked as:", option);
+    // Puoi anche chiudere il menu dopo aver selezionato un'opzione
+    this.showMarkMenu = false;
+  }
+  
+  
+  
+
+
+
+
+  selected = 'Refund';
+  change(ticket:any) {
+    // Logica per l'invio
+    console.log('Type changed');
+    
+    //cambio type del ticket
+    if (this.selected == 'Refund') {
+      ticket.type='Product';
+    }else{
+      ticket.type='Refund';
+    }
+    
+    
+    
+    
+}}
+
+
+
+
+  
+
+

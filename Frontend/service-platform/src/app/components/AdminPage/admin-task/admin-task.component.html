@@ -1,25 +1,177 @@
-<div class="listaTasks">
-    <h3>TASKS</h3>
-  
-    <mat-chip-listbox aria-label="Fish selection">
-      <mat-chip-option (click)="filterTasks('Item 1')">Item 1</mat-chip-option>
-      <mat-chip-option (click)="filterTasks('Item 2')">Item 2</mat-chip-option>
-      <mat-chip-option (click)="filterTasks('Item 3')">Item 3</mat-chip-option>
-      <mat-chip-option (click)="filterTasks('Item 4')">Item 4</mat-chip-option>
-    </mat-chip-listbox>
-  
-    <mat-list>
-        <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let task of filteredTasks">
-        {{ task }}
-        <button mat-icon-button color="primary" id="cl" aria-label="Example icon button with a home icon">
-            <mat-icon>delete</mat-icon>
+
+ 
+
+<!-- ticket dell'Admin -->
+
+<div class="prova">
+
+  <div class="singleTicketContainer" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample">
+    <div class="userId">
+      <h4>ticket Id</h4>
+      <p>{{ticket.id}}</p>
+    </div>
+    <div class="date">
+      <h4>Opening date</h4>
+      <p>12/02/2023</p>
+    </div>
+    <div class="ticketInfo">
+      <h4>Ticket</h4>
+      <p>{{ticket.message}}</p>
+    </div>
+
+    <div class="ticketType">
+      <h4>Type</h4>
+      <p>{{ticket.type}}</p>
+    </div>
+    <!-- ticket wip -->
+
+    <!-- <div *ngIf="ticket.status === 'wip'" class="sectionOrderId">
+      <div class="status">
+
+        <ng-template #tipContent>
+          <b>Work in progress</b>
+        </ng-template>
+        <span class="me-2">WIP:</span>
+        <button type="button" class="btn btn-outline-secondary status green" [ngbTooltip]="tipContent">
         </button>
-      </mat-list-item>
-    </mat-list>
+      </div>
+    </div> -->
+
+  
+    <!-- ticket non wip -->
+
+    <!-- <div *ngIf="ticket.status === 'no-wip'" class="sectionOrderId">
+      <div class="status">
+        <ng-template #tipContent>
+          <b>Not Work in progress</b>
+        </ng-template>
+        <span class="me-2">WIP:</span>
+        <button type="button" class="btn btn-outline-secondary status yellow" [ngbTooltip]="tipContent">
+        </button>
+      </div>
+    </div> -->
+
+
+
+  <!-- ticket closed -->
+
+    <!-- <div *ngIf="ticket.status === 'closed'" class="sectionOrderId"
+      [ngClass]="ticket.status === 'closed' ? 'justify-content-around' : 'justify-content-end'">
+      <div class="status">
+        <ng-template #tipContent>
+          <b>Closed</b>
+        </ng-template>
+        <span class="me-2">WIP:</span>
+        <button type="button" class="btn btn-outline-secondary status red" [ngbTooltip]="tipContent">
+        </button>
+      </div>
+      <button class="download">Download resume</button>
+    </div> -->
+
+  </div>
+</div>
+
+
+<div #collapse="ngbCollapse" class="card" [(ngbCollapse)]="isCollapsed">
+
+ 
+  <div class="example-button-row">
+    <div class="example-flex-container">
+
+
+      <div id="c">
+        <!-- contenitore1 -->
+        <div class="c1">
+          <!-- user id da mettere al posto di ticket id-->
+          <p>user id : {{ticket.user_id}}</p>
+          <!-- messaggio del ticket -->
+          <p> Message : </p>
+          <p>{{ticket.message}}</p>
+        </div>
+        <!-- contenitore 2 -->
+        <div class="c2">
+
+          <div class="selectt">
+            <!-- type selection -->
+            <mat-form-field>
+              <mat-label>Select an option</mat-label>
+              <mat-select [(value)]="selected">
+                <mat-option value="Product">Product</mat-option>
+                <mat-option value="Refund">Refund</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="selectBtn" *ngIf="selected !== 'Refund'">
+              <!-- Aggiungi l'evento click per gestire il click sul bottone -->
+              <button type="submit" (click)="change(selected)" mat-raised-button color="primary">change</button>
+            </div>
+          </div>
+
+
+          <div class="infoc2">
+
+            <!-- priority -->
+            <p>Priority : {{ticket.priority}}</p>
+            <!-- order id -->
+            <p>order id : {{ticket.order_id}} </p>
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- bottone delete -->
+    <div class="example-button-container">
+      <!-- <button mat-fab id="cl" color="warn" aria-label="Example icon button with a delete icon">
+                  <mat-icon>delete</mat-icon>
+              </button> -->
+
+      <button mat-icon-button color="primary" id="cl" aria-label="Example icon button with a home icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+
+      <!-- 3 button mark as -->
+      <div class="markers">
+        <button mat-stroked-button color="accent">Set fake </button>
+        <button mat-stroked-button color="accent">Set duplicated </button>
+        <button mat-stroked-button color="accent">Set switched</button>
+      </div>
+
+      <!-- take charge button -->
+      <div id="charge" *ngIf="ticket.status !== 'wip'">
+        <button mat-button color="accennt">Take charge</button>
+      </div>
+
+      <!-- chat button -->
+      <div id="chatclose" *ngIf="ticket.status === 'wip'">
+        <button id="chat" mat-button color="accennt">Chat</button>
+        <button id="close" mat-button color="accennt">Close</button>
+
+      </div>
+
+    </div>
+
+
   </div>
 
-  <div style="width: 50%;">
-    <canvas id="canvas">{{chart}}</canvas>
-  </div>
+</div>
+
+
 

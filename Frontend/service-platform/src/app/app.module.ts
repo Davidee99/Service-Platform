@@ -33,6 +33,7 @@ import { AdminPageComponent } from './components/AdminPage/admin-page/admin-page
 import { AdminTaskComponent } from './components/AdminPage/admin-task/admin-task.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
+import { AdminContainerComponent } from './components/AdminPage/admin-container/admin-container.component';
 
 
 
@@ -59,6 +60,7 @@ import {MatListModule} from '@angular/material/list';
     OperatorPageComponent,
     AdminPageComponent,
     AdminTaskComponent,
+    AdminContainerComponent,
     
   ],
   imports: [
