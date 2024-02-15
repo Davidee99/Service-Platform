@@ -25,6 +25,11 @@ public class LoginController {
 
 	// Significa che su postman dovete inserire "Password01!" nel campo PSW, che lui
 	// la codifica in quella robaccia
+	// AuthRequest sarebbe il nostro DTO con il quale effettuiamo il login
+	// e verifichiamo questi dati con quelli del DATABASE e per fare il token
+	
+	//Si è deciso di creare due endpoint sia per user che per employee così da separare
+	//i due login
 	@PostMapping("/login/user")
 	ResponseEntity<?> loginUser(@RequestBody AuthRequest authRequest) {
 		return loginService.login(authRequest, "USER");

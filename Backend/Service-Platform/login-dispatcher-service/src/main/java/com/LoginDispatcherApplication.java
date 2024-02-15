@@ -15,7 +15,10 @@ public class LoginDispatcherApplication {
 	 * validato tramite l'authenticationManager e in seguito gli viene assegnato un token
 	 * valido per 60 min.
 	 * 
-	 * 3.L'endpoint restituisce una response di tipo LoginResponse: {
+	 * 3.L'endpoint restituisce una response di tipo LoginResponse come nell' esempio che segue:
+	 *  {
+	 * 
+	 * "id": "1"
 	 * 
 	 * "firstName": "John",
 	 * 

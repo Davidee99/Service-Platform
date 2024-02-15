@@ -43,6 +43,10 @@ public class LoginInfo {
 
 	private String role;
 
+	
+/*
+ * Aggiunto il metodo equals per fare una comparazione 	
+ */
 	@Override
 	public int hashCode() {
 		return Objects.hash(role);

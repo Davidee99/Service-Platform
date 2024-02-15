@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>JBoss Tools Aggregated Feed</title>
   <id>https://tools.jboss.org</id>
-  <updated>2024-02-13T12:15:47Z</updated>
+  <updated>2024-02-15T06:11:42Z</updated>
   <link href="https://tools.jboss.org"/>
   <xhtml:meta content="noindex" name="robots" xmlns:xhtml="http://www.w3.org/1999/xhtml"/><entry>
+    <title>JBoss Blogs: How to check configuration changes in WildFly</title>
+    <updated>2024-02-14T15:58:49Z</updated>
+    <id>https://www.mastertheboss.com/jbossas/jboss-configuration/how-to-check-configuration-changes-in-wildfly/</id>
+    <link href="https://www.mastertheboss.com/jbossas/jboss-configuration/how-to-check-configuration-changes-in-wildfly/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: A deep dive into Stakater's Multi-Tenant Operator</title>
+    <updated>2024-02-14T07:00:00Z</updated>
+    <id>85f1866a-02d5-425b-9383-982c7850c257</id>
+    <link href="https://developers.redhat.com/articles/2024/02/14/deep-dive-stakaters-multi-tenant-operator" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Intel GPUs and OVMS: A winning combination for deep learning efficiency</title>
+    <updated>2024-02-14T07:00:00Z</updated>
+    <id>969b9439-7894-4449-853d-d76235ed0bb5</id>
+    <link href="https://developers.redhat.com/articles/2024/02/14/intel-gpus-and-ovms-winning-combination-deep-learning-efficiency" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Quarkus 3.7.3 released - Maintenance release</title>
+    <updated>2024-02-14T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-3-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-3-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus 3.7.3 released - Maintenance release</title>
+    <updated>2024-02-14T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-3-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-3-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
     <title>Red Hat Developer: Connect a Quarkus app to an external SQL Server database</title>
     <updated>2024-02-13T07:00:00Z</updated>
     <id>01b77d2d-6db2-47fe-bd18-17fe3b79b62a</id>
@@ -95,17 +130,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to integrate Quarkus applications with OpenShift AI</title>
-    <updated>2024-02-06T07:00:00Z</updated>
-    <id>b242953f-63a0-40a5-be48-a16d40567e85</id>
-    <link href="https://developers.redhat.com/articles/2024/02/06/how-integrate-quarkus-applications-openshift-ai" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Red Hat Developer: Security policies in open source software</title>
     <updated>2024-02-06T07:00:00Z</updated>
     <id>2f1a577f-f5c0-4c99-af1f-543854ea1d13</id>
     <link href="https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: How to integrate Quarkus applications with OpenShift AI</title>
+    <updated>2024-02-06T07:00:00Z</updated>
+    <id>b242953f-63a0-40a5-be48-a16d40567e85</id>
+    <link href="https://developers.redhat.com/articles/2024/02/06/how-integrate-quarkus-applications-openshift-ai" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -120,13 +155,6 @@
     <updated>2024-02-05T14:00:00Z</updated>
     <id>45c0a195-69f8-4b22-a8f4-620ca81b6251</id>
     <link href="https://developers.redhat.com/articles/2024/02/05/whats-new-jboss-enterprise-application-platform-8" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: How to cache data using GDB's Python API</title>
-    <updated>2024-02-05T07:00:00Z</updated>
-    <id>51ad72dd-271e-422e-91a6-0855584412e1</id>
-    <link href="https://developers.redhat.com/articles/2024/02/05/how-cache-data-using-gdbs-python-api" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -172,17 +200,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to configure granular access in OpenShift Dev Spaces</title>
-    <updated>2024-02-01T14:00:00Z</updated>
-    <id>08a6220d-2337-477e-90eb-ebf455edffbd</id>
-    <link href="https://developers.redhat.com/articles/2024/02/01/how-configure-granular-access-openshift-dev-spaces" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: RabbitMQ with Docker: A Comprehensive Guide</title>
     <updated>2024-01-31T09:49:10Z</updated>
     <id>https://www.mastertheboss.com/rabbitmq/rabbitmq-with-docker-a-comprehensive-guide/</id>
     <link href="https://www.mastertheboss.com/rabbitmq/rabbitmq-with-docker-a-comprehensive-guide/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
+    <updated>2024-01-31T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -200,31 +228,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
-    <updated>2024-01-31T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: Maven is using the wrong version: Explained</title>
     <updated>2024-01-30T17:31:27Z</updated>
     <id>https://www.mastertheboss.com/java/maven-is-using-the-wrong-version-explained/</id>
     <link href="https://www.mastertheboss.com/java/maven-is-using-the-wrong-version-explained/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: How to use Hidden Classes in Java</title>
-    <updated>2024-01-30T15:49:08Z</updated>
-    <id>https://www.mastertheboss.com/java/how-to-use-hidden-classes-in-java/</id>
-    <link href="https://www.mastertheboss.com/java/how-to-use-hidden-classes-in-java/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Eclipse Vert.x 4.4.7 released!</title>
-    <updated>2024-01-30T00:00:00Z</updated>
-    <id>https://vertx.io/blog/eclipse-vert-x-4-4-7</id>
-    <link href="https://vertx.io/blog/eclipse-vert-x-4-4-7" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -277,13 +284,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Quarkus: Release Plans for Quarkus 3.7, 3.8 and 3.9</title>
-    <updated>2023-12-19T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/our-plans-for-quarkus-3-7-3-8-3-9-released/</id>
-    <link href="https://quarkus.io/blog/our-plans-for-quarkus-3-7-3-8-3-9-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Tools: JBoss Tools 4.29.0.Final for Eclipse 2023-09</title>
     <updated>2023-11-02T00:00:00Z</updated>
     <id>https://tools.jboss.org/blog/4.29.0.final.html</id>
@@ -291,17 +291,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Tools: JBoss Tools 4.28.0.Final for Eclipse 2023-06</title>
-    <updated>2023-07-03T00:00:00Z</updated>
-    <id>https://tools.jboss.org/blog/4.28.0.final.html</id>
-    <link href="https://tools.jboss.org/blog/4.28.0.final.html" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: This Week in JBoss - July 03, 2023</title>
     <updated>2023-07-03T00:00:00Z</updated>
     <id>https://www.jboss.org/posts/weekly-2023-07-03.html</id>
     <link href="https://www.jboss.org/posts/weekly-2023-07-03.html" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Tools: JBoss Tools 4.28.0.Final for Eclipse 2023-06</title>
+    <updated>2023-07-03T00:00:00Z</updated>
+    <id>https://tools.jboss.org/blog/4.28.0.final.html</id>
+    <link href="https://tools.jboss.org/blog/4.28.0.final.html" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>

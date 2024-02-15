@@ -19,13 +19,15 @@ import lombok.Setter;
 @Entity
 public class Employee {
 	/*
-	 * l'unico modo idoneo affinchÃ© l'id di longin info sia la stessa di employee info:
+	 * l'unico modo idoneo affinche' l'id di login info sia la stessa di employee info:
 	 * bisogna seguire la scrittura sottostante, ovviamente quando si parla ,in questo caso,
 	 * di relazioni one to one
+	 * 
+	 * utilizzo lombok per non scivere i metodi "classici" di java
 	 */
 	@Id
 	private Integer id;
-
+	
 	@OneToOne(mappedBy = "employee")
 	@JoinColumn(name = "user_id")
 	@JsonBackReference
@@ -34,5 +36,4 @@ public class Employee {
 	private String firstname;
 	private String lastname;
 
-	// Altri campi e metodi
 }

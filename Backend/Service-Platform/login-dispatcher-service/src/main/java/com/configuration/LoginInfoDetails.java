@@ -61,7 +61,7 @@ public class LoginInfoDetails implements UserDetails {
 	}
 
 	/**
-	 * Questo restituisce l'email anziche' lo username
+	 * Questo restituisce l'email anziche' lo username(perche' spring Security)
 	 */
 	@Override
 	public String getUsername() {
