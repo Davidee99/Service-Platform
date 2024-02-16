@@ -2,6 +2,7 @@ package com.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,15 +10,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-import com.model.dto.SendAttachmentDTO;
-import com.model.dto.SendMessageDTO;
-import com.model.entity.Attachment;
 import com.model.entity.Chat;
-import com.model.entity.Message;
 import com.model.wrapper.ResponseWrapper;
-import com.repository.AttachmentRepository;
 import com.repository.ChatRepository;
-import com.repository.MessageRepository;
 import com.utility.AppConstants;
 
 import jakarta.persistence.NonUniqueResultException;
@@ -28,12 +23,6 @@ public class ChatServiceImpl implements ChatService {
 	@Autowired
 	private ChatRepository chatRepo;
 
-	@Autowired
-	private MessageRepository msgRepo;
-
-	@Autowired
-	private AttachmentRepository attachmentRepo;
-
 	@Override
 	public Chat saveChat(Chat chat) {
 
@@ -41,18 +30,22 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public Chat getChatByTicketId(Long ticketId) {
+	public Chat findChatByTicketId(Long ticketId) {
 
 		return chatRepo.findByTicketId(ticketId).orElse(null);
 	}
 
 	/*
-	 * Se non è presente la chat (è la prima volta che l'operatore invia un mex a
-	 * user) creo una nuova chat Utilizzo una classe Wrapper per racchiudere in caso
-	 * positivo una chat in caso negativo un messaggio di errore da poter loggare
+	 * Ottiene una nuova chat per un determinato ticket ID. Se la chat non esiste,
+	 * crea una nuova istanza di chat e la salva nel repository. Restituisce una
+	 * ResponseWrapper contenente la nuova chat o un messaggio di errore.
+	 *
+	 * @param ticketId l'ID del ticket per il quale ottenere o creare una chat
+	 * 
+	 * @return una ResponseWrapper contenente la nuova chat o un messaggio di errore
 	 */
 	@Override
-	public ResponseWrapper<Chat> getNewChatWrapper(Long ticketId) {
+	public ResponseWrapper<Chat> getNewChatByTicketId(Long ticketId) {
 
 		ResponseWrapper<Chat> result = new ResponseWrapper<Chat>();
 		Chat newChat = new Chat();
@@ -96,7 +89,7 @@ public class ChatServiceImpl implements ChatService {
 			 * nulle se ticketStatus è un valore valido se lo stato è WIP
 			 * 
 			 */
-			checkTicket(ticketId, userId, operatorId, ticketStatus);
+			checkTicketValidity(ticketId, userId, operatorId, ticketStatus);
 
 		} catch (Exception ex) {
 
@@ -133,9 +126,59 @@ public class ChatServiceImpl implements ChatService {
 		return result;
 	}
 
-	// Metodo che controlla se le Info sono valorizzate correttamente
+	@Override
+	public ResponseWrapper<Chat> getChatByChatId(Long chatId) {
+		// CONTROLLI DI VALIDITA'
+		if (chatId == null) {
+			throw new IllegalArgumentException("ChatID non può essere null");
+		}
 
-	private void checkTicket(Long ticketId, Long userId, Long operatorId, String ticketStatus) {
+		ResponseWrapper<Chat> response = new ResponseWrapper<Chat>();
+		try {
+			Chat fetchedChat = chatRepo.findById(chatId).orElse(null);
+			if (fetchedChat == null) {
+				// metodo del service è chiamato quando l'utente clicca sul link inviatogli
+				// tramite email
+				// se non trova l'id non significa che la chat non è mai esistita, ma significa
+				// che è stata cancellata, magari da un admin
+				throw new IllegalArgumentException("Chat eliminata");
+			}
+			response.setObject(fetchedChat);
+		} catch (DataIntegrityViolationException divEx) {
+			response.setObject(null);
+			response.setExceptionError(divEx.getMessage());
+		} catch (OptimisticLockingFailureException olfEx) {
+			response.setObject(null);
+			response.setExceptionError(olfEx.getMessage());
+		} catch (DataAccessException daEx) {
+			response.setObject(null);
+			response.setExceptionError(daEx.getMessage());
+		} catch (Exception ex) {
+			response.setObject(null);
+			response.setExceptionError(ex.getMessage());
+		}
+
+		return response;
+	}
+
+	/*
+	 * Controlla la validità delle informazioni del ticket. Lanciando eccezioni se i
+	 * dati non sono validi o se ci sono errori di coerenza.
+	 *
+	 * @param ticketId l'ID del ticket da controllare
+	 * 
+	 * @param userId l'ID dell'utente associato al ticket
+	 * 
+	 * @param operatorId l'ID dell'operatore associato al ticket
+	 * 
+	 * @param ticketStatus lo stato attuale del ticket
+	 * 
+	 * @throws IllegalArgumentException se i dati del ticket non sono validi
+	 * 
+	 * @throws NonUniqueResultException se ci sono errori di coerenza nei dati del
+	 * ticket
+	 */
+	private void checkTicketValidity(Long ticketId, Long userId, Long operatorId, String ticketStatus) {
 
 		// Controlla se userId è null o <= 0
 		if (userId == null || userId <= 0l) {
@@ -174,7 +217,7 @@ public class ChatServiceImpl implements ChatService {
 			 * operatorId) + ticket.status = 'WIP' e una group by sullo status (gestiamo
 			 * dati duplicati con più stati) lo status del ticket
 			 */
-			ticketInfos = chatRepo.getTicketStatusStrong(ticketId, userId, operatorId);
+			ticketInfos = chatRepo.getTicketStatusWithStrongValidation(ticketId, userId, operatorId);
 
 		} catch (Exception e) {
 
@@ -243,221 +286,38 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public ResponseWrapper<Message> sendMessage(SendMessageDTO sendMessageDTO) {
+	public String[] getEmailAccessCodeAndChatIdByChatId(Long chatId) {
 
-		// Controlli sull'input
-		if (sendMessageDTO == null) {
+		// Verifica che l'ID della chat non sia nullo o non valido
+		if (chatId == null || chatId <= 0) {
 
-			throw new IllegalArgumentException("SendMessageDTO non può essere null");
-
-		}
-
-		if (sendMessageDTO.getChatId() == null || sendMessageDTO.getChatId() <= 0) {
-
-			throw new IllegalArgumentException("ChatId non può essere null o negativo");
+			throw new IllegalArgumentException("L'ID della chat non è valido");
 
 		}
 
-		if (sendMessageDTO.getSenderId() == null || sendMessageDTO.getSenderId() <= 0) {
+		// Ottieni i risultati dalla query
+		List<Object[]> results = chatRepo.getEmailAccessCodeAndChatIdByChatId(chatId);
 
-			throw new IllegalArgumentException("SenderId non può essere null o negativo");
+		// Se non ci sono risultati, restituisci null
+		if (results == null || results.isEmpty()) {
 
-		}
-
-		if (sendMessageDTO.getContent() == null) {
-
-			throw new IllegalArgumentException("Content non può essere null");
+			return null;
 
 		}
 
-		if (sendMessageDTO.getContent().isEmpty()) {
-
-			throw new IllegalArgumentException("Content non può essere vuoto");
-
-		}
-
-		if (sendMessageDTO.getRole() == null) {
-
-			throw new IllegalArgumentException("Role non può essere null");
-
-		}
-
-		if (sendMessageDTO.getRole().isEmpty()) {
-
-			throw new IllegalArgumentException("Role non può essere vuoto");
-
-		}
-
-		if (!AppConstants.ROLES_LIST.contains(sendMessageDTO.getRole())) {
-
-			throw new IllegalArgumentException("Role non valido");
-
-		}
-
-		// Provo a salvare l'entità nel database
-		Message msg = new Message();
-		Chat chat = chatRepo.getReferenceById(sendMessageDTO.getChatId());
-		ResponseWrapper<Message> result = new ResponseWrapper<Message>();
-
-		msg.setSenderId(sendMessageDTO.getSenderId());
-		msg.setTimestamp(new Timestamp(System.currentTimeMillis()));
-		msg.setContent(sendMessageDTO.getContent());
-		msg.setChat(chat);
-
-		try {
-
-			msg = msgRepo.save(msg);
-			result.setObject(msg);
-
-		} catch (DataIntegrityViolationException divEx) {
-
-			result.setObject(null);
-			result.setExceptionError(divEx.getMessage());
-
-		} catch (OptimisticLockingFailureException olfEx) {
-
-			result.setObject(null);
-			result.setExceptionError(olfEx.getMessage());
-
-		} catch (DataAccessException daEx) {
-
-			result.setObject(null);
-			result.setExceptionError(daEx.getMessage());
-
-		} catch (Exception ex) {
-
-			result.setObject(null);
-			result.setExceptionError(ex.getMessage());
-
-		}
-
-		return result;
-	}
-
-	@Override
-	public ResponseWrapper<Chat> getChatByChatId(Long chatId) {
-		// CONTROLLI DI VALIDITA'
-		if (chatId == null) {
-			throw new IllegalArgumentException("ChatID non può essere null");
-		}
-
-		ResponseWrapper<Chat> response = new ResponseWrapper<Chat>();
-		try {
-			Chat fetchedChat = chatRepo.findById(chatId).orElse(null);
-			if (fetchedChat == null) {
-				// metodo del service è chiamato quando l'utente clicca sul link inviatogli
-				// tramite email
-				// se non trova l'id non significa che la chat non è mai esistita, ma significa
-				// che è stata cancellata, magari da un admin
-				throw new IllegalArgumentException("Chat eliminata");
-			}
-			response.setObject(fetchedChat);
-		} catch (DataIntegrityViolationException divEx) {
-			response.setObject(null);
-			response.setExceptionError(divEx.getMessage());
-		} catch (OptimisticLockingFailureException olfEx) {
-			response.setObject(null);
-			response.setExceptionError(olfEx.getMessage());
-		} catch (DataAccessException daEx) {
-			response.setObject(null);
-			response.setExceptionError(daEx.getMessage());
-		} catch (Exception ex) {
-			response.setObject(null);
-			response.setExceptionError(ex.getMessage());
-		}
-
-		return response;
-	}
-
-	@Override
-	public ResponseWrapper<Attachment> sendAttachment(SendAttachmentDTO attachment) {
-
-		// Controlli sull'input
-		if (attachment == null) {
-
-			throw new IllegalArgumentException("SendAttachmentDTO non può essere null");
-
-		}
-
-		if (attachment.getChatId() == null || attachment.getChatId() <= 0) {
-
-			throw new IllegalArgumentException("ChatId non può essere null o negativo");
-
-		}
-
-		if (attachment.getSenderId() == null || attachment.getSenderId() <= 0) {
-
-			throw new IllegalArgumentException("SenderId non può essere null o negativo");
-
-		}
-
-		if (attachment.getLink() == null) {
-
-			throw new IllegalArgumentException("Il link non può essere null");
-
-		}
-
-		if (attachment.getLink().isEmpty()) {
-
-			throw new IllegalArgumentException("Il link non può essere vuoto");
-
-		}
-
-		if (attachment.getRole() == null) {
-
-			throw new IllegalArgumentException("Role non può essere null");
-
-		}
-
-		if (attachment.getRole().isEmpty()) {
-
-			throw new IllegalArgumentException("Role non può essere vuoto");
-
-		}
-
-		if (!AppConstants.ROLES_LIST.contains(attachment.getRole())) {
-
-			throw new IllegalArgumentException("Role non valido");
-
-		}
-
-		ResponseWrapper<Attachment> result = new ResponseWrapper<Attachment>();
-		try {
-			// Provo a salvare l'entità nel database
-			Attachment pic = new Attachment();
-
-			Chat chat = chatRepo.findById(attachment.getChatId()).orElse(null);
-			if (chat == null) {
-				throw new Exception("Sei un coglione kys");
-			}
-
-			pic.setChat(chat);
-			pic.setSenderId(attachment.getSenderId());
-			pic.setUrl(attachment.getLink());
-			pic.setTimestamp(new Timestamp(System.currentTimeMillis()));
-
-			result.setObject(pic);
-
-		} catch (DataIntegrityViolationException divEx) {
-
-			result.setObject(null);
-			result.setExceptionError(divEx.getMessage());
-
-		} catch (OptimisticLockingFailureException olfEx) {
-
-			result.setObject(null);
-			result.setExceptionError(olfEx.getMessage());
-
-		} catch (DataAccessException daEx) {
-
-			result.setObject(null);
-			result.setExceptionError(daEx.getMessage());
-
-		} catch (Exception ex) {
-
-			result.setObject(null);
-			result.setExceptionError(ex.getMessage());
-
+		// Inizializza l'array di risultato
+		String[] result = new String[3];
+
+		// Scorri la lista di risultati
+		for (Object[] row : results) {
+
+			// Assegna i valori all'array di risultato
+			result[0] = Objects.toString(row[0], null); // email
+			result[1] = Objects.toString(row[1], null); // access_code
+			result[2] = Objects.toString(row[2], null); // chatId
+
+			// Se hai trovato una riga, esci dal ciclo
+			break;
 		}
 
 		return result;
