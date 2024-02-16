@@ -6,4 +6,5 @@ import com.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findUserByFirstNameAndLastName(String firstName, String lastName);
 }
