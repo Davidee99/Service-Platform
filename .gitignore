@@ -1,5 +1,20 @@
 /.metadata/
 Backend/.metadata/*
+Backend/.metadata/
+.metadata/*
+metadata/*
+.metadata/
+metadata/
+\.metadata\
+Backend\.metadata\*
+Backend\.metadata\
+\.metadata\*
+metadata\*
+\.metadata\
+metadata\
+\.metadata\
+metadata\
+
 # Maven
 target/
 *.iml
