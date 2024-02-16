@@ -1,0 +1,32 @@
+.operator{
+    display: flex;
+}
+
+.operator.sidebar-container{
+    width: 30%;
+}
+.operator .container-tickets{
+    width: 90%;
+    
+}
+
+   .nav-tabs .nav-item button {
+    
+    font-size: 18px; 
+    padding: 20px 120px; 
+    width: 100%;
+
+  }
+
+   .container-tickets{
+    display: flex;
+    flex-direction: column;
+}
+
+   .nav-tabs .nav-item {
+    width: 50%;
+  }
+
+  .nav-tabs .nav-item {
+    width: 50%;
+  }

@@ -27,6 +27,15 @@ import { OperatorTicketComponent } from './components/OperatorPage/operator-tick
 import { OperatorTicketContainerComponent } from './components/OperatorPage/operator-ticket-container/operator-ticket-container.component';
 import { OperatorSidebarComponent } from './components/OperatorPage/operator-sidebar/operator-sidebar.component';
 import { OperatorPageComponent } from './components/OperatorPage/operator-page/operator-page.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
+
+
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule, EffectsRootModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -50,6 +59,8 @@ import { AppEffects } from './store/app.effects';
     OperatorTicketContainerComponent,
     OperatorSidebarComponent,
     OperatorPageComponent,
+    
+    OperatorPageComponent,
     UserSidebarComponent,
   ],
   imports: [
@@ -67,6 +78,11 @@ import { AppEffects } from './store/app.effects';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     NgbModule,
+    NgbTooltipModule,
+    MatExpansionModule,
+    NgbCollapseModule,
+    
+    
     NgbTooltipModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducers }),
