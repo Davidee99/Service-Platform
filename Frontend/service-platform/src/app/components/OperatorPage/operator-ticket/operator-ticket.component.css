@@ -102,7 +102,7 @@
     width: 100%;
     margin: auto;
     background-color: rgb(40, 37, 37);
-    max-height: 250px;
+    max-height: 300px;
 }
 
 .example-button-container {
@@ -176,7 +176,18 @@
 .c1{
     /* border:1px solid red; */
     width: 40%;
-    padding: 1rem;
+    padding: 2rem;
+    
+}
+
+.c1>p{
+    padding-top: 20px;
+    
+}
+
+.c1 .msg{
+    padding-top:10px;
+    padding-left: 1rem;
 }
 
 .c2{
@@ -187,6 +198,12 @@
     flex-direction: column;
 }
 
+.infoc2{
+    padding-top: 12px;
+}
+.infoc2>p{
+    padding-top: 1rem;
+}
 
 .selectt{
     display: flex;
