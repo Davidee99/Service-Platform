@@ -16,7 +16,7 @@
         </div>
         <div class="ticketInfo">
             <h4>Ticket</h4>
-            <p>{{ticket.message}}</p>
+            <p>{{ ticket.message.length>50? ((ticket.message |  slice:0:50)+'...'):ticket.message}}</p>
         </div>
         <div *ngIf="ticket.status === 'WIP'" class="sectionOrderId">
             <div class="status">
