@@ -11,4 +11,5 @@
 <item elementID="=chat-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1708089266391_2" label="Window Working Set" name="Aggregate for window 1708089266390"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1708095911150_4" label="Window Working Set" name="Aggregate for window 1707838134201"/>
 </workingSetManager>
