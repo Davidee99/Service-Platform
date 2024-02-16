@@ -130,25 +130,25 @@
                     <mat-icon>delete</mat-icon>
                 </button> -->
 
-            <button mat-icon-button color="primary" id="cl" aria-label="Example icon button with a home icon">
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
                 <mat-icon>delete</mat-icon>
             </button>
 
 
             <!-- 3 button mark as -->
-            <div class="markers">
+            <div>
                 <button mat-stroked-button color="accent">Set fake </button>
                 <button mat-stroked-button color="accent">Set duplicated </button>
                 <button mat-stroked-button color="accent">Set switched</button>
             </div>
 
             <!-- take charge button -->
-            <div id="charge" *ngIf="ticket.status !== 'WIP'">
+            <div *ngIf="ticket.status !== 'WIP'">
                 <button mat-button color="accennt">Take charge</button>
             </div>
 
             <!-- chat button -->
-            <div id="chatclose"  *ngIf="ticket.status === 'WIP'">
+            <div  *ngIf="ticket.status === 'WIP'">
                 <button id="chat" mat-button color="accennt">Chat</button>
                 <button id="close"  mat-button color="accennt">Close</button>
 
