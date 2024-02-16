@@ -32,8 +32,7 @@ import { EffectsModule, EffectsRootModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { appReducers } from './store/app.reducer';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { chatACPost, loadTickets } from './store/app.actions';
+import { HttpClientModule } from '@angular/common/http';
 import { AppEffects } from './store/app.effects';
 
 @NgModule({
@@ -50,7 +49,7 @@ import { AppEffects } from './store/app.effects';
     OperatorTicketComponent,
     OperatorTicketContainerComponent,
     OperatorSidebarComponent,
-    OperatorPageComponent
+    OperatorPageComponent,
     UserSidebarComponent,
   ],
   imports: [
