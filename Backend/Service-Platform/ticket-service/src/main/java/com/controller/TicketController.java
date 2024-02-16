@@ -1,10 +1,12 @@
 package com.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Ticket;
 import com.model.User;
-import com.model.dto.TicketDTO;
+import com.model.dto.TicketToInsertDTO;
+import com.model.dto.TicketToShowDTO;
 import com.service.OrderInfoService;
 import com.service.TicketService;
 import com.service.UserService;
@@ -35,7 +38,7 @@ public class TicketController {
 	private AccessCodeGenerator codeGenerator;
 
 	@PostMapping("saveTicket/")
-	public ResponseEntity<?> saveTicket(@RequestBody TicketDTO ticketDTO) {
+	public ResponseEntity<?> saveTicket(@RequestBody TicketToInsertDTO ticketDTO) {
 
 		Ticket ticket = new Ticket();
 		try {
@@ -89,4 +92,21 @@ public class TicketController {
 		return ResponseEntity.status(HttpStatus.OK).body(ticket);
 	}
 
+	@GetMapping("getWIPTickets/")
+	public ResponseEntity<?> getWIPTickets() {
+
+		List<TicketToShowDTO> wipTicketList = ticketService.getWipTickets();
+
+		return ResponseEntity.status(HttpStatus.OK).body(wipTicketList);
+
+	}
+
+	@GetMapping("getNonWIPTickets/")
+	public ResponseEntity<?> getNonWIPTickets() {
+
+		List<TicketToShowDTO> wipTicketList = ticketService.getNonWipTickets();
+
+		return ResponseEntity.status(HttpStatus.OK).body(wipTicketList);
+
+	}
 }

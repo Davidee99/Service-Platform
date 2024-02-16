@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.model.LoginInfo;
 import com.model.User;
-import com.model.dto.TicketDTO;
+import com.model.dto.TicketToInsertDTO;
 import com.repository.LoginInfoRepository;
 import com.repository.UserRepository;
 
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	private LoginInfoRepository loginInfoRepository;
 
 	@Override
-	public User getUserFromTicketDTO(TicketDTO ticketDTO) {
+	public User getUserFromTicketDTO(TicketToInsertDTO ticketDTO) {
 
 		return userRepository.findUserByFirstNameAndLastName(ticketDTO.getFirstName(), ticketDTO.getLastName());
 	}
