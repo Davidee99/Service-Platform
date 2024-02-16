@@ -12,13 +12,13 @@
         </div>
         <div class="date">
             <h4>Opening date</h4>
-            <p>12/02/2023</p>
+            <p>{{ticket.create_date}}</p>
         </div>
         <div class="ticketInfo">
             <h4>Ticket</h4>
             <p>{{ticket.message}}</p>
         </div>
-        <div *ngIf="ticket.status === 'wip'" class="sectionOrderId">
+        <div *ngIf="ticket.status === 'WIP'" class="sectionOrderId">
             <div class="status">
 
                 <ng-template #tipContent>
@@ -29,7 +29,7 @@
                 </button>
             </div>
         </div>
-        <div *ngIf="ticket.status === 'no-wip'" class="sectionOrderId">
+        <div *ngIf="ticket.status === 'NON_WIP'" class="sectionOrderId">
             <div class="status">
                 <ng-template #tipContent>
                     <b>Not Work in progress</b>
@@ -39,8 +39,8 @@
                 </button>
             </div>
         </div>
-        <div *ngIf="ticket.status === 'closed'" class="sectionOrderId"
-            [ngClass]="ticket.status === 'closed' ? 'justify-content-around' : 'justify-content-end'">
+        <div *ngIf="ticket.status === 'CLOSED'" class="sectionOrderId"
+            [ngClass]="ticket.status === 'CLOSED' ? 'justify-content-around' : 'justify-content-end'">
             <div class="status">
                 <ng-template #tipContent>
                     <b>Closed</b>
@@ -143,12 +143,12 @@
             </div>
 
             <!-- take charge button -->
-            <div id="charge" *ngIf="ticket.status !== 'wip'">
+            <div id="charge" *ngIf="ticket.status !== 'WIP'">
                 <button mat-button color="accennt">Take charge</button>
             </div>
 
             <!-- chat button -->
-            <div id="chatclose"  *ngIf="ticket.status === 'wip'">
+            <div id="chatclose"  *ngIf="ticket.status === 'WIP'">
                 <button id="chat" mat-button color="accennt">Chat</button>
                 <button id="close"  mat-button color="accennt">Close</button>
 

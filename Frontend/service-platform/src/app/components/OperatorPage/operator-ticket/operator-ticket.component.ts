@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Ticket } from 'src/model/ticket.model';
 
 
 
@@ -46,8 +47,8 @@ export class OperatorTicketComponent {
     }
   }
 
-  @Input() 
-  ticket:any;
+  @Input()
+  ticket!: Ticket;
 
 
   toggleMarkMenu() {
@@ -61,17 +62,6 @@ export class OperatorTicketComponent {
     this.showMarkMenu = false;
   }
   
-  
-  // tickett={
-  //   id: 9,
-  //   user_id:4,
-  //   message: 'messaggio custom del tickett',
-  //   status: 'wip',
-  //   priority: 'hight',
-  //   order_id: 7,
-  // }
-
-
 
 
   selected = 'option2';

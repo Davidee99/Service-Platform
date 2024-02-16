@@ -1,7 +1,5 @@
 <div class="operator">
-<div class="sidebar-container">
-    <app-operator-sidebar></app-operator-sidebar>
-</div>
+
 
 <div class="container-tickets">
 
@@ -12,9 +10,11 @@
         <li ngbNavItem>
             <button ngbNavLink (click)="ClosedButton()"> WIP </button>
             <ng-template ngbNavContent>
-                <div *ngFor="let item of tickets">
-                    <div *ngIf="item.status==='wip'">
-                        <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                <div *ngIf="(tickets$ | async) as tickets">
+                    <div *ngFor="let item of tickets">
+                        <div *ngIf="item.status==='WIP'">
+                            <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                        </div>
                     </div>
                 </div>
             </ng-template>
@@ -24,9 +24,11 @@
             <button ngbNavLink class="form-user-button" (click)="OpenButton()"> NON WIP </button>
             <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
             <ng-template ngbNavContent>
-                <div *ngFor="let item of tickets">
-                    <div *ngIf="item.status==='no-wip'">
-                        <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                <div *ngIf="(tickets$ | async) as tickets">
+                    <div *ngFor="let item of tickets">
+                        <div *ngIf="item.status==='NON_WIP'">
+                            <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                        </div>
                     </div>
                 </div>
             </ng-template>
