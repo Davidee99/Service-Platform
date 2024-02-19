@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //chart.js
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
 
 
 @Component({
