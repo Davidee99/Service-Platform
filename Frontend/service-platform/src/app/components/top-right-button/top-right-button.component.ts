@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { Observable, config } from 'rxjs';
 
 import * as AppActions from 'src/app/store/app.actions';
+import { selectLoginError } from 'src/app/store/app.selector';
 
 @Component({
   selector: 'app-top-right-button',
@@ -26,19 +28,26 @@ import * as AppActions from 'src/app/store/app.actions';
   ],
   providers: [NgbModalConfig, NgbModal],
 })
-export class TopRightButtonComponent implements OnInit{
+export class TopRightButtonComponent implements OnInit, OnChanges {
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    private store: Store
+    private store: Store,
+  
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
+    this.isThereLoginError$= store.select(selectLoginError)
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isThereLoginError$ = this.store.select(selectLoginError);
   }
   ngOnInit(): void {
-    this.amIUser='user'
+    this.amIUser = 'user';
+    this.isThereLoginError$ = this.store.select(selectLoginError);
   }
 
+  isThereLoginError$: Observable<boolean>;
   amIUser: 'user' | 'employee' = 'user';
 
   iAmUser() {
@@ -66,9 +75,14 @@ export class TopRightButtonComponent implements OnInit{
     } else {
       this.store.dispatch(AppActions.employeeLogin(this.loginData));
     }
-    this.loginData.email=''
-    this.loginData.password=''
+    this.loginData.email = '';
+    this.loginData.password = '';
 
     console.log(this.loginData);
+  }
+
+  close(){
+  this.store.dispatch(AppActions.resetLoginErrorState())
+  this.modalService.dismissAll()
   }
 }

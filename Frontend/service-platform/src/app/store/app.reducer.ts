@@ -6,13 +6,13 @@ import { UserCredential } from 'src/model/user-credentials.model';
 
 export interface AppState {
   tickets: Ticket[];
-  response: any;
+  loginError: any;
   userCredential: UserCredential | null;
 }
 
 const initialState: AppState = {
   tickets: [],
-  response: null,
+  loginError: null,
   userCredential: null,
 };
 
@@ -26,7 +26,9 @@ const _appReducers = createReducer(
   on(AppActions.sessionChecked, (state, { userCredential }) => ({
     ...state,
     userCredential,
-  }))
+  })),
+  on(AppActions.loginFailed, (state )=>({...state,loginError:true})),
+  on(AppActions.resetLoginErrorState, (state )=>({...state,loginError:false}))
 );
 
 export function appReducers(state: any, action: any) {
