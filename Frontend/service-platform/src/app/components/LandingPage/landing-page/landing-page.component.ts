@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
+import * as AppActions from 'src/app/store/app.actions';
+import { NewTicket } from 'src/model/create-ticket.model';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,11 +11,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent {
-  userData = {
+
+  constructor(private store:Store){}
+
+  userData : NewTicket = {
     firstname: '',
     lastname: '',
     email: '',
-    type: '',
+    type: 'REFUND',
     message: '',
   };
 
@@ -19,6 +26,7 @@ export class LandingPageComponent {
     if (form.valid) {
       // Esegui l'invio del form
       console.log(this.userData);
+      this.store.dispatch(AppActions.createTicket({newTicket:this.userData}))
     }
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
 
@@ -13,6 +14,15 @@ export class TicketService {
   }
 
   constructor(private http: HttpClient) {}
+
+  createNewTicket(newTicket : NewTicket): Observable<any>{
+    const url = 'http://localhost:8080/ciao/test2'
+    return this.http.post<NewTicket>(url,newTicket).pipe(
+      tap((x) => {
+        console.table(x);
+      })
+    );
+  }
 
   getTicket(): Observable<Ticket[]> {
     const url = 'http://localhost:3000/tickets'; //prova end point chiamata dei ticket

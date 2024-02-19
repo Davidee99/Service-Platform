@@ -1,6 +1,12 @@
 import { createAction, props } from '@ngrx/store';
+import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
+
+export const createTicket = createAction(
+  '[newTicket] createTicket',
+  props<{ newTicket: NewTicket }>()
+);
 
 export const loadTickets = createAction('[tickets] loading');
 
@@ -35,8 +41,13 @@ export const loginSuccess = createAction(
 
 export const loginFailed = createAction('[login] failed');
 
-export const resetLoginErrorState = createAction('[login] loginErrorStateReset')
+export const resetLoginErrorState = createAction(
+  '[login] loginErrorStateReset'
+);
 
 export const checkSessionStorage = createAction('[session] checkStorage');
 
-export const sessionChecked = createAction('[session] checked', props<{ userCredential: UserCredential | null}>());
+export const sessionChecked = createAction(
+  '[session] checked',
+  props<{ userCredential: UserCredential | null }>()
+);

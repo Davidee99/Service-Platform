@@ -129,4 +129,28 @@ checkSessionStorage$ = createEffect(() =>
   );
 
 
+  newTicketPost$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AppActions.createTicket),
+    exhaustMap((action) =>
+      this.ticketService
+        .createNewTicket(action.newTicket)
+        .pipe(
+          map((userCredential: UserCredential) => ({
+            userCredential,
+            type: AppActions.loginSuccess.type, // Add the action type manually
+          })),
+          tap((action) => {
+            this.ticketService.successLog;
+          }),
+          catchError((error) => {
+            console.error('Error during login:', error);
+            return of(AppActions.loginFailed());
+          })
+        )
+    )
+  )
+);
+
+
 }
