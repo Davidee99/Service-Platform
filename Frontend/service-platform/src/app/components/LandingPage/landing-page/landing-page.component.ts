@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import * as AppActions from 'src/app/store/app.actions';
@@ -12,7 +13,7 @@ import { NewTicket } from 'src/model/create-ticket.model';
 })
 export class LandingPageComponent {
 
-  constructor(private store:Store){}
+  constructor(private store:Store, private router: Router){}
 
   userData : NewTicket = {
     firstname: '',
@@ -27,6 +28,8 @@ export class LandingPageComponent {
       // Esegui l'invio del form
       console.log(this.userData);
       this.store.dispatch(AppActions.createTicket({newTicket:this.userData}))
+      this.router.navigate([`/`])
     }
   }
 }
+//manca roba per reidirizzare post login
