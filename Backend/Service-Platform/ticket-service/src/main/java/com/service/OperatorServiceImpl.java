@@ -28,6 +28,10 @@ public class OperatorServiceImpl implements OperatorService {
 
 	/**
 	 * Cambio status in WIP 
+	 * 
+	 * changeStatus contiene l'operator id e il ticket id
+	 * 
+	 * @param 
 	 **/
 	@Override
 	public ResponseEntity<?> updateTicketStatusWIP(ChangeTicketStatusDTO changeStatus) {
@@ -61,6 +65,8 @@ public class OperatorServiceImpl implements OperatorService {
 
 	/**
 	 * Chiusura del ticket
+	 * 
+	 * @param
 	 * */
 	@Override
 	public ResponseEntity<?> closeTicket(Map<String, Long> tickeToClose) {
@@ -88,6 +94,10 @@ public class OperatorServiceImpl implements OperatorService {
 	
 	/**
 	 * Cambio statusError del Ticket
+	 * 
+	 * tickeToChange contiene il ticket id e lo status error da inserire
+	 * 
+	 * @param
 	 * */
 	@Override
 	public ResponseEntity<?> changeStatusErrorTicket(ChangeTicketStatusErrorDTO tickeToChange) {
@@ -147,7 +157,7 @@ public class OperatorServiceImpl implements OperatorService {
 		
 		List<Ticket> tickets;
 		try {
-			tickets = ticketRepo.findAllByStatusAndOperatorId(status,operatorId);
+			tickets = ticketRepo.findAllByStatusAndOperatorId(status,operatorId); //Lo status viene passato in input in base all'endPoint
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -155,6 +165,7 @@ public class OperatorServiceImpl implements OperatorService {
 		return ResponseEntity.status(HttpStatus.OK).body(tickets);
 	}
 	
+	//Array di status error da confrontare con l'input dato dall'utente
 	private ArrayList<String> statusErrorList = new ArrayList<>(List.of("DUPLICATED", "FAKE", "WRONG_SECTOR"));
 
 }
