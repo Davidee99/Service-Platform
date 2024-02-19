@@ -28,7 +28,8 @@ const _appReducers = createReducer(
     userCredential,
   })),
   on(AppActions.loginFailed, (state )=>({...state,loginError:true})),
-  on(AppActions.resetLoginErrorState, (state )=>({...state,loginError:false}))
+  on(AppActions.resetLoginErrorState, (state )=>({...state,loginError:false})),
+  on(AppActions.clearCredentials, (state )=>({...state,userCredential:null}))
 );
 
 export function appReducers(state: any, action: any) {

@@ -1,70 +1,128 @@
-<button mat-icon-button class="top-button-container" (click)="open(content)">
+<div *ngIf="(credentials$ | async) == null; else loggedIn">
+<button mat-icon-button class="top-button-container" (click)="open(content)" >
   <!-- <img   class="top-button"   id="userSVG"   src="../../../assets/image/person-circle.svg" alt="image1"> -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle"
-    viewBox="0 0 16 16">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-person-circle"
+    viewBox="0 0 16 16"
+  >
     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-    <path fill-rule="evenodd"
-      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+    <path
+      fill-rule="evenodd"
+      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+    />
   </svg>
 </button>
 
-
-
-
 <ng-template #content let-c="close" let-d="dismiss">
-  <ul ngbNav #nav="ngbNav" class="nav-tabs">
-    <li ngbNavItem>
-      <button class="form-user-button" (click)="iAmUser()" ngbNavLink >User</button>
-      <ng-template class="container-user" ngbNavContent>
-        <form #userForm="ngForm" class="container-form-user">
-          <!-- <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                      </div> -->
-          <mat-form-field class="landing-page-form-field">
-            <mat-label>Email address</mat-label>
-            <input matInput [(ngModel)]="loginData.email" name="email" placeholder="Email address" required>
-          </mat-form-field>
-          <mat-form-field class="landing-page-form-field">
-            <mat-label >Password</mat-label>
-            <input matInput type="password" [(ngModel)]="loginData.password" name="password" placeholder="Password" required>
-          </mat-form-field>
-          <div *ngIf="isThereLoginError$ | async">
-            ciao
-          </div>
-        </form>
-      </ng-template>
-    </li>
-    <li ngbNavItem>
-      <button ngbNavLink (click)="iAmEmployee()">Employee</button>
-      <ng-template ngbNavContent>
-        <form #employeeForm="ngForm" class="container-form-employee">
-          <mat-form-field class="landing-page-form-field">
-            <mat-label>Email address</mat-label>
-            <input matInput  [(ngModel)]="loginData.email" name="email" placeholder="Email address" required>
-          </mat-form-field>
-          <mat-form-field class="landing-page-form-field">
-            <mat-label >Password</mat-label>
-            <input matInput type="password" [(ngModel)]="loginData.password" name="password" placeholder="Password" required>
-          </mat-form-field>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+      <li ngbNavItem>
+        <button class="form-user-button" (click)="iAmUser()" ngbNavLink>
+          User
+        </button>
+        <ng-template class="container-user" ngbNavContent>
+          <form #userForm="ngForm" class="container-form-user">
+            <!-- <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div> -->
+            <mat-form-field class="landing-page-form-field">
+              <mat-label>Email address</mat-label>
+              <input
+                matInput
+                [(ngModel)]="loginData.email"
+                name="email"
+                placeholder="Email address"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="landing-page-form-field">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                type="password"
+                [(ngModel)]="loginData.password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </mat-form-field>
+            <div *ngIf="isThereLoginError$ | async">ciao</div>
+          </form>
+        </ng-template>
+      </li>
+      <li ngbNavItem>
+        <button ngbNavLink (click)="iAmEmployee()">Employee</button>
+        <ng-template ngbNavContent>
+          <form #employeeForm="ngForm" class="container-form-employee">
+            <mat-form-field class="landing-page-form-field">
+              <mat-label>Email address</mat-label>
+              <input
+                matInput
+                [(ngModel)]="loginData.email"
+                name="email"
+                placeholder="Email address"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field class="landing-page-form-field">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                type="password"
+                [(ngModel)]="loginData.password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </mat-form-field>
+          </form>
+          <div *ngIf="isThereLoginError$ | async">ciao</div>
+        </ng-template>
+      </li>
+    </ul>
+    <div class="modal-body">
+      <div [ngbNavOutlet]="nav"></div>
+      <div class="buttons">
+        <button
+          mat-raised-button
+          color="warn"
+          class="btn-close"
+          (click)="close()"
+        >
+          Close
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-submit"
+          (click)="submitLogin()"
+        >
+          Submit
+        </button>
+      </div>
 
-        </form>
-        <div *ngIf="isThereLoginError$ | async">
-          ciao
-        </div>
-      </ng-template>
-    </li>
-  </ul>
-  <div class="modal-body">
-    <div [ngbNavOutlet]="nav"></div>
-    <div class="buttons">
-      <button mat-raised-button color="warn" class="btn-close" (click)="close()">Close</button>
-      <button mat-raised-button color="primary" class="btn-submit" (click)="submitLogin()">Submit</button>
-
+      <!-- <button type="button" class="btn btn-outline-dark" style="color:red; border: 1px solid red" (click)="c()">Close</button>
+      <button type="button" class="btn btn-outline-dark" style="color: blue; border: 1px solid blue; margin-left: 20px;" (click)="onSubmit()">Submit</button> -->
     </div>
+    
+  </ng-template>
+</div>
 
-    <!-- <button type="button" class="btn btn-outline-dark" style="color:red; border: 1px solid red" (click)="c()">Close</button>
-        <button type="button" class="btn btn-outline-dark" style="color: blue; border: 1px solid blue; margin-left: 20px;" (click)="onSubmit()">Submit</button> -->
+<ng-template #loggedIn> 
+  <div class="btn-group">
+    <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-outline-danger me-2" ngbDropdownToggle >
+      <!-- <img   class="top-button"   id="userSVG"   src="../../../assets/image/person-circle.svg" alt="image1"> -->
+  </button>
+  <div>
+    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+      <button ngbDropdownItem (click)="logout()">log-out</button>
+    </div>
   </div>
-
+</div>
+</div>  
 </ng-template>

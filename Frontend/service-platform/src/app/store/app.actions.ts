@@ -51,3 +51,6 @@ export const sessionChecked = createAction(
   '[session] checked',
   props<{ userCredential: UserCredential | null }>()
 );
+
+
+export const clearCredentials = createAction('[session] clearCredentials')

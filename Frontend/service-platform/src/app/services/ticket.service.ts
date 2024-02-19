@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
@@ -13,7 +14,7 @@ export class TicketService {
     console.log(props);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   createNewTicket(newTicket : NewTicket): Observable<any>{
     const url = 'http://localhost:8080/ciao/test2'
@@ -101,5 +102,7 @@ export class TicketService {
   
     return userCredential;
   }
+
+
   
 }
