@@ -1,20 +1,5 @@
 /.metadata/
 Backend/.metadata/*
-Backend/.metadata/
-.metadata/*
-metadata/*
-.metadata/
-metadata/
-\.metadata\
-Backend\.metadata\*
-Backend\.metadata\
-\.metadata\*
-metadata\*
-\.metadata\
-metadata\
-\.metadata\
-metadata\
-
 # Maven
 target/
 *.iml
@@ -57,19 +42,3 @@ node_modules/
 # OS-specific
 .DS_Store
 Thumbs.db
-*.ini
-*.ini
-*.xml
-Backend/.metadata/.plugins/org.eclipse.pde.core/.cache/clean-cache.properties
-Backend/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser
-Backend/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml
-Backend/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml
-Backend/.metadata/.plugins/org.eclipse.jdt.launching/libraryInfos.xml
-Backend/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml
-Backend/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat
-Backend/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
-Backend/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
-Backend/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
-Backend/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources
-Backend/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index
-Backend/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location
