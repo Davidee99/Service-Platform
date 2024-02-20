@@ -28,7 +28,7 @@ export class LandingPageComponent {
       // Esegui l'invio del form
       console.log(this.userData);
       this.store.dispatch(AppActions.createTicket({newTicket:this.userData}))
-      this.router.navigate([`/`])
+
     }
   }
 }

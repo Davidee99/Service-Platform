@@ -41,8 +41,9 @@ import { EffectsModule, EffectsRootModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { appReducers } from './store/app.reducer';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppEffects } from './store/app.effects';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { AppEffects } from './store/app.effects';
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
-  providers: [],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
