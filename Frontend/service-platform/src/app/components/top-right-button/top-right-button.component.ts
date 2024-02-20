@@ -1,14 +1,12 @@
   import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-  import { NgForm } from '@angular/forms';
   import { Router } from '@angular/router';
-  import { NgbActiveModal, NgbDropdownMenu, NgbDropdownModule, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+  import { NgbDropdownModule, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   import { Store } from '@ngrx/store';
   import { EMPTY, Observable, config, exhaustMap } from 'rxjs';
 
   import * as AppActions from 'src/app/store/app.actions';
   import { selectLoginError, selectUserCredential } from 'src/app/store/app.selector';
   import { UserCredential } from 'src/model/user-credentials.model';
-  import { LandingPageComponent } from '../LandingPage/landing-page/landing-page.component';
 
   @Component({
     selector: 'app-top-right-button',
@@ -91,7 +89,7 @@
             const id = credentials.user_id;
             this.router.navigate([`/${role}/${id}`]);
           }
-          return EMPTY; // Import { EMPTY } from 'rxjs';
+          return EMPTY; 
         })
       ).subscribe();
     

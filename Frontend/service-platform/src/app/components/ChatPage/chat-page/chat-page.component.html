@@ -1,0 +1,33 @@
+<div class="message-container">
+  <ng-container *ngFor="let message of chat.messages">
+    <app-single-message
+      class="message"
+      [message]="message"
+      [ngClass]="{
+        right: message.sender == (credentials$ | async)?.user_id,
+        left: message.sender != (credentials$ | async)?.user_id
+      }"
+    ></app-single-message>
+  </ng-container>
+</div>
+<div class="input-box">
+    <div class="icons-box">
+
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="pets"
+        ></mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="home"
+          ></mat-icon>
+          
+          <input type="file" class="form-control" id="actual-btn" hidden>
+          <label for="actual-btn">File</label>
+    </div>
+  <input class="textbox" type="text" name="text"/>
+
+  <button mat-raised-button color="warn" class="send" type="button">Send</button>
+</div>

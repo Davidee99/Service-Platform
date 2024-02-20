@@ -44,6 +44,8 @@ import { appReducers } from './store/app.reducer';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppEffects } from './store/app.effects';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ChatPageComponent } from './components/ChatPage/chat-page/chat-page.component';
+import { SingleMessageComponent } from './components/ChatPage/single-message/single-message.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +61,11 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     OperatorTicketComponent,
     OperatorTicketContainerComponent,
     OperatorSidebarComponent,
-    OperatorPageComponent,
-    
+    OperatorPageComponent, 
     OperatorPageComponent,
     UserSidebarComponent,
+    SingleMessageComponent,
+    ChatPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,8 +85,6 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     NgbTooltipModule,
     MatExpansionModule,
     NgbCollapseModule,
-    
-    
     NgbTooltipModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducers }),
