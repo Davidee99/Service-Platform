@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TicketDTO implements Serializable {
+public class TicketToInsertDTO implements Serializable {
 
 	private static final long serialVersionUID = 9105374245320365006L;
 	/*
