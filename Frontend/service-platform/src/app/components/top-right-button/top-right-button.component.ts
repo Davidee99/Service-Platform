@@ -108,6 +108,6 @@
       this.router.navigate(['/'])
       sessionStorage.clear()
       this.store.dispatch(AppActions.clearCredentials())
-      
+      this.amIUser = 'user'
     }
   }
