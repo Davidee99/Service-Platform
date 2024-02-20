@@ -21,7 +21,7 @@ import com.service.OperatorService;
 
 
 @RestController
-@RequestMapping("/api/operator/")
+@RequestMapping("/api/ticket-service/operator/")
 public class OperatorTicketController {
 	
 	private final String ACCESS_KEY = "qwerty";

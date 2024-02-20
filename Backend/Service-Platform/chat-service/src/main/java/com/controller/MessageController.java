@@ -1,10 +1,12 @@
 package com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +21,8 @@ import com.utility.UtilityMethods;
 @RestController
 @RequestMapping("/api/chat-service/message/")
 public class MessageController {
+	
+	private final String ACCESS_KEY = "qwerty";
 
 	@Autowired
 	private MessageService messageService;
@@ -27,7 +31,11 @@ public class MessageController {
 	private ChatService chatService;
 
 	@PostMapping("sendMessage/")
-	private ResponseEntity<?> sendMessage(@RequestBody SendMessageDTO messageDTO) {
+	private ResponseEntity<?> sendMessage(@RequestBody SendMessageDTO messageDTO, @RequestHeader HttpHeaders requestHeadres) {
+		
+	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+	}
 
 		try {
 			ResponseWrapper<Message> result = messageService.sendMessage(messageDTO);
