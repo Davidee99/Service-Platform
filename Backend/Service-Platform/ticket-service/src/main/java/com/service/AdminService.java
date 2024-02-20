@@ -1,12 +1,17 @@
 package com.service;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
 
-import com.model.dto.ChangeTicketRequest;
+import com.model.Ticket;
+import com.model.dto.ChangeTicketTypeDTO;
 
 public interface AdminService {
-	ResponseEntity<?> getOpenAndApprovedTickets();
-	ResponseEntity<?> closeTickets(Long ticketId);
-	ResponseEntity<?> changeTicketType(ChangeTicketRequest info);
-	ResponseEntity<?> getTicketsExceptNonWip(Long operatorId);
+	List<Ticket> getOpenTickets();
+
+	Ticket closeTickets(Long ticketId);
+
+	Ticket changeTicketType(ChangeTicketTypeDTO info);
+
+	List<Ticket> getTicketsInProgress();
+//	ResponseEntity<?> getTicketsInProgress(Long operatorId);
 }
