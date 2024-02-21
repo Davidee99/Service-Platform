@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {Component} from '@angular/core';
@@ -34,6 +34,10 @@ import { AdminTaskComponent } from './components/AdminPage/admin-task/admin-task
 import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
 import { AdminContainerComponent } from './components/AdminPage/admin-container/admin-container.component';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -82,9 +86,15 @@ import { AdminContainerComponent } from './components/AdminPage/admin-container/
     MatExpansionModule,
     NgbCollapseModule,
     MatChipsModule,
-    MatListModule
+    MatListModule,
     
+
+    NgbTooltipModule,
+    HttpClientModule,
+    StoreModule.forRoot({app:appReducers}),
+    EffectsModule.forRoot([AppEffects]),
     
+
   ],
   providers: [],
   bootstrap: [AppComponent]
