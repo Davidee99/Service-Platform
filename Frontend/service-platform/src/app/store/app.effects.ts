@@ -122,7 +122,7 @@ checkSessionStorage$ = createEffect(() =>
           return of(AppActions.sessionChecked({ userCredential }));
         } else {
           // Puoi gestire altri casi come la sessione non trovata
-          return of(AppActions.sessionChecked({ userCredential }));
+          return of(AppActions.sessionChecked({userCredential:null}));
         }
       })
     )

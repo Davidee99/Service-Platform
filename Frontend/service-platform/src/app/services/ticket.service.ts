@@ -63,45 +63,26 @@ export class TicketService {
      
   }
 
-  getUserCredentialFromSessionStorage(): UserCredential {
-    // Crea un oggetto userCredential con valori predefiniti
-    let userCredential: UserCredential = {
-      user_id: 0,
-      firstname: '',
-      lastname: '',
-      role: 'USER',
-      token: ''
-    };
-
-  
-    // Recupera i valori dalla sessionStorage e assegnali all'oggetto userCredential
+  getUserCredentialFromSessionStorage(): UserCredential | null {
     const userIdStr = sessionStorage.getItem('user_id');
-    if (userIdStr !== null) {
-      userCredential.user_id = parseInt(userIdStr, 10);
-    }
-  
     const firstname = sessionStorage.getItem('firstname');
-    if (firstname !== null) {
-      userCredential.firstname = firstname;
-    }
-  
     const lastname = sessionStorage.getItem('lastname');
-    if (lastname !== null) {
-      userCredential.lastname = lastname;
-    }
-  
     const role = sessionStorage.getItem('role');
-    if (role !== null ) {
-      userCredential.role = role;
-    }
-  
     const token = sessionStorage.getItem('token');
-    if (token !== null) {
-      userCredential.token = token;
+
+    if (userIdStr === null && firstname === null && lastname === null && role === null && token === null) {
+        return null;
     }
-  
-    return userCredential;
-  }
+
+    return {
+        user_id: userIdStr ? parseInt(userIdStr, 10) : 0,
+        firstname: firstname || '',
+        lastname: lastname || '',
+        role: role || 'USER',
+        token: token || ''
+    };
+}
+
 
 
   

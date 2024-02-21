@@ -46,6 +46,7 @@ import { AppEffects } from './store/app.effects';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ChatPageComponent } from './components/ChatPage/chat-page/chat-page.component';
 import { SingleMessageComponent } from './components/ChatPage/single-message/single-message.component';
+import { AccessCodeFormComponent } from './components/access-code-form/access-code-form.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { SingleMessageComponent } from './components/ChatPage/single-message/sin
     UserSidebarComponent,
     SingleMessageComponent,
     ChatPageComponent,
+    AccessCodeFormComponent,
   ],
   imports: [
     BrowserModule,

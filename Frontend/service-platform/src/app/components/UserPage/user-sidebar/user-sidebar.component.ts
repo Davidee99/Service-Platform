@@ -24,18 +24,4 @@ export class UserSidebarComponent implements OnInit{
   
   credentials$:Observable<UserCredential|null>;
 
-  userData = {
-    email: "",
-    chatAC: "",
-  };
-
-  submitForm(form: NgForm) {
-    if (form.valid) {
-      this.store.dispatch(AppActions.chatACPost({ email: this.userData.email, chatAC: this.userData.chatAC }));
-      console.log(this.userData);
-      this.userData.email=''
-      this.userData.chatAC=''
-    }
-    
-  }
 }
