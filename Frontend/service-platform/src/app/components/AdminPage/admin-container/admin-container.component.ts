@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { loadTickets } from 'src/app/store/app.actions';
 import * as AppActions from 'src/app/store/app.actions';
+import { selectorAllTickets } from 'src/app/store/app.selector';
+import { Ticket } from 'src/model/ticket.model';
 
 
 @Component({
@@ -27,12 +30,20 @@ export class AdminContainerComponent {
     console.log('ClosedButton' + this.closed);
   }
 
+  myObservable:Observable<Ticket[]> |null=null
 
   constructor(private store: Store){
 
     this.store.dispatch(AppActions.loadTickets())
 
+    //chiamo il selector dello store
+    this.myObservable=this.store.select(selectorAllTickets)
+    
+
   }
+
+  
+
 
   // tickets: any[] = [
   //   {
