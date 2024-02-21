@@ -14,3 +14,4 @@ export const ticketLoaded= createAction(
     //props--> mi ritorna un ...
     props<{tickets: Ticket[]}>()
 );
+

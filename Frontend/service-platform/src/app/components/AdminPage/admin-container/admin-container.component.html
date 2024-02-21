@@ -9,25 +9,20 @@
 
         <li ngbNavItem>
             <button ngbNavLink (click)="ClosedButton()"> Refund </button>
-            <ng-template ngbNavContent>
-                <div *ngFor="let item of tickets">
-                    <div *ngIf="item.type==='Refund'">
-                        <app-admin-task [ticket]="item"></app-admin-task>
-                    </div>
-                </div>
-            </ng-template>
+            
+           
         </li>
 
         <li ngbNavItem>
             <button ngbNavLink class="form-user-button" (click)="OpenButton()"> Product </button>
             <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
-            <ng-template ngbNavContent>
+            <!-- <ng-template ngbNavContent>
                 <div *ngFor="let item of tickets">
                     <div *ngIf="item.type==='Product'">
                         <app-admin-task [ticket]="item"></app-admin-task>
                     </div>
                 </div>
-            </ng-template>
+            </ng-template> -->
 
         </li>
         

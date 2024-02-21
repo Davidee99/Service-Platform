@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 import { Ticket } from 'src/model/ticket.model';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class TicketService {
   }
 
    getTicket(){
-    return this.http.get<Ticket[]>(this.adminEndpoint)
+    return this.http.get<Ticket[]>(this.adminEndpoint).pipe(tap((x)=>console.log(x)))
 
   }
 

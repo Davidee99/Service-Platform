@@ -38,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/app.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 
@@ -93,6 +95,7 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     StoreModule.forRoot({app:appReducers}),
     EffectsModule.forRoot([AppEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     
 
   ],
