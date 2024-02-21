@@ -1,10 +1,10 @@
 .message-container {
     width: 100%;
-    max-width: 100vw; /* Imposta la larghezza massima a 100vw */
+    max-width: 100vw; 
     display: flex;
     flex-direction: column;
     padding: 0 50px 70px;
-    overflow-x: auto; /* Abilita lo scroll orizzontale se i messaggi superano la larghezza */
+    overflow-x: auto; 
   }
   
   .right {
@@ -21,7 +21,7 @@
     color: antiquewhite;
     max-width: 400px;
     border-radius: 10px;
-    padding: 25px;
+    padding: 10px;
     margin-bottom: 10px;
   }
   .icons-box{

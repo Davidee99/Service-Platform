@@ -1,6 +1,10 @@
 
+<ng-template #content let-c="close" let-d="dismiss">
+<div>ciao</div>
 
+</ng-template>
 
+<!--dove stavi prima -->
 <div class="message-container">
   <ng-container *ngIf="(credentials$ | async)!=null; else default">
   <ng-container *ngFor="let message of chat.messages">

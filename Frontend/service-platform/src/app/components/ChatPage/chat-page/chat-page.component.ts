@@ -1,26 +1,45 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectUserCredential } from 'src/app/store/app.selector';
 import { UserCredential } from 'src/model/user-credentials.model';
 
 import * as AppActions from 'src/app/store/app.actions';
+import { NgbModalConfig, NgbModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  styles: [
+    `
+      .dark-modal .modal-content {
+        background-color: #292b2c;
+        color: white;
+      }
+      .dark-modal .close {
+        color: white;
+      }
+      .light-blue-backdrop {
+        background-color: #5cb3fd;
+      }
+    `,
+  ],
+  providers: [NgbModalConfig, NgbModal, NgbDropdownModule],
 })
-export class ChatPageComponent {
+export class ChatPageComponent implements OnInit{
 
-  constructor(private store: Store){
+  constructor(private store: Store,
+    private modalService:NgbModal){
     this.credentials$=store.select(selectUserCredential )
   }
-
+  @ViewChild('content') modalContent: any;
   ngOnInit(): void {
     console.log(sessionStorage);
     this.store.dispatch(AppActions.checkSessionStorage())
-   this.credentials$=this.store.select(selectUserCredential)
+    this.credentials$=this.store.select(selectUserCredential)
+    this.modalService.open(this.modalContent)
   }
 
   credentials$:Observable<UserCredential|null>;
@@ -88,5 +107,4 @@ export class ChatPageComponent {
     ],
   };
 }
-//devo controllare se ho un userid in sessione  se è di un operator i messaggi di operator vanno a destra
-//else vanno a sinistra
+
