@@ -136,10 +136,10 @@ public class OperatorServiceImpl implements OperatorService {
 	}
 	
 	/**
-	 * Lista di tutti i ticket WIP o NON_WIP di un operator
+	 * Lista di tutti i ticket WIP di un operator
 	 * */
 	@Override
-	public ResponseEntity<?> operatorTickets(String status , Long operatorId) {
+	public ResponseEntity<?> operatorTickets(Long operatorId) {
 		
 		if(operatorId == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Campo mancante");
@@ -157,7 +157,7 @@ public class OperatorServiceImpl implements OperatorService {
 		
 		List<Ticket> tickets;
 		try {
-			tickets = ticketRepo.findAllByStatusAndOperatorId(status,operatorId); //Lo status viene passato in input in base all'endPoint
+			tickets = ticketRepo.findAllByStatusAndOperatorId("WIP",operatorId);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -165,7 +165,22 @@ public class OperatorServiceImpl implements OperatorService {
 		return ResponseEntity.status(HttpStatus.OK).body(tickets);
 	}
 	
+	/**
+	 * Lista di tutti i ticket NON_WIP
+	 * */
+	@Override
+	public ResponseEntity<?> ticketsNONWIP() {
+		List<Ticket> tickets;
+		try {
+			tickets = ticketRepo.getTicketsByStatus("NON_WIP");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(tickets);
+	}
+	
 	//Array di status error da confrontare con l'input dato dall'utente
 	private ArrayList<String> statusErrorList = new ArrayList<>(List.of("DUPLICATED", "FAKE", "WRONG_SECTOR"));
+
 
 }

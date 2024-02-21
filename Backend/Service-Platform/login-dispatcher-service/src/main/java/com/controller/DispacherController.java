@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.configuration.URLS;
 
 @RestController
-@RequestMapping("/api/dispacher/")
+@RequestMapping("/api/dispatcher/")
 public class DispacherController {
 
 	@Autowired
@@ -72,7 +72,7 @@ public class DispacherController {
 		return sampleRestTemplate(HttpMethod.POST,url,request);
 	}
 	
-	@GetMapping("ticket-service/operator/ticketWIP")
+	@GetMapping("ticket-service/operator/ticketsWIP")
 	ResponseEntity<?> ticketWIP(@RequestParam(name = "operatorId") Long operatorId) {
 		String url = UriComponentsBuilder.fromUriString(URLS.GET_TICKET_WIP_BY_ID)
                 .queryParam("operatorId", operatorId)
@@ -82,11 +82,8 @@ public class DispacherController {
 	}
 	
 	@GetMapping("ticket-service/operator/ticketNONWIP")
-	ResponseEntity<?> ticketNONWIP(@RequestParam(name = "operatorId") Long operatorId) {
-		String url = UriComponentsBuilder.fromUriString(URLS.GET_TICKET_NON_WIP_BY_ID)
-				.queryParam("operatorId", operatorId)
-				.build()
-				.toUriString();
+	ResponseEntity<?> ticketNONWIP() {
+		String url = URLS.GET_TICKET_NON_WIP;
 		return sampleRestTemplate(HttpMethod.GET,url,null);
 	}
 	
@@ -177,8 +174,7 @@ public class DispacherController {
 			return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsString());
 		} catch (HttpServerErrorException e) {
 	        // Se la richiesta ha generato un errore del server (es. 5xx)
-	        return ResponseEntity.status(e.getStatusCode())
-	                .body(e.getResponseBodyAsString());
+	        return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsString());
 	    } catch (RestClientException e) {
 	        // Gestisci altre eccezioni di RestClientException, se necessario
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore interno del server");

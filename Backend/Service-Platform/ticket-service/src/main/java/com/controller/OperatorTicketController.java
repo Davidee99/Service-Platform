@@ -43,16 +43,16 @@ public class OperatorTicketController {
 		if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
 		}
-		return operatorService.operatorTickets("WIP",operatorId);
+		return operatorService.operatorTickets(operatorId);
 	}
 	
-	//"http://localhost:8083/api/operator/ticketWIP?operatorId=2"
+	//"http://localhost:8083/api/operator/ticketNONWIP?operatorId=2"
 	@GetMapping("ticketNONWIP")
-	public ResponseEntity<?> ticketNONWIP(@RequestParam(name = "operatorId") Long operatorId,@RequestHeader HttpHeaders requestHeadres ) {
+	public ResponseEntity<?> ticketNONWIP(@RequestHeader HttpHeaders requestHeadres ) {
 		if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
 		}
-		return operatorService.operatorTickets("NON_WIP",operatorId);
+		return operatorService.ticketsNONWIP();
 	}
 	
 	@PutMapping("close-ticket")

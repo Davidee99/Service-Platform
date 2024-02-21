@@ -23,7 +23,7 @@ public class URLS {
 	// - Operator controller
 	public static final String UPDATE_TICKET_STATUS_WIP = "http://localhost:8083/api/ticket-service/operator/update-ticket-status/WIP"; 
 	public static final String GET_TICKET_WIP_BY_ID = "http://localhost:8083/api/ticket-service/operator/ticketWIP"; 
-	public static final String GET_TICKET_NON_WIP_BY_ID = "http://localhost:8083/api/ticket-service/operator/ticketNONWIP"; 
+	public static final String GET_TICKET_NON_WIP = "http://localhost:8083/api/ticket-service/operator/ticketNONWIP"; 
 	public static final String CLOSE_TICKET = "http://localhost:8083/api/ticket-service/operator/close-ticket"; 
 	public static final String CHANGE_STATUS_ERROR = "http://localhost:8083/api/ticket-service/operator/change-status-error"; 
 	// - Admin controller

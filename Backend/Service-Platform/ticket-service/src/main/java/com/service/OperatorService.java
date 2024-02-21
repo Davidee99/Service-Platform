@@ -11,7 +11,9 @@ public interface OperatorService{
 
 	ResponseEntity<?> updateTicketStatusWIP(ChangeTicketStatusDTO changeStatus);
 	
-	ResponseEntity<?> operatorTickets(String status ,Long operatorId);
+	ResponseEntity<?> operatorTickets(Long operatorId);
+	
+	ResponseEntity<?> ticketsNONWIP();
 	
 	ResponseEntity<?> closeTicket(Map<String,Long> tickeToClose);
 	
