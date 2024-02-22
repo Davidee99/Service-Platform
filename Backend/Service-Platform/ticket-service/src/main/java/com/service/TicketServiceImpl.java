@@ -32,17 +32,17 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<TicketToShowDTO> getWipTickets() {
+	public List<TicketToShowDTO> getWipTickets(Long userId) {
 
-		List<Ticket> result = ticketRepository.getTicketsByStatus("WIP");
+		List<Ticket> result = ticketRepository.getTicketsByStatusAndUserId("WIP", userId);
 
 		return mapTicketToDTO(result);
 	}
 
 	@Override
-	public List<TicketToShowDTO> getNonWipTickets() {
+	public List<TicketToShowDTO> getNonWipTickets(Long userId) {
 
-		List<Ticket> result = ticketRepository.getTicketsByStatus("NON_WIP");
+		List<Ticket> result = ticketRepository.getTicketsByStatusAndUserId("NON_WIP", userId);
 
 		return mapTicketToDTO(result);
 	}

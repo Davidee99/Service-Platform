@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Ticket;
@@ -28,7 +29,7 @@ import com.utility.AccessCodeGenerator;
 public class TicketController {
 
 	private final String ACCESS_KEY = "qwerty";
-	
+
 	@Autowired
 	private TicketService ticketService;
 
@@ -42,11 +43,12 @@ public class TicketController {
 	private AccessCodeGenerator codeGenerator;
 
 	@PostMapping("saveTicket/")
-	public ResponseEntity<?> saveTicket(@RequestBody TicketToInsertDTO ticketDTO, @RequestHeader HttpHeaders requestHeadres) {
-		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
-	}
+	public ResponseEntity<?> saveTicket(@RequestBody TicketToInsertDTO ticketDTO,
+			@RequestHeader HttpHeaders requestHeadres) {
+
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
 
 		Ticket ticket = new Ticket();
 		try {
@@ -101,26 +103,26 @@ public class TicketController {
 	}
 
 	@GetMapping("getWIPTickets/")
-	public ResponseEntity<?> getWIPTickets(@RequestHeader HttpHeaders requestHeadres) {
-		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
-	}
+	public ResponseEntity<?> getWIPTickets(@RequestParam Long userId, @RequestHeader HttpHeaders requestHeadres) {
 
-		List<TicketToShowDTO> wipTicketList = ticketService.getWipTickets();
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
+
+		List<TicketToShowDTO> wipTicketList = ticketService.getWipTickets(userId);
 
 		return ResponseEntity.status(HttpStatus.OK).body(wipTicketList);
 
 	}
 
 	@GetMapping("getNonWIPTickets/")
-	public ResponseEntity<?> getNonWIPTickets(@RequestHeader HttpHeaders requestHeadres) {
-		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
-	}
+	public ResponseEntity<?> getNonWIPTickets(@RequestParam Long userId, @RequestHeader HttpHeaders requestHeadres) {
 
-		List<TicketToShowDTO> wipTicketList = ticketService.getNonWipTickets();
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
+
+		List<TicketToShowDTO> wipTicketList = ticketService.getNonWipTickets(userId);
 
 		return ResponseEntity.status(HttpStatus.OK).body(wipTicketList);
 

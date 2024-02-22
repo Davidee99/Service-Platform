@@ -11,8 +11,8 @@ public interface TicketService {
 
 	Boolean isAccessCodeAlreadyUsed(String result);
 
-	List<TicketToShowDTO> getWipTickets();
+	List<TicketToShowDTO> getWipTickets(Long userId);
 
-	List<TicketToShowDTO> getNonWipTickets();
+	List<TicketToShowDTO> getNonWipTickets(Long userId);
 
 }
