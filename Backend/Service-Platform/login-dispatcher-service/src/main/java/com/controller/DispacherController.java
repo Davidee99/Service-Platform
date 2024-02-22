@@ -54,14 +54,16 @@ public class DispacherController {
 	}
 
 	@GetMapping("ticket-service/ticket/getWIPTickets/")
-	ResponseEntity<?> getWIPTickets() {
-		String url = URLS.GET_WIP_TICKETS;
+	ResponseEntity<?> getWIPTickets(@RequestParam(name = "userId") Long userId) {
+		String url = UriComponentsBuilder.fromUriString(URLS.GET_WIP_TICKETS).queryParam("userId", userId)
+		.build().toUriString();
 		return sampleRestTemplate(HttpMethod.GET, url, null);
 	}
 
 	@GetMapping("ticket-service/ticket/getNonWIPTickets/")
-	ResponseEntity<?> getNonWIPTickets() {
-		String url = URLS.GET_NON_WIP_TICKETS;
+	ResponseEntity<?> getNonWIPTickets(@RequestParam(name = "userId") Long userId) {
+		String url = UriComponentsBuilder.fromUriString(URLS.GET_NON_WIP_TICKETS).queryParam("userId", userId)
+		.build().toUriString();
 		return sampleRestTemplate(HttpMethod.GET, url, null);
 	}
 
@@ -87,8 +89,8 @@ public class DispacherController {
 	}
 
 	@PutMapping("ticket-service/operator/close-ticket")
-	ResponseEntity<?> closeTicket(HttpEntity<?> request) {
-		String url = URLS.CLOSE_TICKET;
+	ResponseEntity<?> closeTicketOperator(HttpEntity<?> request) {
+		String url = URLS.CLOSE_TICKET_OPERATOR;
 		return sampleRestTemplate(HttpMethod.PUT, url, request);
 	}
 
@@ -97,7 +99,34 @@ public class DispacherController {
 		String url = URLS.CHANGE_STATUS_ERROR;
 		return sampleRestTemplate(HttpMethod.PUT, url, request);
 	}
+	
+	// - Admin Controller
+	
+	@GetMapping("ticket-service/admin/getOpenTickets/")
+	ResponseEntity<?> getOpenTickets() {
+		String url = URLS.GET_OPEN_TICKETS;
+		return sampleRestTemplate(HttpMethod.GET, url, null);
+	}
+	
+	@PutMapping("ticket-service/admin/closeTicket/")
+	ResponseEntity<?> closeTicketAdmin(HttpEntity<?> request,@RequestParam(name = "ticketId") Long ticketId) {
+		String url = UriComponentsBuilder.fromUriString(URLS.CLOSE_TICKET_ADMIN)
+				.queryParam("ticketId", ticketId).build().toUriString();
+		return sampleRestTemplate(HttpMethod.PUT, url, request);
+	}
+	
+	@PutMapping("ticket-service/admin/changeTicketType/")
+	ResponseEntity<?> changeTicketType(HttpEntity<?> request) {
+		String url = URLS.CHANGE_TICKET_TYPE;
+		return sampleRestTemplate(HttpMethod.PUT, url, request);
+	}
+	@GetMapping("ticket-service/admin/getOpenTickets/")
+	ResponseEntity<?> getTicketsInProgress() {
+		String url = URLS.GET_TICKET_IN_PROGRESS;
+		return sampleRestTemplate(HttpMethod.GET, url, null);
+	}
 
+	
 	// CHAT SERVICE
 
 	@PostMapping("chat-service/attachment/sendAttachment/")

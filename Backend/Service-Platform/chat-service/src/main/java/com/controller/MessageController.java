@@ -31,9 +31,9 @@ public class MessageController {
 	private ChatService chatService;
 
 	@PostMapping("sendMessage/")
-	private ResponseEntity<?> sendMessage(@RequestBody SendMessageDTO messageDTO, @RequestHeader HttpHeaders requestHeadres) {
+	private ResponseEntity<?> sendMessage(@RequestBody SendMessageDTO messageDTO, @RequestHeader HttpHeaders requestHeaders) {
 		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+	if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
 	}
 

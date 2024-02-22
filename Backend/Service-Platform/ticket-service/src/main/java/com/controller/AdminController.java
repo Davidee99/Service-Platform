@@ -4,11 +4,14 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,8 @@ import com.service.AdminService;
 @RestController
 @RequestMapping("/api/admin/") // forse da togliere?
 public class AdminController {
+	
+	private final String ACCESS_KEY = "qwerty";
 
 	@Autowired
 	AdminService adminService;
@@ -28,7 +33,10 @@ public class AdminController {
 	 * Visualizza tutti i ticket aperti dagli utenti e marchiati dagli operatori
 	 */
 	@GetMapping("getOpenTickets/")
-	public ResponseEntity<?> getOpenTickets() {
+	public ResponseEntity<?> getOpenTickets(@RequestHeader HttpHeaders requestHeaders ){
+		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+		}
 
 		List<Ticket> body = null;
 		try {
@@ -36,7 +44,7 @@ public class AdminController {
 
 			if (body == null) {
 
-				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nessun ticket Trovato");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nessun ticket Trovato"); //404
 
 			}
 
@@ -50,8 +58,11 @@ public class AdminController {
 
 	}
 
-	@GetMapping("closeTicket/")
-	public ResponseEntity<?> closeTicket(@RequestParam(name = "ticketId") Long ticketId) {
+	@PutMapping("closeTicket/")
+	public ResponseEntity<?> closeTicket(@RequestParam(name = "ticketId") Long ticketId,@RequestHeader HttpHeaders requestHeaders ){
+		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+		}
 		Ticket body = null;
 		try {
 
@@ -59,7 +70,7 @@ public class AdminController {
 
 			if (body == null) {
 
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Operazione fallita");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ticket Not Found");
 
 			}
 
@@ -72,8 +83,11 @@ public class AdminController {
 		return ResponseEntity.ok().body(body);
 	}
 
-	@PostMapping("changeTicketType/")
-	public ResponseEntity<?> changeTicketType(@RequestBody ChangeTicketTypeDTO infoDTO) {
+	@PutMapping("changeTicketType/")
+	public ResponseEntity<?> changeTicketType(@RequestBody ChangeTicketTypeDTO infoDTO,@RequestHeader HttpHeaders requestHeaders ){
+		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+		}
 		Ticket body = null;
 
 		try {
@@ -88,11 +102,13 @@ public class AdminController {
 
 			if (body == null) {
 
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Operazione fallita");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Operazione fallita");
 
 			}
 
-		} catch (Exception ex) {
+		}catch(IllegalArgumentException e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}catch (Exception ex) {
 
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
 
@@ -117,7 +133,10 @@ public class AdminController {
 //	}
 
 	@GetMapping("getTicketsInProgress/")
-	public ResponseEntity<?> getTicketsInProgress() {
+	public ResponseEntity<?> getTicketsInProgress(@RequestHeader HttpHeaders requestHeaders ){
+		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+		}
 
 		List<Ticket> body = null;
 
@@ -125,7 +144,7 @@ public class AdminController {
 			body = adminService.getTicketsInProgress();
 			if (body == null) {
 
-				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nessun ticket Trovato");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nessun ticket Trovato");
 
 			}
 

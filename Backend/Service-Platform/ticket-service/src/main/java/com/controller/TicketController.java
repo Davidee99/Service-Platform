@@ -44,9 +44,9 @@ public class TicketController {
 
 	@PostMapping("saveTicket/")
 	public ResponseEntity<?> saveTicket(@RequestBody TicketToInsertDTO ticketDTO,
-			@RequestHeader HttpHeaders requestHeadres) {
+			@RequestHeader HttpHeaders requestHeaders) {
 
-		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+		if (requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
 		}
 
@@ -103,7 +103,7 @@ public class TicketController {
 	}
 
 	@GetMapping("getWIPTickets/")
-	public ResponseEntity<?> getWIPTickets(@RequestParam Long userId, @RequestHeader HttpHeaders requestHeadres) {
+	public ResponseEntity<?> getWIPTickets(@RequestParam(name = "userId") Long userId, @RequestHeader HttpHeaders requestHeadres) {
 
 		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
@@ -116,7 +116,7 @@ public class TicketController {
 	}
 
 	@GetMapping("getNonWIPTickets/")
-	public ResponseEntity<?> getNonWIPTickets(@RequestParam Long userId, @RequestHeader HttpHeaders requestHeadres) {
+	public ResponseEntity<?> getNonWIPTickets(@RequestParam(name = "userId") Long userId, @RequestHeader HttpHeaders requestHeadres) {
 
 		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401

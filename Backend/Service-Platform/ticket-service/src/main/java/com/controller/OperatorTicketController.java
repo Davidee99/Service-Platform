@@ -30,8 +30,8 @@ public class OperatorTicketController {
 	private OperatorService operatorService;
 	
 	@PostMapping("update-ticket-status/WIP")
-	public ResponseEntity<?> updateTicketStatusWIP(@RequestBody ChangeTicketStatusDTO changeStatus,@RequestHeader HttpHeaders requestHeadres ){
-		if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+	public ResponseEntity<?> updateTicketStatusWIP(@RequestBody ChangeTicketStatusDTO changeStatus,@RequestHeader HttpHeaders requestHeaders ){
+		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
 		}
 		return operatorService.updateTicketStatusWIP(changeStatus);

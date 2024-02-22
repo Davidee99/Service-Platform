@@ -54,9 +54,7 @@ public class AdminServiceImpl implements AdminService {
 			closedTicket = ticketRepository.findById(ticketId).orElse(null);
 
 			if (closedTicket == null) {
-
-				throw new IllegalArgumentException("Non esiste nessun ticket nel database con il TicketID fornito");
-
+				return null;
 			}
 
 			closedTicket.setStatus(AppConstants.TICKET_STATUS_CLOSED);
