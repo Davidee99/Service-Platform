@@ -28,11 +28,24 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 	List<Object[]> getTicketStatusWithStrongValidation(@Param("ticketId") Long ticketId, @Param("userId") Long userId,
 			@Param("operatorId") Long operatorId);
 
-	// Metodo per recuperare l'email del login, il codice di accesso del ticket e l'ID della chat dato un chatId
-    @Query(value = "SELECT login.email, ticket.access_code, chat.id AS chat_id " +  // Query SQL nativa per recuperare l'email del login, il codice di accesso del ticket e l'ID della chat
-                   "FROM chat " +                                                    // Tabella chat
-                   "JOIN ticket ON chat.ticket_id = ticket.id " +                    // Join con la tabella ticket
-                   "JOIN login_info AS login ON ticket.user_id = login.user_id " +    // Join con la tabella login_info
-                   "WHERE chat.id = :chatId", nativeQuery = true)                    // Filtro sulla base dell'ID della chat
-    List<Object[]> getEmailAccessCodeAndChatIdByChatId(@Param("chatId") Long chatId); // Metodo che accetta l'ID della chat come parametro e restituisce una lista di array di oggetti contenenti l'email del login, il codice di accesso del ticket e l'ID della chat
+	// Metodo per recuperare l'email del login, il codice di accesso del ticket e
+	// l'ID della chat dato un chatId
+	@Query(value = "SELECT login.email, ticket.access_code, chat.id AS chat_id " + // Query SQL nativa per recuperare
+																					// l'email del login, il codice di
+																					// accesso del ticket e l'ID della
+																					// chat
+			"FROM chat " + // Tabella chat
+			"JOIN ticket ON chat.ticket_id = ticket.id " + // Join con la tabella ticket
+			"JOIN login_info AS login ON ticket.user_id = login.user_id " + // Join con la tabella login_info
+			"WHERE chat.id = :chatId", nativeQuery = true) // Filtro sulla base dell'ID della chat
+	List<Object[]> getEmailAccessCodeAndChatIdByChatId(@Param("chatId") Long chatId); // Metodo che accetta l'ID della
+																						// chat come parametro e
+																						// restituisce una lista di
+																						// array di oggetti contenenti
+																						// l'email del login, il codice
+																						// di accesso del ticket e l'ID
+																						// della chat
+
+	@Query(value = "SELECT ID FROM ticket WHERE ACCESS_CODE = :accessCode LIMIT 1", nativeQuery = true)
+	Long findTicketIdByAccessCode(@Param("accessCode") String accessCode);
 }

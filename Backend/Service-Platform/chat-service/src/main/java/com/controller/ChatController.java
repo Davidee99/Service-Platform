@@ -17,18 +17,45 @@ import com.service.ChatService;
 @RestController
 @RequestMapping("/api/chat-service/chat/")
 public class ChatController {
-	
+
 	private final String ACCESS_KEY = "qwerty";
 
 	@Autowired
 	private ChatService chatService;
 
-	@GetMapping("getChatByTicketId/")
-	private ResponseEntity<?> getChatByTicketId(@RequestParam(name = "ticketId") Long ticketId, @RequestHeader HttpHeaders requestHeadres) {
-		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
+	@GetMapping("getChatByTicketId/withAccessCode/")
+	private ResponseEntity<?> getChatByTicketIdWithAccessCode(@RequestParam(name = "ticketId") Long ticketId,
+			@RequestHeader HttpHeaders requestHeaders) {
+
+		if (requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
+
+		if (!chatService.isAccessCodeValid(requestHeaders, ticketId)) {
+
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("ACCESS_CODE non valido"); // 401
+		}
+
+		// Ricaviamo la chat tramite ticketId
+		Chat responseBody = chatService.findChatByTicketId(ticketId);
+
+		if (responseBody == null) {
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("L'operatore deve ancora chattare, attendere risposta dall'operatore");
+		}
+
+		return new ResponseEntity<Chat>(responseBody, HttpStatus.OK);
+
 	}
+
+	@GetMapping("getChatByTicketId/noAccessCode/")
+	private ResponseEntity<?> getChatByTicketIdNoAccessCode(@RequestParam(name = "ticketId") Long ticketId,
+			@RequestHeader HttpHeaders requestHeadres) {
+
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
 
 		// Ricaviamo la chat tramite ticketId
 		Chat responseBody = chatService.findChatByTicketId(ticketId);
@@ -73,11 +100,12 @@ public class ChatController {
 	}
 
 	@GetMapping("getChatByChatId/")
-	private ResponseEntity<?> getChatByChatId(@RequestParam(name = "chatId") Long chatId, @RequestHeader HttpHeaders requestHeadres) {
-		
-	if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
-	}
+	private ResponseEntity<?> getChatByChatId(@RequestParam(name = "chatId") Long chatId,
+			@RequestHeader HttpHeaders requestHeadres) {
+
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
 
 		ResponseWrapper<Chat> result = chatService.getChatByChatId(chatId);
 		Chat responseBody = new Chat();
@@ -105,6 +133,13 @@ public class ChatController {
 				// Gestiamo eccezioni strane non previste
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 
+			}
+
+			// Controlli su access_code
+			// ci prendiamo ticket_id e facciamo controlli sulla tablla ticket
+			if (!chatService.isAccessCodeValid(requestHeadres, responseBody.getTicketId())) {
+
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("ACCESS_CODE non valido"); // 401
 			}
 
 			return new ResponseEntity<Chat>(responseBody, HttpStatus.OK);

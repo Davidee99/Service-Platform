@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import com.model.entity.Chat;
@@ -321,6 +322,59 @@ public class ChatServiceImpl implements ChatService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public Long findTicketIdByAccessCode(String accessCode) {
+
+		try {
+
+			return chatRepo.findTicketIdByAccessCode(accessCode);
+		} catch (Exception ex) {
+
+			System.err.println(ex.getMessage());
+			return null;
+		}
+
+	}
+
+	@Override
+	public Boolean isAccessCodeValid(HttpHeaders requestHeaders, Long ticketId) {
+		String accessCode = null;
+
+		try {
+
+			accessCode = requestHeaders.get("ACCESS_CODE").get(0);
+
+		} catch (IndexOutOfBoundsException ioubex) {
+
+			return false;
+
+		}
+
+		if (accessCode == null) {
+
+			return false;
+
+		}
+
+		Long verifiedId = null;
+
+		verifiedId = findTicketIdByAccessCode(accessCode);
+
+		if (verifiedId == null) {
+
+			return false; // 401
+
+		}
+
+		if (!verifiedId.equals(ticketId)) {
+
+			return false;
+
+		}
+
+		return true;
 	}
 
 }
