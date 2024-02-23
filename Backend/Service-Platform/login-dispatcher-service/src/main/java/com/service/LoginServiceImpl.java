@@ -121,16 +121,16 @@ public class LoginServiceImpl implements LoginService {
 
 		} catch (DisabledException de) {
 			System.err.println("LoginService :" + de.getMessage());
-			return new ResponseEntity<LoginResponse>(response, HttpStatus.UNAUTHORIZED); // 401
+			return new ResponseEntity<String>(de.getMessage(), HttpStatus.UNAUTHORIZED); // 401
 		} catch (LockedException le) {
 			System.err.println("LoginService :" + le.getMessage());
-			return new ResponseEntity<LoginResponse>(response, HttpStatus.UNAUTHORIZED); // 401
+			return new ResponseEntity<String>(le.getMessage(), HttpStatus.UNAUTHORIZED); // 401
 		} catch (BadCredentialsException bce) {
-			System.err.println("LoginService :" + bce.getMessage());
-			return new ResponseEntity<LoginResponse>(response, HttpStatus.UNAUTHORIZED); // 401
+			System.err.println("LoginService Bad:" + bce.getMessage());
+			return new ResponseEntity<String>("Credenziali errate", HttpStatus.UNAUTHORIZED); // 401
 		} catch (AuthenticationException ex) {
-			System.err.println("LoginService :" + ex.getMessage());
-			return new ResponseEntity<String>("Email o Password errate", HttpStatus.UNAUTHORIZED); // 401
+			System.err.println("LoginService Auth:" + ex.getMessage());
+			return new ResponseEntity<String>("Credenziali errate", HttpStatus.UNAUTHORIZED); // 401
 		}
 		return new ResponseEntity<String>("Prblema interno Server!!", HttpStatus.INTERNAL_SERVER_ERROR); // 500
 	}

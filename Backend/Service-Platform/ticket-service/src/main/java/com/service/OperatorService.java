@@ -1,7 +1,5 @@
 package com.service;
 
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
 
 import com.model.dto.ChangeTicketStatusDTO;
@@ -15,7 +13,7 @@ public interface OperatorService{
 	
 	ResponseEntity<?> ticketsNONWIP();
 	
-	ResponseEntity<?> closeTicket(Map<String,Long> tickeToClose);
+	ResponseEntity<?> closeTicket(Long ticketId);
 	
 	ResponseEntity<?> changeStatusErrorTicket(ChangeTicketStatusErrorDTO tickeToChange);
 	

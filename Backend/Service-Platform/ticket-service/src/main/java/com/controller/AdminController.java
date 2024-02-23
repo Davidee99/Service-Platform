@@ -8,7 +8,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -32,15 +31,15 @@ public class AdminController {
 	/*
 	 * Visualizza tutti i ticket aperti dagli utenti e marchiati dagli operatori
 	 */
-	@GetMapping("getOpenTickets/")
-	public ResponseEntity<?> getOpenTickets(@RequestHeader HttpHeaders requestHeaders ){
+	@GetMapping("getOpenAndMarkedTickets/")
+	public ResponseEntity<?> getOpenAndMarkedTickets(@RequestHeader HttpHeaders requestHeaders ){
 		if(requestHeaders.get("access_key") == null || !ACCESS_KEY.equals(requestHeaders.get("access_key").get(0))) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); //401
 		}
 
 		List<Ticket> body = null;
 		try {
-			body = adminService.getOpenTickets();
+			body = adminService.getOpenAndMarkedTickets();
 
 			if (body == null) {
 

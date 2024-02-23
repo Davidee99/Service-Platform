@@ -23,6 +23,7 @@ import com.utility.UtilityMethods;
 public class MessageController {
 	
 	private final String ACCESS_KEY = "qwerty";
+	private final String CHAT_URL = "www.myChat.com/?chatId=";
 
 	@Autowired
 	private MessageService messageService;
@@ -67,7 +68,7 @@ public class MessageController {
 							String accessCode = sendMailInfos[1];
 					
 
-							String link = "www.myChat.com/?chatId=" + sendMailInfos[2];
+							String link = CHAT_URL + sendMailInfos[2];
 							
 
 							if (UtilityMethods.sendDefaultMail(to, accessCode, link).getStatusCode() != HttpStatus.OK) {

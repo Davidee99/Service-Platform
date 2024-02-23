@@ -2,7 +2,6 @@ package com.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.model.Employee;
+import com.model.LoginInfo;
+import com.model.Role;
 import com.model.Ticket;
 import com.model.dto.ChangeTicketStatusDTO;
 import com.model.dto.ChangeTicketStatusErrorDTO;
 import com.repository.EmployeeRepository;
+import com.repository.LoginInfoRepository;
 import com.repository.TicketRepository;
 
 @Service
@@ -25,6 +27,9 @@ public class OperatorServiceImpl implements OperatorService {
 	
 	@Autowired
 	private EmployeeRepository employeeRepo;
+	
+	@Autowired 
+	private LoginInfoRepository loginInfoRepo;
 
 	/**
 	 * Cambio status in WIP 
@@ -45,7 +50,7 @@ public class OperatorServiceImpl implements OperatorService {
 		try {
 			ticket = ticketRepo.findById(changeStatus.getTicketId()).get();
 		}catch (NoSuchElementException e) { //Eccezione in cui il ticket non viene trovato
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket non esistente");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ticket non trovato");
 		} catch (IllegalArgumentException e) { 
 			System.err.println(e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -53,6 +58,19 @@ public class OperatorServiceImpl implements OperatorService {
 		
 		if(ticket.getOperatorId() != null || ticket.getStatus().equals("WIP")) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket già preso in carico");
+		}
+		//Controllo sull'operatorId, verifica che esista e che abbia come ruolo OPERATOR
+		LoginInfo loginInfo;
+		try {
+			loginInfo = loginInfoRepo.findById(changeStatus.getOperatorId()).get();
+			if(!loginInfo.getRole().equals(Role.OPERATOR)) {
+				throw new NoSuchElementException();
+			}
+		}catch (NoSuchElementException e) { //Eccezione in cui l'operator non esiste
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Operator non esistente");
+		} catch (IllegalArgumentException e) { 
+			System.err.println(e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 		
 		ticket.setOperatorId(changeStatus.getOperatorId());
@@ -69,13 +87,13 @@ public class OperatorServiceImpl implements OperatorService {
 	 * @param
 	 * */
 	@Override
-	public ResponseEntity<?> closeTicket(Map<String, Long> tickeToClose) {
+	public ResponseEntity<?> closeTicket(Long ticketId) {
 		Ticket ticket;
 		
 		try {
-			ticket = ticketRepo.findById(tickeToClose.get("ticketId")).get();
+			ticket = ticketRepo.findById(ticketId).get();
 		}catch (NoSuchElementException e) { //Eccezione in cui il ticket non viene trovato
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket non esistente");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ticket non esistente");
 		} catch (IllegalArgumentException e) { 
 			System.err.println(e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -119,17 +137,20 @@ public class OperatorServiceImpl implements OperatorService {
 		try {
 			ticket = ticketRepo.findById(tickeToChange.getTicketId()).get();
 		}catch (NoSuchElementException e) { //Eccezione in cui il ticket non viene trovato
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket non esistente");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ticket non esistente");
 		} catch (IllegalArgumentException e) { 
 			System.err.println(e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 		
-		if(ticket.getStatus().equals(status)) {
+		if(ticket.getStatusError() == null) {
+			
+		}
+		else if(ticket.getStatusError().equals(status)) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket già impostato come " + status);
 		}
 		
-		ticket.setStatus(status);
+		ticket.setStatusError(status);
 		ticket = ticketRepo.save(ticket);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(ticket);
@@ -149,7 +170,7 @@ public class OperatorServiceImpl implements OperatorService {
 		try {
 			employee = employeeRepo.findById(operatorId).get();
 		}catch (NoSuchElementException e) { //Eccezione in cui l'operator non esiste
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Operator non esistente");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Operator non esistente");
 		} catch (IllegalArgumentException e) { 
 			System.err.println(e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

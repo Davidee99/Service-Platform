@@ -15,6 +15,8 @@ import com.model.dto.SendToMailDTO;
 public class UtilityMethods {
 	@Autowired
 	private static RestTemplate restTemplate;
+	
+	private static final String ACCESS_KEY = "qwerty";
 
 	public static ResponseEntity<?> sendDefaultMail(String to, String accessCode, String link) {
 
@@ -22,6 +24,7 @@ public class UtilityMethods {
 		HttpHeaders headers = new HttpHeaders();
 
 		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.add("access_key", ACCESS_KEY);
 
 		// Controllo che i campi non siano null
 		if (to == null || accessCode == null || link == null) {

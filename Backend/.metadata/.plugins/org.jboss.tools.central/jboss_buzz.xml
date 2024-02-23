@@ -1,13 +1,146 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>JBoss Tools Aggregated Feed</title>
   <id>https://tools.jboss.org</id>
-  <updated>2024-02-13T12:15:47Z</updated>
+  <updated>2024-02-23T06:12:08Z</updated>
   <link href="https://tools.jboss.org"/>
   <xhtml:meta content="noindex" name="robots" xmlns:xhtml="http://www.w3.org/1999/xhtml"/><entry>
-    <title>Red Hat Developer: Connect a Quarkus app to an external SQL Server database</title>
-    <updated>2024-02-13T07:00:00Z</updated>
-    <id>01b77d2d-6db2-47fe-bd18-17fe3b79b62a</id>
-    <link href="https://developers.redhat.com/articles/2024/02/13/connect-quarkus-app-external-sql-server-database" rel="alternate"/>
+    <title>JBoss Blogs: Writing Reactive Applications with WildFly</title>
+    <updated>2024-02-22T11:10:39Z</updated>
+    <id>https://www.mastertheboss.com/eclipse/eclipse-microservices/building-reactive-applications-with-wildfly/</id>
+    <link href="https://www.mastertheboss.com/eclipse/eclipse-microservices/building-reactive-applications-with-wildfly/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Run VMware Cloud Foundation 5.1 on OpenShift 4.13 with NVIDIA AI Enterprise</title>
+    <updated>2024-02-22T07:00:00Z</updated>
+    <id>307c0a46-bca5-46ee-b300-8a57ea4ef0cd</id>
+    <link href="https://developers.redhat.com/articles/2024/02/22/run-vmware-cloud-foundation-51-openshift-413-nvidia-ai-enterprise" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Best practices for OpenShift Data Foundation disaster recovery resource planning</title>
+    <updated>2024-02-22T07:00:00Z</updated>
+    <id>bc7b7be0-93e4-45c4-aca3-c14b291b0e67</id>
+    <link href="https://developers.redhat.com/articles/2024/02/22/best-practices-openshift-data-foundation-disaster-recovery-resource-planning" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Keycloak 23.0.7 released</title>
+    <updated>2024-02-22T00:00:00Z</updated>
+    <id>https://www.keycloak.org/2024/02/keycloak-2307-released</id>
+    <link href="https://www.keycloak.org/2024/02/keycloak-2307-released" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Eclipse Vert.x 4.5.4 released!</title>
+    <updated>2024-02-22T00:00:00Z</updated>
+    <id>https://vertx.io/blog/eclipse-vert-x-4-5-4</id>
+    <link href="https://vertx.io/blog/eclipse-vert-x-4-5-4" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Run Node.js applications on the edge with RHEL and Fedora</title>
+    <updated>2024-02-21T07:00:00Z</updated>
+    <id>b9ba8cc3-36ba-4e26-808d-3058ffb18edb</id>
+    <link href="https://developers.redhat.com/articles/2024/02/21/run-nodejs-applications-edge-rhel-and-fedora" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Virtio live migration technical deep dive</title>
+    <updated>2024-02-21T07:00:00Z</updated>
+    <id>9caba004-251f-4030-92ba-bcc85a832992</id>
+    <link href="https://developers.redhat.com/articles/2024/02/21/virtio-live-migration-technical-deep-dive" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus 3.7.4 released - Maintenance release</title>
+    <updated>2024-02-21T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-4-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-4-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Quarkus 3.7.4 released - Maintenance release</title>
+    <updated>2024-02-21T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-4-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-4-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: mass-prebuild: An open source journey of improvement and growth</title>
+    <updated>2024-02-20T07:00:00Z</updated>
+    <id>2e3ccc79-6f88-4bee-8292-186b68328af9</id>
+    <link href="https://developers.redhat.com/articles/2024/02/20/mass-prebuild-open-source-journey-improvement-and-growth" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Red Hat OpenShift Dev Spaces security best practices</title>
+    <updated>2024-02-19T07:00:00Z</updated>
+    <id>e7a7ac01-bf0a-4dc5-b2cc-7b6baa5f1244</id>
+    <link href="https://developers.redhat.com/articles/2024/02/19/red-hat-openshift-dev-spaces-security-best-practices" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Palo Alto Networks' NGFW now supporting OVN-Kubernetes</title>
+    <updated>2024-02-19T07:00:00Z</updated>
+    <id>6576efbc-0f6c-425f-8f88-dad5eb14b818</id>
+    <link href="https://developers.redhat.com/articles/2024/02/19/palo-alto-networks-ngfw-now-supporting-ovn-kubernetes" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Automate JBoss Web Server 6 deployment with the Red Hat Ansible Certified Content Collection for JWS</title>
+    <updated>2024-02-15T07:00:00Z</updated>
+    <id>5971029e-4574-4bb4-bb54-549b3cbb7887</id>
+    <link href="https://developers.redhat.com/articles/2024/02/15/automate-jboss-web-server-6-deployment-red-hat-ansible-certified-content" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: How to check configuration changes in WildFly</title>
+    <updated>2024-02-14T15:58:49Z</updated>
+    <id>https://www.mastertheboss.com/jbossas/jboss-configuration/how-to-check-configuration-changes-in-wildfly/</id>
+    <link href="https://www.mastertheboss.com/jbossas/jboss-configuration/how-to-check-configuration-changes-in-wildfly/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: Intel GPUs and OVMS: A winning combination for deep learning efficiency</title>
+    <updated>2024-02-14T07:00:00Z</updated>
+    <id>969b9439-7894-4449-853d-d76235ed0bb5</id>
+    <link href="https://developers.redhat.com/articles/2024/02/14/intel-gpus-and-ovms-winning-combination-deep-learning-efficiency" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Red Hat Developer: A deep dive into Stakater's Multi-Tenant Operator</title>
+    <updated>2024-02-14T07:00:00Z</updated>
+    <id>85f1866a-02d5-425b-9383-982c7850c257</id>
+    <link href="https://developers.redhat.com/articles/2024/02/14/deep-dive-stakaters-multi-tenant-operator" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Quarkus 3.7.3 released - Maintenance release</title>
+    <updated>2024-02-14T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-3-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-3-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus 3.7.3 released - Maintenance release</title>
+    <updated>2024-02-14T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-3-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-3-released/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>Quarkus: Quarkus Newsletter #41 - February</title>
+    <updated>2024-02-13T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-newsletter-41/</id>
+    <link href="https://quarkus.io/blog/quarkus-newsletter-41/" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Blogs: Quarkus Newsletter #41 - February</title>
+    <updated>2024-02-13T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-newsletter-41/</id>
+    <link href="https://quarkus.io/blog/quarkus-newsletter-41/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -15,20 +148,6 @@
     <updated>2024-02-12T07:20:28Z</updated>
     <id>https://www.mastertheboss.com/jbossas/jboss-eap/jboss-eap-8-top-10-new-features/</id>
     <link href="https://www.mastertheboss.com/jbossas/jboss-eap/jboss-eap-8-top-10-new-features/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Debug ACPI issues in Windows virtual machines on RHEL</title>
-    <updated>2024-02-12T07:00:00Z</updated>
-    <id>240e1e75-deaf-4d35-844d-65eb86deac6d</id>
-    <link href="https://developers.redhat.com/articles/2024/02/12/debug-acpi-issues-windows-virtual-machines-rhel" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Getting started with the Red Hat build of Keycloak 22</title>
-    <updated>2024-02-12T07:00:00Z</updated>
-    <id>3e03d834-e04b-4c65-ad55-cc92dff4a79e</id>
-    <link href="https://developers.redhat.com/articles/2024/02/12/getting-started-red-hat-build-keycloak-22" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -46,10 +165,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to visualize your OpenSCAP compliance reports</title>
-    <updated>2024-02-08T07:00:00Z</updated>
-    <id>b16327bf-57a7-462e-a4bd-2069dbfacfe1</id>
-    <link href="https://developers.redhat.com/articles/2024/02/08/how-visualize-your-openscap-compliance-reports" rel="alternate"/>
+    <title>JBoss Blogs: Quarkus 3.7.2 released - Maintenance release</title>
+    <updated>2024-02-08T00:00:00Z</updated>
+    <id>https://quarkus.io/blog/quarkus-3-7-2-released/</id>
+    <link href="https://quarkus.io/blog/quarkus-3-7-2-released/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -60,24 +179,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: Quarkus 3.7.2 released - Maintenance release</title>
-    <updated>2024-02-08T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-7-2-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-7-2-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: Configuring WildFly stability levels</title>
     <updated>2024-02-07T18:06:49Z</updated>
     <id>https://www.mastertheboss.com/jbossas/jboss-configuration/configuring-wildfly-stability-levels/</id>
     <link href="https://www.mastertheboss.com/jbossas/jboss-configuration/configuring-wildfly-stability-levels/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: How to use LLMs in Java with LangChain4j and Quarkus</title>
-    <updated>2024-02-07T07:00:00Z</updated>
-    <id>67865431-234a-488f-a811-5f1e4679940b</id>
-    <link href="https://developers.redhat.com/articles/2024/02/07/how-use-llms-java-langchain4j-and-quarkus" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -95,20 +200,6 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: How to integrate Quarkus applications with OpenShift AI</title>
-    <updated>2024-02-06T07:00:00Z</updated>
-    <id>b242953f-63a0-40a5-be48-a16d40567e85</id>
-    <link href="https://developers.redhat.com/articles/2024/02/06/how-integrate-quarkus-applications-openshift-ai" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: Security policies in open source software</title>
-    <updated>2024-02-06T07:00:00Z</updated>
-    <id>2f1a577f-f5c0-4c99-af1f-543854ea1d13</id>
-    <link href="https://developers.redhat.com/articles/2024/02/06/security-policies-open-source-software" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: JUnit 5: Using Custom DisplayNames for Tests</title>
     <updated>2024-02-05T17:33:59Z</updated>
     <id>https://www.mastertheboss.com/various-stuff/testing-java/junit-5-displayname-for-custom-test-names/</id>
@@ -116,24 +207,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>Red Hat Developer: What's new in JBoss Enterprise Application Platform 8.0</title>
-    <updated>2024-02-05T14:00:00Z</updated>
-    <id>45c0a195-69f8-4b22-a8f4-620ca81b6251</id>
-    <link href="https://developers.redhat.com/articles/2024/02/05/whats-new-jboss-enterprise-application-platform-8" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: How to cache data using GDB's Python API</title>
-    <updated>2024-02-05T07:00:00Z</updated>
-    <id>51ad72dd-271e-422e-91a6-0855584412e1</id>
-    <link href="https://developers.redhat.com/articles/2024/02/05/how-cache-data-using-gdbs-python-api" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
+    <title>JBoss Blogs: WildFly testing with WildFly Glow</title>
     <updated>2024-02-05T00:00:00Z</updated>
-    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
-    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
+    <id>https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/</id>
+    <link href="https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -144,10 +221,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: WildFly testing with WildFly Glow</title>
+    <title>JBoss Blogs: Using WildFly Glow to provision a WildFly server for a RESTEasy based project</title>
     <updated>2024-02-05T00:00:00Z</updated>
-    <id>https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/</id>
-    <link href="https://wildfly.org//news/2024/02/05/testing-with-wildfly-glow/" rel="alternate"/>
+    <id>https://resteasy.dev/2024/01/31/resteasy-glow/</id>
+    <link href="https://resteasy.dev/2024/01/31/resteasy-glow/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -165,66 +242,10 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Blogs: Using Infinispan Server for your Redis clients</title>
-    <updated>2024-02-02T00:00:00Z</updated>
-    <id>https://infinispan.org/blog/2024/02/02/infinispan-server-redis-clients</id>
-    <link href="https://infinispan.org/blog/2024/02/02/infinispan-server-redis-clients" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Red Hat Developer: How to configure granular access in OpenShift Dev Spaces</title>
-    <updated>2024-02-01T14:00:00Z</updated>
-    <id>08a6220d-2337-477e-90eb-ebf455edffbd</id>
-    <link href="https://developers.redhat.com/articles/2024/02/01/how-configure-granular-access-openshift-dev-spaces" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: RabbitMQ with Docker: A Comprehensive Guide</title>
-    <updated>2024-01-31T09:49:10Z</updated>
-    <id>https://www.mastertheboss.com/rabbitmq/rabbitmq-with-docker-a-comprehensive-guide/</id>
-    <link href="https://www.mastertheboss.com/rabbitmq/rabbitmq-with-docker-a-comprehensive-guide/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: What's new in WildFly provisioning</title>
-    <updated>2024-01-31T00:00:00Z</updated>
-    <id>https://wildfly.org//news/2024/01/31/whats-new-in-provisioning/</id>
-    <link href="https://wildfly.org//news/2024/01/31/whats-new-in-provisioning/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
-    <updated>2024-01-31T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>Quarkus: Quarkus 3.7 - Java 17 baseline, Hibernate ORM 6.4, @MeterTag...</title>
     <updated>2024-01-31T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-3-7-released/</id>
     <link href="https://quarkus.io/blog/quarkus-3-7-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Maven is using the wrong version: Explained</title>
-    <updated>2024-01-30T17:31:27Z</updated>
-    <id>https://www.mastertheboss.com/java/maven-is-using-the-wrong-version-explained/</id>
-    <link href="https://www.mastertheboss.com/java/maven-is-using-the-wrong-version-explained/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: How to use Hidden Classes in Java</title>
-    <updated>2024-01-30T15:49:08Z</updated>
-    <id>https://www.mastertheboss.com/java/how-to-use-hidden-classes-in-java/</id>
-    <link href="https://www.mastertheboss.com/java/how-to-use-hidden-classes-in-java/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>JBoss Blogs: Eclipse Vert.x 4.4.7 released!</title>
-    <updated>2024-01-30T00:00:00Z</updated>
-    <id>https://vertx.io/blog/eclipse-vert-x-4-4-7</id>
-    <link href="https://vertx.io/blog/eclipse-vert-x-4-4-7" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -260,27 +281,6 @@
     <updated>2024-01-11T00:00:00Z</updated>
     <id>https://quarkus.io/blog/quarkus-newsletter-40/</id>
     <link href="https://quarkus.io/blog/quarkus-newsletter-40/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Quarkus: Quarkus 3.6.5 released - Maintenance release</title>
-    <updated>2024-01-10T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-6-5-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-6-5-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Quarkus: Quarkus 3.6.4 released - Maintenance release</title>
-    <updated>2023-12-20T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/quarkus-3-6-4-released/</id>
-    <link href="https://quarkus.io/blog/quarkus-3-6-4-released/" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
-    <title>Quarkus: Release Plans for Quarkus 3.7, 3.8 and 3.9</title>
-    <updated>2023-12-19T00:00:00Z</updated>
-    <id>https://quarkus.io/blog/our-plans-for-quarkus-3-7-3-8-3-9-released/</id>
-    <link href="https://quarkus.io/blog/our-plans-for-quarkus-3-7-3-8-3-9-released/" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>
@@ -627,17 +627,17 @@
     <summary type="html"/>
   </entry>
   <entry>
-    <title>JBoss Tools: JBoss Tools and Red Hat CodeReady Studio for Eclipse 2021-09 security fix release for Apache Log4j CVE-2021-45105 and CVE-2021-44832</title>
-    <updated>2022-01-13T00:00:00Z</updated>
-    <id>https://tools.jboss.org/blog/12.21.2.ga.html</id>
-    <link href="https://tools.jboss.org/blog/12.21.2.ga.html" rel="alternate"/>
-    <summary type="html"/>
-  </entry>
-  <entry>
     <title>JBoss Blogs: This Week in JBoss - January 13th 2022</title>
     <updated>2022-01-13T00:00:00Z</updated>
     <id>https://www.jboss.org/posts/weekly-2022-01-13.html</id>
     <link href="https://www.jboss.org/posts/weekly-2022-01-13.html" rel="alternate"/>
+    <summary type="html"/>
+  </entry>
+  <entry>
+    <title>JBoss Tools: JBoss Tools and Red Hat CodeReady Studio for Eclipse 2021-09 security fix release for Apache Log4j CVE-2021-45105 and CVE-2021-44832</title>
+    <updated>2022-01-13T00:00:00Z</updated>
+    <id>https://tools.jboss.org/blog/12.21.2.ga.html</id>
+    <link href="https://tools.jboss.org/blog/12.21.2.ga.html" rel="alternate"/>
     <summary type="html"/>
   </entry>
   <entry>

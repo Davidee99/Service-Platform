@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	TicketRepository ticketRepository;
 
 	@Override
-	public List<Ticket> getOpenTickets() {
+	public List<Ticket> getOpenAndMarkedTickets() {
 
 		List<Ticket> result = null;
 

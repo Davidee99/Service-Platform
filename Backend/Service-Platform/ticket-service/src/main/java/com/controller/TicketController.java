@@ -75,6 +75,16 @@ public class TicketController {
 				throw new IllegalArgumentException("Ordine non valido");
 
 			}
+			if (ticketDTO.getMessage() == null) {
+				
+				throw new IllegalArgumentException("Messaggio vuoto");
+				
+			}
+			if (ticketDTO.getType() == null) {
+				
+				throw new IllegalArgumentException("Type non selezionato");
+				
+			}
 
 			ticket.setMessage(ticketDTO.getMessage());
 			ticket.setUserId(user.getId());

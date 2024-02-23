@@ -6,7 +6,7 @@ import com.model.Ticket;
 import com.model.dto.ChangeTicketTypeDTO;
 
 public interface AdminService {
-	List<Ticket> getOpenTickets();
+	List<Ticket> getOpenAndMarkedTickets();
 
 	Ticket closeTickets(Long ticketId);
 

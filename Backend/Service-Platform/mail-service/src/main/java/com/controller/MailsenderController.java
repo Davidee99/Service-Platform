@@ -3,7 +3,6 @@ package com.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +22,7 @@ public class MailsenderController {
 	
 	private final String ACCESS_KEY = "qwerty";
 
-	@PostMapping("/sendDefault")
+	@PostMapping("/sendDefault/")
 	ResponseEntity<String> sendDefault(@RequestBody RequestObject reqObj, @RequestHeader HttpHeaders requestHeadres) {
 		
 		//Controlliamo che chi fa la request a questo endPoint abbia all'interno degli Headers la chiave access_key = "qwerty"
@@ -32,11 +31,14 @@ public class MailsenderController {
 		}
 		
 		String success = svc.sendDefaultMessage(reqObj.getTo(), reqObj.getAccessCode(), reqObj.getLink());
+		if(success == null) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nell'invio della mail");
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(success);
 
 	}
 
-	@PostMapping("/sendCustom")
+	@PostMapping("/sendCustom/")
 	ResponseEntity<?> sendCustom(@RequestBody CustomRequestObject reqObj, @RequestHeader HttpHeaders requestHeadres) {
 			
 		if(requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
@@ -44,10 +46,11 @@ public class MailsenderController {
 		}
 		
 		String success = svc.sendCustomMessage(reqObj.getTo(), reqObj.getSubj(), reqObj.getText());
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		
-		return ResponseEntity.status(HttpStatus.OK).headers(headers).body(success);
+		if(success == null) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nell'invio della mail");
+		}
+
+		return ResponseEntity.status(HttpStatus.OK).body(success);
 	}
 	
 }
