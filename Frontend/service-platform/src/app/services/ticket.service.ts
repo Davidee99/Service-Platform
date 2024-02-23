@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { Chat } from 'src/model/chat.model';
 import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
@@ -83,7 +84,14 @@ export class TicketService {
     };
 }
 
+verifyACAndGetChatUser(accessCode:string){
+  const url='http://localhost:3000/chat'
+  // const headers = new HttpHeaders().set('AccessCode', accessCode);
+return this.http.get<Chat>(url).pipe(
+  tap((x) => {
+    console.table(x);
+  })
+);
+}
 
-
-  
 }

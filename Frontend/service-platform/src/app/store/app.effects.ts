@@ -6,6 +6,7 @@ import * as AppActions from './app.actions';
 import { TicketService } from '../services/ticket.service';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AppEffects {
@@ -29,7 +30,7 @@ export class AppEffects {
 
   chatACPost$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AppActions.chatACPost),
+      ofType(AppActions.requestAC),
       exhaustMap((action) =>
         this.ticketService
           .postChatAC({ email: action.email, chatAC: action.chatAC })
@@ -153,6 +154,25 @@ checkSessionStorage$ = createEffect(() =>
 );
 
 
+
+verifyAccessCode$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AppActions.verifyAccessCode),
+    switchMap((action) =>
+      this.ticketService.verifyACAndGetChatUser(action.accessCode).pipe(
+        map((chat) => {
+          console.log('Operazione completata con successo');
+          console.log(chat);
+          return AppActions.loadChat({ chat: chat }); // Restituisci un'azione di successo
+        }),
+        catchError((error) => {
+          console.log('Errore durante l\'operazione:', error);
+          return of(AppActions.loginFailed()); // Restituisci un'azione di errore
+        })
+      )
+    )
+  )
+);
 
 
 

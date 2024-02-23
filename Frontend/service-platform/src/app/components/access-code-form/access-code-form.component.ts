@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import * as AppActions from 'src/app/store/app.actions';
-import { selectUserCredential } from 'src/app/store/app.selector';
-import { UserCredential } from 'src/model/user-credentials.model';
 
 @Component({
   selector: 'app-access-code-form',
@@ -23,7 +20,7 @@ export class AccessCodeFormComponent {
 
   submitForm(form: NgForm) {
     if (form.valid) {
-      this.store.dispatch(AppActions.chatACPost({ email: this.userData.email, chatAC: this.userData.chatAC }));
+      this.store.dispatch(AppActions.requestAC({ email: this.userData.email, chatAC: this.userData.chatAC }));
       console.log(this.userData);
       this.userData.email=''
       this.userData.chatAC=''

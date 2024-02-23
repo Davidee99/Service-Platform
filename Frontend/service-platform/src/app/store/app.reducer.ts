@@ -3,17 +3,20 @@ import { createReducer, on } from '@ngrx/store';
 import * as AppActions from './app.actions';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
+import { Chat } from 'src/model/chat.model';
 
 export interface AppState {
   tickets: Ticket[];
   loginError: any;
   userCredential: UserCredential | null;
+  chat: Chat | null;
 }
 
 const initialState: AppState = {
   tickets: [],
   loginError: null,
   userCredential: null,
+  chat: null,
 };
 
 const _appReducers = createReducer(
@@ -27,9 +30,24 @@ const _appReducers = createReducer(
     ...state,
     userCredential,
   })),
-  on(AppActions.loginFailed, (state )=>({...state,loginError:true})),
-  on(AppActions.resetLoginErrorState, (state )=>({...state,loginError:false})),
-  on(AppActions.clearCredentials, (state )=>({...state,userCredential:null}))
+  on(AppActions.loginFailed, (state) => ({ ...state, loginError: true })),
+  on(AppActions.resetLoginErrorState, (state) => ({
+    ...state,
+    loginError: false,
+  })),
+  on(AppActions.clearCredentials, (state) => ({
+    ...state,
+    userCredential: null,
+  })),
+  on(AppActions.loadChat, (state,{chat}) => ({
+    ...state,
+    chat,
+  })),
+  on(AppActions.clearChat, (state) => ({
+    ...state,
+    chat: null,
+  }))
+
 );
 
 export function appReducers(state: any, action: any) {

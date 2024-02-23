@@ -1,7 +1,7 @@
 <!-- Single ticket component -->
 <!-- ciao giuseppe -->
-<form action="" #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
-  <ng-template  #content let-c="close" let-d="dismiss" class="bg-red">
+<ng-template  #content let-c="close" let-d="dismiss" class="bg-red">
+    <form #myForm="ngForm" (ngSubmit)="submitFormz(myForm)">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
       <button
@@ -16,15 +16,14 @@
     </div>
     <div class="input-group mb-3 container">
       <input
-        [(ngModel)]="code"
+        [(ngModel)]="accessCode"
         name="code"
         required
         type="text"
         class="form-control"
         placeholder="Enter code here"
-        aria-label="Recipient's username"
         aria-describedby="button-addon2"
-        minlength="8"
+        minlength="3"
         maxlength="8"
       />
     </div>
@@ -50,15 +49,13 @@
     </div>
     <div class="modal-footer">
       <button
-        type="button"
         class="btn btn-outline-dark violet"
-        (click)="accessChat()"
       >
         Send
       </button>
     </div>
+  </form>
   </ng-template>
-</form>
 
 <div class="prova" (click)="open(content)">
   <div class="singleTicketContainer">

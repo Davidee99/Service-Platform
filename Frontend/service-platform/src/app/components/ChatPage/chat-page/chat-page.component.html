@@ -1,7 +1,32 @@
 
-<ng-template #content let-c="close" let-d="dismiss">
-<div>ciao</div>
 
+
+<ng-template #contentL let-c="close" let-d="dismiss" let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">non entriiii!</h4>
+<img src="https://www.strettoweb.com/wp-content/uploads/2023/12/il-mac-5.jpg" alt="">
+	</div>
+	<div class="modal-body">
+    <form #accessCodeForm="ngForm" class="container-form-user"  (ngSubmit)="submitForm(accessCodeForm)">
+      <!-- <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div> -->
+      <mat-form-field class="landing-page-form-field">
+        <mat-label>Access Code</mat-label>
+        <input
+          matInput
+          [(ngModel)]="accessCode"
+          name="accessCode"
+          placeholder="Access code"
+          required
+        />
+      </mat-form-field>
+      <div class="modal-footer">
+        <button class="btn btn-outline-dark">send</button>
+      </div>
+    </form>
+  </div>
 </ng-template>
 
 <!--dove stavi prima -->
@@ -52,7 +77,7 @@
           ></mat-icon>
           
           <input type="file" class="form-control" id="actual-btn" hidden>
-          <label for="actual-btn"><mat-icon> attach_file</mat-icon></label>
+          <label for="actual-btn" class="label-file"><mat-icon> attach_file</mat-icon></label>
     </div>
   <input class="textbox" type="text" name="text"/>
 

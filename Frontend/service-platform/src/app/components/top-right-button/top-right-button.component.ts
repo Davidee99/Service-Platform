@@ -1,4 +1,5 @@
   import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { NgForm } from '@angular/forms';
   import { Router } from '@angular/router';
   import { NgbDropdownModule, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   import { Store } from '@ngrx/store';
@@ -75,6 +76,7 @@
     
     submitLogin() {
       console.log(this.loginData);
+
       if (this.amIUser == 'user') {
         this.store.dispatch(AppActions.userLogin(this.loginData));
       } else {
@@ -109,3 +111,4 @@
       this.amIUser = 'user'
     }
   }
+  

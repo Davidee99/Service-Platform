@@ -20,4 +20,9 @@ export const selectLoginError = createSelector(
 );
 
 
+export const selectChat = createSelector(
+  selectAppState,
+  state => state.chat
+);
+
 

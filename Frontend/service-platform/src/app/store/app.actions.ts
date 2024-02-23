@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Chat } from 'src/model/chat.model';
 import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
@@ -15,7 +16,7 @@ export const ticketsLoaded = createAction(
   props<{ tickets: Ticket[] }>()
 );
 
-export const chatACPost = createAction(
+export const requestAC = createAction(
   '[chatAC] send',
   props<{ email: string; chatAC: string }>()
 );
@@ -52,5 +53,13 @@ export const sessionChecked = createAction(
   props<{ userCredential: UserCredential | null }>()
 );
 
+export const clearCredentials = createAction('[session] clearCredentials');
 
-export const clearCredentials = createAction('[session] clearCredentials')
+export const verifyAccessCode = createAction(
+  '[chatAC] verifyAC',
+  props<{ accessCode: string }>()
+);
+
+export const loadChat = createAction('[chat] loadChat', props<{chat: Chat}>())
+
+export const clearChat = createAction('[chat] clearChat')
