@@ -10,9 +10,11 @@
         <li ngbNavItem>
             <button ngbNavLink (click)="ClosedButton()"> Refund </button>
 
-            <ng-container *ngFor="">
-
-            </ng-container>
+            <div *ngIf="(myObservable$ | async) as tickets">
+                <div *ngFor="let item of tickets">
+                        <app-admin-task [ticket]="item"></app-admin-task>
+                </div>
+            </div>
             
             
            

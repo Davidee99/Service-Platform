@@ -30,14 +30,14 @@ export class AdminContainerComponent {
     console.log('ClosedButton' + this.closed);
   }
 
-  myObservable:Observable<Ticket[]> |null=null
+  myObservable$:Observable<Ticket[]> |null=null
 
   constructor(private store: Store){
 
     this.store.dispatch(AppActions.loadTickets())
 
     //chiamo il selector dello store
-    this.myObservable=this.store.select(selectorAllTickets)
+    this.myObservable$=this.store.select(selectorAllTickets)
     
 
   }
