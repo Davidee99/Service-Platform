@@ -7,8 +7,8 @@ export interface Chat {
 }
 
 export interface Message {
-  id: number;
+  id?: number;
   sender: number;
   message: string;
-  timestamp: string;
+  timestamp?: string;
 }

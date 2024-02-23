@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { EMPTY, Observable, filter, switchMap, take } from 'rxjs';
+import { EMPTY, Observable, filter, of, switchMap, take } from 'rxjs';
 import { selectChat, selectUserCredential } from 'src/app/store/app.selector';
 import { UserCredential } from 'src/model/user-credentials.model';
 
@@ -20,6 +20,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Message } from 'src/model/chat.model';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-chat-page',
@@ -54,71 +56,19 @@ export class ChatPageComponent implements OnInit, AfterViewInit, OnDestroy {
     config.keyboard = false;
   }
 
-
   @ViewChild('contentL') contentL!: TemplateRef<any>;
-  
-
-  ngAfterViewInit(): void {
-    if (this.credentials$==null) {
-      this.open();
-    }
-    this.credentials$.pipe(
-          switchMap(credentials => {
-            if (credentials === null) {
-              this.open()
-              return EMPTY;
-            } else {
-              return EMPTY; 
-            }
-          })
-        ).subscribe();
-  }
-
-
-  ngOnInit(): void {
-    console.log(sessionStorage);
-    this.store.dispatch(AppActions.checkSessionStorage());
-  }
-
-  submitForm(form: NgForm) {
-    console.log(this.accessCode);
-    if (form.valid) {
-      this.store.dispatch(
-        AppActions.verifyAccessCode({ accessCode: this.accessCode })
-      );
-    }
-
-    this.store
-      .select(selectChat)
-      .pipe(
-        filter((chat) => chat !== null),
-        take(1)
-      )
-      .subscribe((chat) => {
-        this.modalService.dismissAll();
-      });
-  }
-
-  open() {
-    this.modalService.open(this.contentL, {
-      centered: true,
-      modalDialogClass: 'dark-modal',
-      fullscreen: true,
-    });
-  }
-  
-  accessCode: string = '';
-
-  message: any = {
-    sender: '',
-  };
 
   credentials$: Observable<UserCredential | null>;
 
-  ngOnDestroy(): void {
-    this.modalService.dismissAll();
-    this.store.dispatch(AppActions.clearChat());
-  }
+
+  accessCode: string = '';
+
+
+  messageToSend: Message = {
+    sender: 0,
+    message: '',
+    timestamp:format(new Date('2024-02-20T10:56:47.000+00:00'), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
+  };
 
 
   chat: any = {
@@ -183,4 +133,82 @@ export class ChatPageComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     ],
   };
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
+    this.store.dispatch(AppActions.clearChat());
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(AppActions.checkSessionStorage());
+  }
+
+  ngAfterViewInit(): void {
+    this.credentials$
+      .pipe(
+        switchMap((credentials) => {
+          if (credentials === null) {
+            this.open();
+            return EMPTY;
+          } else {
+            return EMPTY;
+          }
+        })
+      )
+      .subscribe();
+  }
+
+  onInputChange(event: any) {
+    this.messageToSend.message = event;
+  }
+
+  sendMessage() {
+    this.credentials$.pipe(
+      switchMap((credentials) => {
+        if (credentials === null) {
+          this.messageToSend.sender = this.chat.userId;
+        } else {
+          this.messageToSend.sender = credentials!.user_id;
+        }
+        return of({ ...this.messageToSend });
+      })
+    ).subscribe((message) => {
+      this.messageToSend.timestamp = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+      this.chat.messages.push(message);
+      
+  
+      this.messageToSend.message = '';
+  
+      // Azione da triggerare e pulizia del campo di input
+      console.log('Messaggio inviato:', message);
+    });
+  }
+  
+
+  submitForm(form: NgForm) {
+    console.log(this.accessCode);
+    if (form.valid) {
+      this.store.dispatch(
+        AppActions.verifyAccessCode({ accessCode: this.accessCode })
+      );
+    }
+
+    this.store
+      .select(selectChat)
+      .pipe(
+        filter((chat) => chat !== null),
+        take(1)
+      )
+      .subscribe((chat) => {
+        this.modalService.dismissAll();
+      });
+  }
+
+  open() {
+    this.modalService.open(this.contentL, {
+      centered: true,
+      modalDialogClass: 'dark-modal',
+      fullscreen: true,
+    });
+  }
 }
