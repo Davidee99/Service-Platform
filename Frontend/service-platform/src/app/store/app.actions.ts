@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Chat } from 'src/model/chat.model';
+import { Chat, Message } from 'src/model/chat.model';
 import { NewTicket } from 'src/model/create-ticket.model';
 import { Ticket } from 'src/model/ticket.model';
 import { UserCredential } from 'src/model/user-credentials.model';
@@ -63,3 +63,7 @@ export const verifyAccessCode = createAction(
 export const loadChat = createAction('[chat] loadChat', props<{chat: Chat}>())
 
 export const clearChat = createAction('[chat] clearChat')
+
+export const sendUpdatedChat= createAction('[chat] sendUpdateChat', props<{chat: Chat}>())
+
+export const loadUpdatedChat= createAction('[chat] loadUpdateChat', props<{chat: Chat}>())

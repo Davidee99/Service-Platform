@@ -175,5 +175,24 @@ verifyAccessCode$ = createEffect(() =>
 );
 
 
+updateChat$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(AppActions.sendUpdatedChat),
+  switchMap((action)=>
+  this.ticketService.updatedMessages(action.chat).pipe(
+    map(() => {
+      console.log('Operazione completata con successo aggiungi mex');
+      return AppActions.loadChat({ chat: action.chat }); // Restituisci un'azione di successo
+    }),
+    catchError((error) => {
+      console.log('Errore durante l\'operazione:', error);
+      return of(AppActions.loginFailed()); // Restituisci un'azione di errore
+    })
+  )
+  )
+)
+
+)
+
 
 }

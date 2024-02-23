@@ -94,4 +94,13 @@ return this.http.get<Chat>(url).pipe(
 );
 }
 
+
+
+updatedMessages(chat:Chat){
+const url='http://localhost:8080/ciao/testMessage'
+let message = chat.messages[chat.messages.length -1]
+return this.http.post(url, message)
+}
+
+
 }

@@ -81,7 +81,7 @@ export class ChatPageComponent implements OnInit, AfterViewInit, OnDestroy {
         id: 1,
         sender: 19,
         message: 'Ciao, come stai?',
-        timestamp: '2024-02-20T10:56:47.000+00:00',
+        timestamp: '2024-02-19T10:56:47.000+00:00',
       },
       {
         id: 4,
@@ -175,7 +175,9 @@ export class ChatPageComponent implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe((message) => {
       this.messageToSend.timestamp = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
       this.chat.messages.push(message);
+      //ancora buggatooooooo
       
+      this.store.dispatch(AppActions.sendUpdatedChat({chat:this.chat}))
   
       this.messageToSend.message = '';
   
