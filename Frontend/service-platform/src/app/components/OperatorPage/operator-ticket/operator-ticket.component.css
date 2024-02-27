@@ -1,0 +1,169 @@
+* {
+  color: white;
+  text-decoration: none;
+}
+
+.singleTicketContainer {
+  width: 100%;
+  margin: auto;
+  margin-top: 5px;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222222;
+  box-shadow: 1px 1px 46px -8px #000000;
+  max-height: 80px;
+}
+
+.singleTicketContainer:hover {
+  width: 101%;
+  background-color: #2222225d;
+  cursor: pointer;
+}
+
+.singleTicketContainer h4 {
+  text-align: center;
+}
+
+.sectionOrderId {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionOrderId button.status {
+  padding: 10px;
+  border: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.download {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(134, 2, 134);
+}
+
+.download:hover {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(134, 2, 134, 0.48);
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.card {
+  width: 100%;
+  margin: auto;
+  background-color: rgb(40, 37, 37);
+  max-height: 300px;
+}
+
+.example-button-container {
+  display: flex;
+  padding: 1rem;
+  border-radius: 30px;
+  max-height: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#chatclose {
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+
+#chat {
+  width: 40%;
+  margin: 0 10px;
+  border-radius: 10px;
+  background-color: rgb(162, 0, 250);
+  text-align: center;
+}
+
+#close {
+  width: 40%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: rgb(250, 112, 0);
+  text-align: center;
+}
+
+#c {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c1 {
+  width: 40%;
+  padding: 2rem;
+}
+
+.c1 > p {
+  padding-top: 20px;
+}
+
+.c1 .msg {
+  padding-top: 10px;
+  padding-left: 1rem;
+}
+
+.c2 {
+  width: 50%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoc2 {
+  padding-top: 12px;
+}
+
+.infoc2 > p {
+  padding-top: 1rem;
+}
+
+.selectt {
+  display: flex;
+}
+
+.selectBtn {
+  margin: auto;
+  margin-left: 2rem;
+}
+
+.ticketInfo {
+  min-width: 40%;
+  text-align: center;
+}
+
+.status {
+  padding: 20px;
+}
+
+.userId {
+  min-width: 10%;
+  text-align: center;
+}
+
+.date {
+  min-width: 20%;
+  text-align: center;
+}

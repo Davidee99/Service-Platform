@@ -1,0 +1,16 @@
+.nav-tabs .nav-item button {
+    
+  font-size: 18px; 
+  padding: 20px 120px; 
+  width: 100%;
+
+}
+
+.nav-tabs .nav-item {
+  width: 50%;
+}
+
+.container-tickets{
+  display: flex;
+  flex-direction: column;
+}

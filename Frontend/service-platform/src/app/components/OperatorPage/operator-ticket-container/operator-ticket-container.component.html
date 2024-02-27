@@ -1,0 +1,44 @@
+<div class="operator">
+
+
+<div class="container-tickets">
+
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+        
+
+        <li ngbNavItem>
+            <button ngbNavLink (click)="ClosedButton()"> WIP </button>
+            <ng-template ngbNavContent>
+                <div *ngIf="(tickets$ | async) as tickets">
+                    <div *ngFor="let item of tickets">
+                        <div *ngIf="item.status==='WIP'">
+                            <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+
+        <li ngbNavItem>
+            <button ngbNavLink class="form-user-button" (click)="OpenButton()"> NON WIP </button>
+            <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
+            <ng-template ngbNavContent>
+                <div *ngIf="(tickets$ | async) as tickets">
+                    <div *ngFor="let item of tickets">
+                        <div *ngIf="item.status==='NON_WIP'">
+                            <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+        </li>
+
+        
+    </ul>
+
+    <div [ngbNavOutlet]="nav"></div>
+
+</div>
+</div>

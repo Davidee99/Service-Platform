@@ -1,0 +1,33 @@
+.my-sidebar {
+    width: 300px;
+    height: 100vh;
+    color: white;
+}
+
+.side-card {
+
+    margin: 20px;
+    padding: 10px;
+    color: white !important;
+    background-color: #222222;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.517);
+}
+
+.form-control,
+.form-control:focus {
+    background-color: #3b3b3b !important;
+}
+
+.my-button {
+    background-color: rgb(134, 2, 134);
+    color: white;
+}
+
+.my-button:hover {
+    background-color: #5a1b5a;
+}
+
+.form-control {
+    color: white;
+}

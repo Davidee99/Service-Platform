@@ -1,0 +1,123 @@
+<!-- Single ticket component -->
+<!-- ciao giuseppe -->
+<ng-template  #content let-c="close" let-d="dismiss" class="bg-red">
+    <form #myForm="ngForm" (ngSubmit)="submitFormz(myForm)">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <button
+        type="button"
+        class="btn-close violet text-light"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <p>To access enter ticket code</p>
+    </div>
+    <div class="input-group mb-3 container">
+      <input
+        [(ngModel)]="accessCode"
+        name="code"
+        required
+        type="text"
+        class="form-control"
+        placeholder="Enter code here"
+        aria-describedby="button-addon2"
+        minlength="3"
+        maxlength="8"
+      />
+    </div>
+    <div
+      *ngIf="
+        myForm.controls['code'] &&
+        myForm.controls['code'].invalid &&
+        (myForm.controls['code'].dirty || myForm.controls['code'].touched)
+      "
+    >
+      <p
+        class="ms-3 text-danger"
+        *ngIf="myForm.controls['code'].errors!['required']"
+      >
+        Code is required
+      </p>
+      <p
+        class="ms-3 text-danger"
+        *ngIf="myForm.controls['code'].errors!['minlength']"
+      >
+        Code must be at least 3 characters long
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="btn btn-outline-dark violet"
+      >
+        Send
+      </button>
+    </div>
+  </form>
+  </ng-template>
+
+<div class="prova" (click)="open(content)">
+  <div class="singleTicketContainer">
+    <div class="userId">
+      <h4>Order Id</h4>
+      <p>{{ ticket.id }}</p>
+    </div>
+    <div class="date">
+      <h4>Opening date</h4>
+      <p>{{ticket.create_date}}</p>
+    </div>
+    <div class="ticketInfo">
+      <h4>Message</h4>
+      <p>{{ ticket.message.length>50? ((ticket.message |  slice:0:50)+'...'):ticket.message}}</p>
+    </div>
+    <ng-container [ngSwitch]="ticket.status">
+      <div class="sectionOrderId" *ngSwitchCase="'WIP'">
+        <div class="status">
+          <ng-template #tipContent>
+            <b>Work in progress</b>
+          </ng-template>
+          <span class="me-2">status:</span>
+          <button
+            type="button"
+            class="btn btn-outline-secondary status green"
+            [ngbTooltip]="tipContent"
+          ></button>
+        </div>
+      </div>
+      <div class="sectionOrderId" *ngSwitchCase="'NON_WIP'">
+        <div class="status">
+          <ng-template #tipContent>
+            <b>Not Work in progress</b>
+          </ng-template>
+          <span class="me-2">status:</span>
+          <button
+            type="button"
+            class="btn btn-outline-secondary status yellow"
+            [ngbTooltip]="tipContent"
+          ></button>
+        </div>
+      </div>
+      <div
+        class="sectionOrderId justify-content-around"
+        *ngSwitchCase="'CLOSED'"
+      >
+      
+        <div class="status">
+          <ng-template #tipContent>
+            <b>Closed</b>
+          </ng-template>
+          <span class="me-2">status:</span>
+          <button
+            type="button"
+            class="btn btn-outline-secondary status red"
+            [ngbTooltip]="tipContent"
+          ></button>
+        </div>
+        <button mat-icon-button type="button" id="download-icon">
+          <mat-icon>get_app</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>
