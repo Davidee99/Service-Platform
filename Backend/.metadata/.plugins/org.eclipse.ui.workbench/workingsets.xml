@@ -4,7 +4,7 @@
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1708089265349_1" label="Java Test Sources" name="Java Test Sources"/>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1708089656326_4" label="[Service-Platform]" name="[Service-Platform]">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Service-Platform" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/chat-service" type="4"/>
+<item elementID="=chat-service" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mail-service" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Eureka-Server" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ticket-service" type="4"/>

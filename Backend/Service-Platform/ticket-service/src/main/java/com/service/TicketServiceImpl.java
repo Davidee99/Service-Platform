@@ -74,4 +74,9 @@ public class TicketServiceImpl implements TicketService {
 
 		return dto;
 	}
+
+	@Override
+	public List<Ticket> getAllTicketByUserdId(Long userId) {
+		return ticketRepository.findAllByUserId(userId);
+	}
 }

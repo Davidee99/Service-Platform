@@ -21,6 +21,8 @@ public class URLS {
 	public static final String SAVE_TICKET = "http://localhost:8083/api/ticket-service/ticket/saveTicket/";
 	public static final String GET_WIP_TICKETS = "http://localhost:8083/api/ticket-service/ticket/getWIPTickets/";
 	public static final String GET_NON_WIP_TICKETS = "http://localhost:8083/api/ticket-service/ticket/getNonWIPTickets/";
+	public static final String GET_USER_TICKETS = "http://localhost:8083/api/ticket-service/ticket/getUserTickets/";
+	
 	// - Operator controller
 	public static final String UPDATE_TICKET_STATUS_WIP = "http://localhost:8083/api/ticket-service/operator/update-ticket-status/WIP/";
 	public static final String GET_TICKET_WIP_BY_ID = "http://localhost:8083/api/ticket-service/operator/ticketWIP/";

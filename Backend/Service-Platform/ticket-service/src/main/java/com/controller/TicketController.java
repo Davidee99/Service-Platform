@@ -137,4 +137,15 @@ public class TicketController {
 		return ResponseEntity.status(HttpStatus.OK).body(wipTicketList);
 
 	}
+	
+	@GetMapping("getUserTickets/")
+	public ResponseEntity<?> getUserTickets(@RequestParam(name = "userId") Long userId, @RequestHeader HttpHeaders requestHeadres){
+		if (requestHeadres.get("access_key") == null || !ACCESS_KEY.equals(requestHeadres.get("access_key").get(0))) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Accesso Negato"); // 401
+		}
+		if(userId == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Id mancante"); // 400
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(ticketService.getAllTicketByUserdId(userId));
+	}
 }

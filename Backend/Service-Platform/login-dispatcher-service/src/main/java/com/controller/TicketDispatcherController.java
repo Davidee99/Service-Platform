@@ -27,13 +27,30 @@ public class TicketDispatcherController {
 	// TICKET SERVICE
 
 		// - User Controller
-
+	
 		@PostMapping("ticket-service/ticket/saveTicket/")
 		ResponseEntity<?> saveTicket(HttpEntity<?> request) {
 			
 			String url = URLS.SAVE_TICKET;
 			return restTemplateService.sampleRestTemplate(HttpMethod.POST, url, request);
 			
+		}
+		
+		@GetMapping("ticket-service/ticket/getUserTickets/")
+		ResponseEntity<?> getUserTickets(HttpServletRequest servletRequest){
+			String userId;
+			try {
+				userId = servletRequest.getParameter("userId");
+				if(userId.isEmpty()) {
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Parametri errati o non inseriti");
+			}
+			
+			String url = UriComponentsBuilder.fromUriString(URLS.GET_USER_TICKETS).queryParam("userId", userId)
+			.build().toUriString();
+			return restTemplateService.sampleRestTemplate(HttpMethod.GET, url, null);
 		}
 
 		@GetMapping("ticket-service/ticket/getWIPTickets/")

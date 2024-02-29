@@ -14,5 +14,7 @@ public interface TicketService {
 	List<TicketToShowDTO> getWipTickets(Long userId);
 
 	List<TicketToShowDTO> getNonWipTickets(Long userId);
+	
+	List<Ticket> getAllTicketByUserdId(Long userId);
 
 }

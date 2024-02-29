@@ -15,6 +15,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	List<Ticket> getTicketsByStatusAndUserId(String string, Long userId);
 
 	List<Ticket> findAllByOperatorId(Long operatorId);
+	
+	List<Ticket> findAllByUserId(Long userId);
 
 	List<Ticket> findAllByStatusAndOperatorId(String status, Long operatorId);
 
