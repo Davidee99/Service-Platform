@@ -15,42 +15,20 @@ export class AppEffects {
     private ticketService: TicketService
   ) { }
 
-  // loadTickets$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(AppActions.loadTickets),
-  //     exhaustMap(() =>
-  //       merge(this.ticketService.getTicket(), this.ticketService.getNonWipTicket())
-          // .pipe(
-          //   map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
-          // )
-  //     )
-  //   )
-  // );
-
   loadTickets$ = createEffect(() =>
   this.actions$.pipe(
     ofType(AppActions.loadTickets),
     exhaustMap(() =>
-      forkJoin([
-        this.ticketService.getWipTicket(),
-        this.ticketService.getNonWipTicket()
-      ])
-      .pipe(
-        map(([ticketList, nonWipTicketList]: [Ticket[], Ticket[]]) =>
-          AppActions.ticketsLoaded({ tickets: [...ticketList, ...nonWipTicketList] })
-        )
-      )
+    this.ticketService
+    .getUserTickets()
+    .pipe(
+      map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
+    )
+     
     )
   )
 );
-  // this.ticketService
-  //   .getTicket()
-  //   .pipe(
-  //     map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
-  //   )
 
-
-  
   chatACPost$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AppActions.requestAC),

@@ -15,9 +15,9 @@ export class LandingPageComponent {
 
   constructor(private store:Store, private router: Router){}
 
-  userData : NewTicket = {
-    firstname: '',
-    lastname: '',
+  newTicket : NewTicket = {
+    firstName: '',
+    lastName: '',
     email: '',
     type: 'REFUND',
     message: '',
@@ -26,8 +26,8 @@ export class LandingPageComponent {
   submitForm(form: NgForm) {
     if (form.valid) {
       // Esegui l'invio del form
-      console.log(this.userData);
-      this.store.dispatch(AppActions.createTicket({newTicket:this.userData}))
+      console.log(this.newTicket);
+      this.store.dispatch(AppActions.createTicket({newTicket:this.newTicket}))
 
     }
   }

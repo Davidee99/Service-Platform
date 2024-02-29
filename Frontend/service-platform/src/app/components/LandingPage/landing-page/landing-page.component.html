@@ -12,7 +12,7 @@
       matInput
       placeholder="Firstname"
       required
-      [(ngModel)]="userData.firstname"
+      [(ngModel)]="newTicket.firstName"
       name="firstname"
       minlength="3"
       maxlength="20"
@@ -38,7 +38,7 @@
     <mat-label>Lastname</mat-label>
     <input
       matInput
-      [(ngModel)]="userData.lastname"
+      [(ngModel)]="newTicket.lastName"
       placeholder="Lastname"
       name="lastname"
       required
@@ -67,7 +67,7 @@
     <mat-label>Email</mat-label>
     <input
       matInput
-      [(ngModel)]="userData.email"
+      [(ngModel)]="newTicket.email"
       placeholder="Email"
       name="email"
       required
@@ -91,7 +91,7 @@
 
   <mat-form-field>
     <mat-label>Type</mat-label>
-    <mat-select [(ngModel)]="userData.type" name="type" required>
+    <mat-select [(ngModel)]="newTicket.type" name="type" required>
       <mat-option value="PRODUCT">PRODUCT</mat-option>
       <mat-option value="REFUND">REFUND</mat-option>
     </mat-select>
@@ -111,7 +111,7 @@
     <textarea
       matInput
       placeholder="Issues detail"
-      [(ngModel)]="userData.message"
+      [(ngModel)]="newTicket.message"
       required
       name="message"
       minlength="5"
@@ -129,6 +129,29 @@
       </p>
       <p *ngIf="myForm.controls['message'].errors!['minlength']">
         Message must be at least 3 characters long
+      </p>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field class="landing-page-form-field">
+    <mat-label>Order Id</mat-label>
+    <input
+      matInput
+      placeholder="Order Id"
+      required
+      [(ngModel)]="newTicket.orderId"
+      name="orderId"
+    />
+    <div
+      *ngIf="
+        myForm.controls['orderId'] &&
+        myForm.controls['orderId'].invalid &&
+        (myForm.controls['orderId'].dirty ||
+          myForm.controls['orderId'].touched)
+      "
+    >
+      <p *ngIf="myForm.controls['orderId'].errors!['required']">
+        Order Id is required
       </p>
     </div>
   </mat-form-field>

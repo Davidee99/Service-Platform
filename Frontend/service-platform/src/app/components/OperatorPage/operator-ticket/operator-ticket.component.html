@@ -12,7 +12,7 @@
         </div>
         <div class="date">
             <h4>Opening date</h4>
-            <p>{{ticket.create_date}}</p>
+            <p>{{ticket.createDate | date:'dd/MM/yyyy'}}</p>
         </div>
         <div class="ticketInfo">
             <h4>Ticket</h4>
@@ -72,7 +72,7 @@
                 <!-- contenitore1 -->
                 <div class="c1">
                     <!-- user id da mettere al posto di ticket id-->
-                    <p>User id : {{ticket.user_id}}</p>
+                    <p>User id : {{ticket.userId}}</p>
                     <!-- messaggio del ticket -->
                     <p> Message : </p>
                     <p class="msg">{{ticket.message}}</p>
@@ -101,7 +101,7 @@
                         <!-- priority -->
                         <p>Priority : {{ticket.priority}}</p>
                         <!-- order id -->
-                        <p>Order Id : {{ticket.order_id}} </p>
+                        <p>Order Id : {{ticket.orderId}} </p>
 
                     </div>
 

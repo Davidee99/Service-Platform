@@ -18,7 +18,7 @@ export class TicketService {
   constructor(private http: HttpClient, private router: Router) { }
 
   createNewTicket(newTicket: NewTicket): Observable<any> {
-    const url = 'http://localhost:8080/ciao/test2'
+    const url = 'http://localhost:8082/api/dispatcher/ticket-service/ticket/saveTicket/'
     return this.http.post<NewTicket>(url, newTicket).pipe(
       tap((x) => {
         console.table(x);
@@ -26,15 +26,9 @@ export class TicketService {
     );
   }
 
-  getWipTicket(): Observable<Ticket[]> {
+  getUserTickets(): Observable<Ticket[]> {
     const userId = sessionStorage.getItem('id');
-    const url = "http://localhost:8082/api/dispatcher/ticket-service/ticket/getWIPTickets/?userId="+userId; //prova end point chiamata dei ticket
-    return this.http.get<Ticket[]>(url);
-  }
-
-  getNonWipTicket() : Observable<Ticket[]> {
-    const userId = sessionStorage.getItem('id');
-    const url = "http://localhost:8082/api/dispatcher/ticket-service/ticket/getNonWIPTickets/?userId="+userId; //prova end point chiamata dei ticket
+    const url = "http://localhost:8082/api/dispatcher/ticket-service/ticket/getUserTickets/?userId="+userId; //prova end point chiamata dei ticket
     return this.http.get<Ticket[]>(url);
   }
 
@@ -53,7 +47,7 @@ export class TicketService {
   }
 
   employeeLogin(data: any): Observable<any> {
-    const url = 'http://localhost:8080/ciao/test2';
+    const url = 'http://localhost:8082/api/authentication/login/employee';
     return this.http.post<any>(url, data);
   }
 
@@ -86,16 +80,14 @@ export class TicketService {
   }
 
   verifyACAndGetChatUser(accessCode: string) {
-    const url = 'http://localhost:3000/chat'
-    // const headers = new HttpHeaders().set('AccessCode', accessCode);
-    return this.http.get<Chat>(url).pipe(
+    const url = 'http://localhost:8082/api/dispacher/chat-service/chat/getChatByTicketId/withAccessCode/?ticketId=1';
+    const headers = new HttpHeaders().set('AccessCode', accessCode);
+    return this.http.get<Chat>(url, {"headers" : headers}).pipe(
       tap((x) => {
         console.table(x);
       })
     );
   }
-
-
 
   updatedMessages(chat: Chat) {
     const url = 'http://localhost:8080/ciao/testMessage'

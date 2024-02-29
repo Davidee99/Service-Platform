@@ -59,10 +59,14 @@
 
 <div class="prova" (click)="open(content)">
   <div class="singleTicketContainer">
-    <!-- <div class="userId">
+    <div class="userId">
       <h4>Order Id</h4>
-      <p>{{ ticket.id }}</p>
-    </div> -->
+      <p>{{ ticket.orderId }}</p>
+    </div>
+    <div class="createDate">
+      <h4>Create Date</h4>
+      <p>{{ ticket.createDate | date:'dd/MM/yyyy' }}</p>
+    </div>
     <div class="date">
       <h4>Type</h4>
       <p>{{ticket.type}}</p>

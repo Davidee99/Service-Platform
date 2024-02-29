@@ -1,8 +1,9 @@
 export interface NewTicket {
-    firstname: string;
-    lastname:string;
+  firstName: string;
+  lastName:string;
     email: string;
     type: 'REFUND' | 'PRODUCT';
     message: string;
+    orderId? :String;
   }
   
