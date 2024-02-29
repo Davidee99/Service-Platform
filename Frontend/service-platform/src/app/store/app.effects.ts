@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
+import { EMPTY, concat, forkJoin, merge, of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import * as AppActions from './app.actions';
 import { TicketService } from '../services/ticket.service';
@@ -13,21 +13,44 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private ticketService: TicketService
-  ) {}
+  ) { }
+
+  // loadTickets$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(AppActions.loadTickets),
+  //     exhaustMap(() =>
+  //       merge(this.ticketService.getTicket(), this.ticketService.getNonWipTicket())
+          // .pipe(
+          //   map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
+          // )
+  //     )
+  //   )
+  // );
 
   loadTickets$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AppActions.loadTickets),
-      exhaustMap(() =>
-        this.ticketService
-          .getTicket()
-          .pipe(
-            map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
-          )
+  this.actions$.pipe(
+    ofType(AppActions.loadTickets),
+    exhaustMap(() =>
+      forkJoin([
+        this.ticketService.getWipTicket(),
+        this.ticketService.getNonWipTicket()
+      ])
+      .pipe(
+        map(([ticketList, nonWipTicketList]: [Ticket[], Ticket[]]) =>
+          AppActions.ticketsLoaded({ tickets: [...ticketList, ...nonWipTicketList] })
+        )
       )
     )
-  );
+  )
+);
+  // this.ticketService
+  //   .getTicket()
+  //   .pipe(
+  //     map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
+  //   )
 
+
+  
   chatACPost$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AppActions.requestAC),
@@ -86,35 +109,35 @@ export class AppEffects {
   );
 
   employeeLogin$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AppActions.employeeLogin),
-    exhaustMap((action) =>
-      this.ticketService
-        .employeeLogin({
-          email: action.email,
-          password: action.password,
-        })
-        .pipe(
-          map((userCredential: UserCredential) => ({
-            userCredential,
-            type: AppActions.loginSuccess.type, // Add the action type manually
-          })),
-          tap((action) => {
-            this.ticketService.addUserCredentialToSession(
-              action.userCredential
-            );
-          }),
-          catchError((error) => {
-            console.error('Error during login:', error);
-            return of(AppActions.loginFailed());
+    this.actions$.pipe(
+      ofType(AppActions.employeeLogin),
+      exhaustMap((action) =>
+        this.ticketService
+          .employeeLogin({
+            email: action.email,
+            password: action.password,
           })
-        )
+          .pipe(
+            map((userCredential: UserCredential) => ({
+              userCredential,
+              type: AppActions.loginSuccess.type, // Add the action type manually
+            })),
+            tap((action) => {
+              this.ticketService.addUserCredentialToSession(
+                action.userCredential
+              );
+            }),
+            catchError((error) => {
+              console.error('Error during login:', error);
+              return of(AppActions.loginFailed());
+            })
+          )
+      )
     )
-  )
-);
+  );
 
 
-checkSessionStorage$ = createEffect(() =>
+  checkSessionStorage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AppActions.checkSessionStorage),
       switchMap(() => {
@@ -123,7 +146,7 @@ checkSessionStorage$ = createEffect(() =>
           return of(AppActions.sessionChecked({ userCredential }));
         } else {
           // Puoi gestire altri casi come la sessione non trovata
-          return of(AppActions.sessionChecked({userCredential:null}));
+          return of(AppActions.sessionChecked({ userCredential: null }));
         }
       })
     )
@@ -131,68 +154,68 @@ checkSessionStorage$ = createEffect(() =>
 
 
   newTicketPost$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AppActions.createTicket),
-    exhaustMap((action) =>
-      this.ticketService
-        .createNewTicket(action.newTicket)
-        .pipe(
-          map((userCredential: UserCredential) => ({
-            userCredential,
-            type: AppActions.loginSuccess.type, // Add the action type manually
-          })),
-          tap((action) => {
-            this.ticketService.successLog;
-          }),
-          catchError((error) => {
-            console.error('Error during login:', error);
-            return of(AppActions.loginFailed());
-          })
-        )
-    )
-  )
-);
-
-
-
-verifyAccessCode$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AppActions.verifyAccessCode),
-    switchMap((action) =>
-      this.ticketService.verifyACAndGetChatUser(action.accessCode).pipe(
-        map((chat) => {
-          console.log('Operazione completata con successo');
-          console.log(chat);
-          return AppActions.loadChat({ chat: chat }); // Restituisci un'azione di successo
-        }),
-        catchError((error) => {
-          console.log('Errore durante l\'operazione:', error);
-          return of(AppActions.loginFailed()); // Restituisci un'azione di errore
-        })
+    this.actions$.pipe(
+      ofType(AppActions.createTicket),
+      exhaustMap((action) =>
+        this.ticketService
+          .createNewTicket(action.newTicket)
+          .pipe(
+            map((userCredential: UserCredential) => ({
+              userCredential,
+              type: AppActions.loginSuccess.type, // Add the action type manually
+            })),
+            tap((action) => {
+              this.ticketService.successLog;
+            }),
+            catchError((error) => {
+              console.error('Error during login:', error);
+              return of(AppActions.loginFailed());
+            })
+          )
       )
     )
-  )
-);
+  );
 
 
-updateChat$ = createEffect(() =>
-this.actions$.pipe(
-  ofType(AppActions.sendUpdatedChat),
-  switchMap((action)=>
-  this.ticketService.updatedMessages(action.chat).pipe(
-    map(() => {
-      console.log('Operazione completata con successo aggiungi mex');
-      return AppActions.loadChat({ chat: action.chat }); // Restituisci un'azione di successo
-    }),
-    catchError((error) => {
-      console.log('Errore durante l\'operazione:', error);
-      return of(AppActions.loginFailed()); // Restituisci un'azione di errore
-    })
-  )
-  )
-)
 
-)
+  verifyAccessCode$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AppActions.verifyAccessCode),
+      switchMap((action) =>
+        this.ticketService.verifyACAndGetChatUser(action.accessCode).pipe(
+          map((chat) => {
+            console.log('Operazione completata con successo');
+            console.log(chat);
+            return AppActions.loadChat({ chat: chat }); // Restituisci un'azione di successo
+          }),
+          catchError((error) => {
+            console.log('Errore durante l\'operazione:', error);
+            return of(AppActions.loginFailed()); // Restituisci un'azione di errore
+          })
+        )
+      )
+    )
+  );
+
+
+  updateChat$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AppActions.sendUpdatedChat),
+      switchMap((action) =>
+        this.ticketService.updatedMessages(action.chat).pipe(
+          map(() => {
+            console.log('Operazione completata con successo aggiungi mex');
+            return AppActions.loadChat({ chat: action.chat }); // Restituisci un'azione di successo
+          }),
+          catchError((error) => {
+            console.log('Errore durante l\'operazione:', error);
+            return of(AppActions.loginFailed()); // Restituisci un'azione di errore
+          })
+        )
+      )
+    )
+
+  )
 
 
 }

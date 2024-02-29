@@ -45,10 +45,13 @@ import { NgForm } from '@angular/forms';
       }
       ngOnChanges(changes: SimpleChanges): void {
         this.isThereLoginError$ = this.store.select(selectLoginError);
+        console.log("OnChanges Credential ",selectUserCredential);
+        this.credentials$= this.store.select(selectUserCredential)
       }
       ngOnInit(): void {
       this.amIUser = 'user';
       this.isThereLoginError$ = this.store.select(selectLoginError);
+      console.log("OnInit Credential ",this.store.select(selectUserCredential));
       this.credentials$= this.store.select(selectUserCredential)
     }
     credentials$:Observable<UserCredential|null>;

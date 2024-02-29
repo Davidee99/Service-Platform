@@ -3,7 +3,7 @@
         <img class="bd-placeholder-img rounded-circle" width="100" height="100" src="https://i.pravatar.cc/300"
             role="img" />
             <div *ngIf="(credentials$|async)as credentials">
-                <h2>Hi, {{credentials.firstname }} </h2> <!--forse last name -->
+                <h2>Hi, {{credentials.firstname }} {{ credentials.lastname}} </h2> <!--forse last name -->
             </div>
     </div>
     <app-access-code-form></app-access-code-form>
