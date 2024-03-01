@@ -1,3 +1,4 @@
+import { ChangeStatusErrorDTO } from './../components/OperatorPage/operator-ticket/operator-ticket.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class TicketService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  //CREATE TICKET
   createNewTicket(newTicket: NewTicket): Observable<any> {
     const url = 'http://localhost:8082/api/dispatcher/ticket-service/ticket/saveTicket/'
     return this.http.post<NewTicket>(url, newTicket).pipe(
@@ -26,10 +28,29 @@ export class TicketService {
     );
   }
 
+  //GET TICKETS
+
   getUserTickets(): Observable<Ticket[]> {
     const userId = sessionStorage.getItem('id');
-    const url = "http://localhost:8082/api/dispatcher/ticket-service/ticket/getUserTickets/?userId="+userId; //prova end point chiamata dei ticket
+    const url = "http://localhost:8082/api/dispatcher/ticket-service/ticket/getUserTickets/?userId="+userId;
     return this.http.get<Ticket[]>(url);
+  }
+
+  getTicketsWIPByOperatorId(): Observable<Ticket[]> {
+    const operatorId = sessionStorage.getItem('id');
+    const url = "http://localhost:8082/api/dispatcher/ticket-service/operator/ticketsWIP/?operatorId="+operatorId;
+    return this.http.get<Ticket[]>(url);
+  }
+  getTicketsNONWIPByOperatorId(): Observable<Ticket[]> {
+    const url = "http://localhost:8082/api/dispatcher/ticket-service/operator/ticketNONWIP/";
+    return this.http.get<Ticket[]>(url);
+  }
+
+//OPERATOR TICKET SERVICE
+
+  putChangeStatusErrorTicket(changeStatusErrorDTO:ChangeStatusErrorDTO) : Observable<Ticket> {
+    const url = "http://localhost:8082/api/dispatcher/ticket-service/operator/change-status-error/";
+    return this.http.put<Ticket>(url,changeStatusErrorDTO);
   }
 
   postChatAC(data: any): Observable<any> {

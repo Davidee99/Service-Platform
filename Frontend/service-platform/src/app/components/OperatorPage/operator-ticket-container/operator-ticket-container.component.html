@@ -8,11 +8,11 @@
         
 
         <li ngbNavItem>
-            <button ngbNavLink (click)="ClosedButton()"> WIP </button>
+            <button ngbNavLink (click)="WIPButton()"> WIP </button>
             <ng-template ngbNavContent>
-                <div *ngIf="(tickets$ | async) as tickets">
+                <div *ngIf="(ticketsWIP$ | async) as tickets">
                     <div *ngFor="let item of tickets">
-                        <div *ngIf="item.status==='WIP'">
+                        <div>
                             <app-operator-ticket [ticket]="item"></app-operator-ticket>
                         </div>
                     </div>
@@ -21,13 +21,13 @@
         </li>
 
         <li ngbNavItem>
-            <button ngbNavLink class="form-user-button" (click)="OpenButton()"> NON WIP </button>
+            <button ngbNavLink class="form-user-button" (click)="NONWIPButton()"> NON WIP </button>
             <!-- *ngIf="tickets[1].STATUS == 'NON_WIP' " -->
             <ng-template ngbNavContent>
-                <div *ngIf="(tickets$ | async) as tickets">
+                <div *ngIf="(ticketsNONWIP$ | async) as tickets">
                     <div *ngFor="let item of tickets">
-                        <div *ngIf="item.status==='NON_WIP'">
-                            <app-operator-ticket [ticket]="item"></app-operator-ticket>
+                        <div>
+                            <app-operator-ticket [ticket]="item" ></app-operator-ticket>
                         </div>
                     </div>
                 </div>

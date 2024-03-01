@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAllTickets } from 'src/app/store/app.selector';
@@ -24,6 +24,7 @@ export class TicketContainerComponent implements OnInit {
     this.tickets$ = this.store.select(selectAllTickets);
     console.log(this.tickets$);
   }
+
 
   open: boolean = false;
   closed: boolean = false;

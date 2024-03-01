@@ -16,18 +16,57 @@ export class AppEffects {
   ) { }
 
   loadTickets$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(AppActions.loadTickets),
-    exhaustMap(() =>
+    this.actions$.pipe(
+      ofType(AppActions.loadTickets),
+      exhaustMap(() =>
+        this.ticketService
+          .getUserTickets()
+          .pipe(
+            map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
+          )
+
+      )
+    )
+  );
+
+  loadOperatorWIPTickets$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AppActions.loadOperatorWIPTickets),
+      exhaustMap(() =>
+        this.ticketService
+          .getTicketsWIPByOperatorId()
+          .pipe(
+            map((list: Ticket[]) => AppActions.OperatorWIPTicketsLoaded({ ticketsWIP: list }))
+          )
+      )
+    )
+  );
+  loadOperatorNONWIPTickets$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AppActions.loadOperatorNONWIPTickets),
+      exhaustMap(() =>
+        this.ticketService
+          .getTicketsNONWIPByOperatorId()
+          .pipe(
+            map((list: Ticket[]) => AppActions.OperatorNONWIPTicketsLoaded({ ticketsNONWIP: list }))
+          )
+      )
+    )
+  );
+
+changeStatusError$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(AppActions.changeStatusError),
+  exhaustMap((action) =>
     this.ticketService
-    .getUserTickets()
-    .pipe(
-      map((list: Ticket[]) => AppActions.ticketsLoaded({ tickets: list }))
-    )
-     
-    )
+      .putChangeStatusErrorTicket(action.changeStatusErrorDTO)
+      .pipe(
+        map((resultTicket) => AppActions.afterChangestatusError({updatedTicket : resultTicket})),
+      )
   )
+)
 );
+
 
   chatACPost$ = createEffect(() =>
     this.actions$.pipe(

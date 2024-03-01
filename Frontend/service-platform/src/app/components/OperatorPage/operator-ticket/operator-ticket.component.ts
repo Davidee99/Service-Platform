@@ -1,7 +1,9 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
 import { Ticket } from 'src/model/ticket.model';
+import * as AppActions from 'src/app/store/app.actions';
 
 
 
@@ -16,22 +18,26 @@ import { Ticket } from 'src/model/ticket.model';
 })
 export class OperatorTicketComponent {
 
+changeStatusErrorDTO : ChangeStatusErrorDTO = {
+  ticketId : -1,
+  status : ""
+}
+
   //expansion panel
   isCollapsed = true;
 
   //menù mark as...
   showMarkMenu = false;
 
-
-
-
   constructor(
 		config: NgbModalConfig,
 		private modalService: NgbModal,
+    private store: Store
 	) {
 		// customize default values of modals used by this component tree
 		config.backdrop = 'static';
 		config.keyboard = false;
+    
 
     
 	}
@@ -50,7 +56,6 @@ export class OperatorTicketComponent {
   @Input()
   ticket!: Ticket;
 
-
   toggleMarkMenu() {
     this.showMarkMenu = !this.showMarkMenu;
   }
@@ -61,21 +66,16 @@ export class OperatorTicketComponent {
     // Puoi anche chiudere il menu dopo aver selezionato un'opzione
     this.showMarkMenu = false;
   }
-  
 
-
-  selected = 'option2';
-  send() {
-    // Logica per l'invio
-    console.log('Sending...');
+  setStatusError(){
+    this.changeStatusErrorDTO.ticketId = this.ticket.id;
+    this.store.dispatch(AppActions.changeStatusError({ changeStatusErrorDTO : this.changeStatusErrorDTO})); //Da fare: Aggiornare ticket child
+   
   }
 
-   
+}
 
-    
-
-   
-
-
-
+export interface ChangeStatusErrorDTO {
+  ticketId : number,
+  status : string
 }

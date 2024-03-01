@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllTickets } from 'src/app/store/app.selector';
+import { selectWIPTickets , selectNONWIPTickets } from 'src/app/store/app.selector';
 import { Ticket } from 'src/model/ticket.model';
 
 import * as AppActions from 'src/app/store/app.actions';
@@ -11,34 +12,46 @@ import * as AppActions from 'src/app/store/app.actions';
   templateUrl: './operator-ticket-container.component.html',
   styleUrls: ['./operator-ticket-container.component.css']
 })
-export class OperatorTicketContainerComponent  implements OnInit{
+export class OperatorTicketContainerComponent  implements OnInit , OnDestroy , OnChanges{
 
   constructor(private store: Store) {
-    this.tickets$ = store.select(selectAllTickets);
+    this.ticketsWIP$ = store.select(selectWIPTickets);
+    this.ticketsNONWIP$ = store.select(selectNONWIPTickets);
   }
   
   ngOnInit(): void {
-    this.store.dispatch(AppActions.loadTickets())
-    this.tickets$ = this.store.select(selectAllTickets);
-    console.log(this.tickets$);
+    this.store.dispatch(AppActions.loadOperatorWIPTickets())
+    this.ticketsWIP$ = this.store.select(selectWIPTickets);
   }
 
+  ngOnDestroy(): void {
+    this.store.dispatch(AppActions.clearTickets());
+    this.ticketsWIP$.pipe(map( x => console.log("Ciao " , x)
+    ))
+  }
 
-  tickets$: Observable<Ticket[]>;
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("Ci siamo");
+}
+
+  ticketsWIP$: Observable<Ticket[]>;
+  ticketsNONWIP$: Observable<Ticket[]>;
 
   //Botton
   open: boolean = false;
   closed: boolean = false;
 
-  OpenButton() {
+  WIPButton() {
+    this.store.dispatch(AppActions.loadOperatorWIPTickets())
+    this.ticketsWIP$ = this.store.select(selectWIPTickets);
     this.open = true;
     this.closed = false;
-    console.log('OpenButton' + this.open);
   }
-  ClosedButton() {
+  NONWIPButton() {
+    this.store.dispatch(AppActions.loadOperatorNONWIPTickets())
+    this.ticketsNONWIP$ = this.store.select(selectNONWIPTickets);
     this.closed = true;
     this.open = false;
-    console.log('ClosedButton' + this.closed);
   }
 
  

@@ -84,6 +84,11 @@
   justify-content: space-evenly;
 }
 
+.button-action-ticket{
+  display: flex;
+  width: 50%;
+}
+
 #chatclose {
   width: 30%;
   display: flex;
@@ -91,7 +96,7 @@
 }
 
 #chat {
-  width: 40%;
+  width: 50%;
   margin: 0 10px;
   border-radius: 10px;
   background-color: rgb(162, 0, 250);
@@ -99,7 +104,7 @@
 }
 
 #close {
-  width: 40%;
+  width: 50%;
   margin: auto;
   border-radius: 10px;
   background-color: rgb(250, 112, 0);

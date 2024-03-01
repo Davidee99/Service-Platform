@@ -7,6 +7,14 @@ export const selectAllTickets = createSelector(
   selectAppState,
   state => state.tickets
 );
+export const selectWIPTickets = createSelector(
+  selectAppState,
+  state => state.ticketsWIP
+);
+export const selectNONWIPTickets = createSelector(
+  selectAppState,
+  state => state.ticketsNONWIP
+);
 
 export const selectUserCredential = createSelector(
   selectAppState,

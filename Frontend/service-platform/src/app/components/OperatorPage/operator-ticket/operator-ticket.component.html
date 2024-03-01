@@ -16,7 +16,7 @@
         </div>
         <div class="ticketInfo">
             <h4>Ticket</h4>
-            <p>{{ ticket.message.length>50? ((ticket.message |  slice:0:50)+'...'):ticket.message}}</p>
+            <p>{{ ticket.message.length>50? ((ticket.message | slice:0:50)+'...'):ticket.message}}</p>
         </div>
         <div *ngIf="ticket.status === 'WIP'" class="sectionOrderId">
             <div class="status">
@@ -79,9 +79,9 @@
                 </div>
                 <!-- contenitore 2 -->
                 <div class="c2">
-
-                    <div class="selectt">
-                        <!-- type selection -->
+                    <p>Type: {{ticket.type}}</p>
+                    <!-- <div class="selectt">
+                        
                         <mat-form-field>
                             <mat-label>Select an option</mat-label>
                             <mat-select [(value)]="selected">
@@ -90,10 +90,10 @@
                             </mat-select>
                         </mat-form-field>
                         <div class="selectBtn" *ngIf="selected !== 'option2'">
-                            <!-- Aggiungi l'evento click per gestire il click sul bottone -->
-                            <button (click)="send()" mat-raised-button color="primary">Send</button>
+                          
+                            <button (click)="changeType()" mat-raised-button color="primary">Send</button>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="infoc2">
@@ -126,21 +126,26 @@
 
         <!-- bottone delete -->
         <div class="example-button-container">
-            <!-- <button mat-fab id="cl" color="warn" aria-label="Example icon button with a delete icon">
-                    <mat-icon>delete</mat-icon>
-                </button> -->
-
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-                <mat-icon>delete</mat-icon>
-            </button>
-
-
+            <div style="display: flex;">
+                <mat-form-field>
+                    <mat-label *ngIf="!(ticket.statusError)"> Select a Status Error </mat-label>
+                    <mat-label *ngIf="(ticket.statusError)"> {{ticket.statusError}} </mat-label>
+                    <mat-select [(ngModel)]="changeStatusErrorDTO.status">
+                        <mat-option value="FAKE">Fake</mat-option>
+                        <mat-option value="DUPLICATED">Duplicated</mat-option>
+                        <mat-option value="WRONG_SECTOR">Wrong Sector</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="selectBtn">
+                    <button (click)="setStatusError()" mat-raised-button color="primary">Set</button>
+                </div>
+            </div>
             <!-- 3 button mark as -->
-            <div>
+            <!-- <div>
                 <button mat-stroked-button color="accent">Set fake </button>
                 <button mat-stroked-button color="accent">Set duplicated </button>
                 <button mat-stroked-button color="accent">Set switched</button>
-            </div>
+            </div> -->
 
             <!-- take charge button -->
             <div *ngIf="ticket.status !== 'WIP'">
@@ -148,9 +153,9 @@
             </div>
 
             <!-- chat button -->
-            <div  *ngIf="ticket.status === 'WIP'">
-                <button id="chat" mat-button color="accennt">Chat</button>
-                <button id="close"  mat-button color="accennt">Close</button>
+            <div class="button-action-ticket" *ngIf="ticket.status === 'WIP'">
+                <button id="chat" mat-button color="accennt">Open Chat</button>
+                <button id="close" mat-button color="accennt">Close Ticket</button>
 
             </div>
 
